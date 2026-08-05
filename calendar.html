@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Calendar · NCH Trojan Staff Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#B31B34; --red-deep:#8C1128; --gold:#E9A13B; --gold-soft:#F6E3C2;
+  --ink:#1D1A20; --paper:#F6F4EF; --card:#FFFFFF; --gray:#6E6A72; --line:#E4E0D9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3,.disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  text-transform:uppercase;letter-spacing:.02em;margin:0}
+a{color:var(--red-deep)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* header */
+.top{background:var(--ink);color:#fff}
+.top-inner{max-width:1020px;margin:0 auto;padding:14px 20px;display:flex;
+  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.05;text-decoration:none;color:#fff}
+.brand b{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;
+  text-transform:uppercase;letter-spacing:.03em}
+.brand b span{color:var(--gold)}
+.brand small{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#CFC9D1}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;
+  text-transform:uppercase;letter-spacing:.06em;color:#fff;text-decoration:none;
+  padding:8px 14px;border-radius:4px}
+nav a:hover{background:rgba(255,255,255,.12)}
+nav a[aria-current="page"]{background:var(--red);color:#fff}
+.plume{height:10px;background:repeating-linear-gradient(135deg,
+  var(--red) 0 16px, var(--gold) 16px 24px, var(--ink) 24px 32px)}
+
+/* layout */
+.wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
+.page-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 6px}
+.page-h h1{font-size:44px;font-weight:800}
+.page-h .sub{color:var(--gray);font-size:15px}
+.rule{height:3px;background:var(--red);width:64px;margin:10px 0 24px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;margin-bottom:22px}
+.card h2{font-size:26px;font-weight:800;margin-bottom:10px}
+.card h2 .tag{color:var(--red)}
+
+/* badges */
+.badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;
+  padding:2px 8px;white-space:nowrap}
+.b-noschool{background:var(--ink);color:#fff}
+.b-grades{background:var(--red);color:#fff}
+.b-pd{background:var(--gold);color:var(--ink)}
+.b-spirit{background:#fff;color:var(--red-deep);border:1.5px solid var(--red)}
+.b-ath{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.b-key{background:var(--red-deep);color:#fff}
+.b-home{background:var(--gold);color:var(--ink)}
+
+/* schedule rows */
+.rows{display:flex;flex-direction:column}
+.row{display:flex;gap:16px;align-items:flex-start;padding:12px 6px;
+  border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row.home-game{border-left:4px solid var(--gold);padding-left:10px;background:#FDFAF3}
+.datechip{min-width:64px;text-align:center;flex-shrink:0}
+.datechip .dow{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.datechip .num{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--ink)}
+.ev{flex:1;min-width:200px}
+.ev .t{font-weight:600}
+.ev .meta{color:var(--gray);font-size:14px}
+.row .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:3px}
+
+/* filter + tab buttons */
+.btnbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.btnbar button{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
+  text-transform:uppercase;letter-spacing:.06em;border:1.5px solid var(--ink);
+  background:#fff;color:var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer}
+.btnbar button:hover{background:var(--gold-soft)}
+.btnbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.hide{display:none !important}
+
+/* home page bits */
+.hero{background:var(--ink);color:#fff;border-radius:12px;padding:34px 30px;margin-bottom:24px;
+  background-image:linear-gradient(120deg,rgba(179,27,52,.35),rgba(0,0,0,0) 55%)}
+.hero h1{font-size:56px;font-weight:800;line-height:.95}
+.hero h1 span{color:var(--gold)}
+.hero p{margin:10px 0 0;color:#DDD8E0;max-width:56ch}
+.count{display:inline-block;margin-top:18px;background:var(--red);color:#fff;border-radius:6px;
+  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
+  text-transform:uppercase;letter-spacing:.05em}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.q{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);
+  border-radius:8px;padding:12px 14px;text-align:center}
+.q .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.q .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.linklist{list-style:none;margin:0;padding:0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist li:last-child{border-bottom:none}
+.linklist a{font-weight:600;text-decoration:none}
+.linklist a:hover{text-decoration:underline}
+.linklist .note{color:var(--gray);font-size:14px;display:block}
+.soon{color:var(--gray);font-size:13px;font-style:italic}
+
+footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
+  text-align:center;padding:18px 20px 30px}
+
+@media (max-width:720px){
+  .page-h h1{font-size:34px}
+  .hero h1{font-size:38px}
+  .qgrid{grid-template-columns:repeat(2,1fr)}
+  .two{grid-template-columns:1fr}
+  .row{flex-wrap:wrap}
+  .row .badges{width:100%;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="index.html">
+      <b>Trojan <span>Staff Hub</span></b>
+      <small>North College Hill High School</small>
+    </a>
+    <nav aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="calendar.html" aria-current="page">Calendar</a>
+      <a href="sports.html">Athletics</a>
+      <a href="staff.html">Staff Info</a>
+    </nav>
+  </div>
+</header>
+<div class="plume" role="presentation"></div>
+<main class="wrap">
+
+<div class="page-h"><h1>First Semester Calendar</h1><span class="sub">2026&ndash;27 · August through Winter Break</span></div>
+<div class="rule"></div>
+<div class="btnbar" role="group" aria-label="Filter events">
+  <button data-f="all" aria-pressed="true">All</button>
+  <button data-f="noschool" aria-pressed="false">No School</button>
+  <button data-f="grades" aria-pressed="false">Grades</button>
+  <button data-f="pd" aria-pressed="false">Staff PD</button>
+  <button data-f="spirit" aria-pressed="false">Spirit</button>
+  <button data-f="athletics" aria-pressed="false">Senior Nights</button>
+</div>
+<div class="card"><h2><span class="tag">//</span> August</h2><div class="rows"><div class="row" data-cat="pd"><div class="datechip"><span class="dow">Wed</span><span class="num">5</span></div><div class="ev"><div class="t">Opening Day: Staff — District &amp; Building PD</div><span class="meta">8:00&ndash;10:00 AM · PAC</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-cat="pd"><div class="datechip"><span class="dow">Thu</span><span class="num">6</span></div><div class="ev"><div class="t">Staff PD + Back to School Picnic (Required)</div><span class="meta">4:30&ndash;6:30 PM · HS Building</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-cat="pd"><div class="datechip"><span class="dow">Fri</span><span class="num">7</span></div><div class="ev"><div class="t">Staff PD &amp; Staff Social</div></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-cat="key"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">First Day of School: Students</div></div><div class="badges"><span class="badge b-key">Key Date</span></div></div><div class="row" data-cat="event"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">9th &amp; 10th Grade Level Presentations</div><span class="meta">PAC</span></div><div class="badges"></div></div><div class="row" data-cat="event"><div class="datechip"><span class="dow">Wed</span><span class="num">12</span></div><div class="ev"><div class="t">11th &amp; 12th Grade Level Presentations</div><span class="meta">PAC</span></div><div class="badges"></div></div><div class="row" data-cat="key"><div class="datechip"><span class="dow">Fri</span><span class="num">21</span></div><div class="ev"><div class="t">Last Day for Schedule Changes</div></div><div class="badges"><span class="badge b-key">Key Date</span></div></div><div class="row" data-cat="spirit"><div class="datechip"><span class="dow">Fri</span><span class="num">28</span></div><div class="ev"><div class="t">Final Friday / Kona Ice</div></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div></div></div><div class="card"><h2><span class="tag">//</span> September</h2><div class="rows"><div class="row" data-cat="noschool"><div class="datechip"><span class="dow">Mon</span><span class="num">7</span></div><div class="ev"><div class="t">Labor Day Holiday</div><span class="meta">No school — staff and students</span></div><div class="badges"><span class="badge b-noschool">No School</span></div></div><div class="row" data-cat="grades"><div class="datechip"><span class="dow">Tue</span><span class="num">8</span></div><div class="ev"><div class="t">Interim Grade Bucket Opens</div></div><div class="badges"><span class="badge b-grades">Grades</span></div></div><div class="row" data-cat="event"><div class="datechip"><span class="dow">Tue</span><span class="num">8</span></div><div class="ev"><div class="t">Counselor Presentations: 9th Grade ELA</div><span class="meta">10th on 9/9 · 11th on 9/10 · 12th on 9/11</span></div><div class="badges"></div></div><div class="row" data-cat="grades"><div class="datechip"><span class="dow">Mon</span><span class="num">14</span></div><div class="ev"><div class="t">Interim Grade Bucket Closes</div></div><div class="badges"><span class="badge b-grades">Grades</span></div></div><div class="row" data-cat="spirit"><div class="datechip"><span class="dow">Fri</span><span class="num">25</span></div><div class="ev"><div class="t">Final Friday / Kona Ice</div></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div></div></div><div class="card"><h2><span class="tag">//</span> October</h2><div class="rows"><div class="row" data-cat="spirit"><div class="datechip"><span class="dow">Mon</span><span class="num">5</span></div><div class="ev"><div class="t">Homecoming Spirit Week Begins</div><span class="meta">Oct 5&ndash;10</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row home-game" data-cat="athletics"><div class="datechip"><span class="dow">Mon</span><span class="num">5</span></div><div class="ev"><div class="t">Senior Night: Soccer vs. Mt. Healthy</div><span class="meta">Girls 5:00 PM · Boys 7:00 PM</span></div><div class="badges"><span class="badge b-ath">Athletics</span><span class="badge b-home">Home</span></div></div><div class="row" data-cat="event"><div class="datechip"><span class="dow">Wed</span><span class="num">7</span></div><div class="ev"><div class="t">Picture Day</div></div><div class="badges"></div></div><div class="row" data-cat="grades"><div class="datechip"><span class="dow">Thu</span><span class="num">8</span></div><div class="ev"><div class="t">1st Quarter Report Card Bucket Opens</div></div><div class="badges"><span class="badge b-grades">Grades</span></div></div><div class="row home-game" data-cat="athletics"><div class="datechip"><span class="dow">Thu</span><span class="num">8</span></div><div class="ev"><div class="t">Senior Night: Volleyball vs. Shroder</div><span class="meta">6:30 PM</span></div><div class="badges"><span class="badge b-ath">Athletics</span><span class="badge b-home">Home</span></div></div><div class="row" data-cat="key"><div class="datechip"><span class="dow">Fri</span><span class="num">9</span></div><div class="ev"><div class="t">End of First Quarter</div></div><div class="badges"><span class="badge b-key">Key Date</span></div></div><div class="row home-game" data-cat="spirit athletics"><div class="datechip"><span class="dow">Fri</span><span class="num">9</span></div><div class="ev"><div class="t">Homecoming: Pep Rally, Parade &amp; Football vs. Clark</div></div><div class="badges"><span class="badge b-spirit">Spirit</span><span class="badge b-home">Home</span></div></div><div class="row" data-cat="spirit"><div class="datechip"><span class="dow">Sat</span><span class="num">10</span></div><div class="ev"><div class="t">Homecoming Dance</div></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-cat="grades"><div class="datechip"><span class="dow">Mon</span><span class="num">12</span></div><div class="ev"><div class="t">1st Quarter Report Card Bucket Closes</div></div><div class="badges"><span class="badge b-grades">Grades</span></div></div><div class="row" data-cat="noschool"><div class="datechip"><span class="dow">Mon</span><span class="num">12</span></div><div class="ev"><div class="t">Teacher Trade Off Day</div><span class="meta">No school — staff and students</span></div><div class="badges"><span class="badge b-noschool">No School</span></div></div><div class="row home-game" data-cat="athletics"><div class="datechip"><span class="dow">Fri</span><span class="num">16</span></div><div class="ev"><div class="t">Senior Night: Football vs. CCD</div><span class="meta">7:00 PM</span></div><div class="badges"><span class="badge b-ath">Athletics</span><span class="badge b-home">Home</span></div></div><div class="row" data-cat="pd"><div class="datechip"><span class="dow">Mon</span><span class="num">19</span></div><div class="ev"><div class="t">Teacher PD Day + Parent-Teacher Conferences</div></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-cat="event"><div class="datechip"><span class="dow">Tue</span><span class="num">20</span></div><div class="ev"><div class="t">Graduate Service: Senior Meeting</div><span class="meta">8:00 AM</span></div><div class="badges"></div></div><div class="row" data-cat="spirit"><div class="datechip"><span class="dow">Fri</span><span class="num">30</span></div><div class="ev"><div class="t">Final Friday + Q1 Honor Roll Recognition</div></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div></div></div><div class="card"><h2><span class="tag">//</span> November</h2><div class="rows"><div class="row" data-cat="spirit"><div class="datechip"><span class="dow">Mon</span><span class="num">2</span></div><div class="ev"><div class="t">HBCU Spirit Week Begins</div><span class="meta">Nov 2&ndash;6</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-cat="event"><div class="datechip"><span class="dow">Wed</span><span class="num">4</span></div><div class="ev"><div class="t">Picture Retake Day</div></div><div class="badges"></div></div><div class="row" data-cat="grades"><div class="datechip"><span class="dow">Tue</span><span class="num">10</span></div><div class="ev"><div class="t">Interim Grade Bucket Opens</div></div><div class="badges"><span class="badge b-grades">Grades</span></div></div><div class="row" data-cat="event"><div class="datechip"><span class="dow">Wed</span><span class="num">11</span></div><div class="ev"><div class="t">Graduate Services: Senior Spirit Gear Delivery</div></div><div class="badges"></div></div><div class="row" data-cat="grades"><div class="datechip"><span class="dow">Mon</span><span class="num">16</span></div><div class="ev"><div class="t">Interim Grade Bucket Closes</div></div><div class="badges"><span class="badge b-grades">Grades</span></div></div><div class="row" data-cat="spirit"><div class="datechip"><span class="dow">Fri</span><span class="num">20</span></div><div class="ev"><div class="t">Final Friday</div></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-cat="pd"><div class="datechip"><span class="dow">Mon</span><span class="num">23</span></div><div class="ev"><div class="t">Teacher PD Day</div><span class="meta">Also Tue Nov 24</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-cat="noschool"><div class="datechip"><span class="dow">Wed</span><span class="num">25</span></div><div class="ev"><div class="t">Fall Break Begins</div><span class="meta">Nov 25&ndash;27 · No school — staff and students</span></div><div class="badges"><span class="badge b-noschool">No School</span></div></div></div></div><div class="card"><h2><span class="tag">//</span> December</h2><div class="rows"><div class="row" data-cat="grades"><div class="datechip"><span class="dow">Mon</span><span class="num">14</span></div><div class="ev"><div class="t">2nd Quarter Report Card Bucket Opens</div></div><div class="badges"><span class="badge b-grades">Grades</span></div></div><div class="row" data-cat="key grades"><div class="datechip"><span class="dow">Fri</span><span class="num">18</span></div><div class="ev"><div class="t">End of Second Quarter / Final Friday</div><span class="meta">Report card bucket closes</span></div><div class="badges"><span class="badge b-key">Key Date</span><span class="badge b-grades">Grades</span></div></div><div class="row" data-cat="noschool"><div class="datechip"><span class="dow">Mon</span><span class="num">21</span></div><div class="ev"><div class="t">Teacher Trade Off Day</div><span class="meta">No school — staff and students</span></div><div class="badges"><span class="badge b-noschool">No School</span></div></div><div class="row" data-cat="noschool"><div class="datechip"><span class="dow">Tue</span><span class="num">22</span></div><div class="ev"><div class="t">Winter Break Begins</div><span class="meta">Dec 22 &ndash; Jan 1 · No school — staff and students</span></div><div class="badges"><span class="badge b-noschool">No School</span></div></div></div></div>
+</main>
+<footer>
+  NCH Trojan Staff Hub · An unofficial staff resource · Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
+</footer>
+<script>
+document.querySelectorAll('.btnbar button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.btnbar button').forEach(function(b){b.setAttribute('aria-pressed','false');});
+    btn.setAttribute('aria-pressed','true');
+    var f=btn.getAttribute('data-f');
+    document.querySelectorAll('.row').forEach(function(r){
+      var cats=r.getAttribute('data-cat')||'';
+      r.classList.toggle('hide', f!=='all' && cats.split(' ').indexOf(f)===-1);
+    });
+    document.querySelectorAll('.card').forEach(function(c){
+      var rows=c.querySelectorAll('.row'); if(!rows.length) return;
+      var vis=c.querySelectorAll('.row:not(.hide)').length;
+      c.classList.toggle('hide', vis===0);
+    });
+  });
+});
+</script>
+</body>
+</html>
