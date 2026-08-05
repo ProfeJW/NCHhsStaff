@@ -113,6 +113,33 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .linklist .note{color:var(--gray);font-size:14px;display:block}
 .soon{color:var(--gray);font-size:13px;font-style:italic}
 
+/* schedule tables */
+.sched{width:100%;border-collapse:collapse;margin-top:4px}
+.sched th,.sched td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:15px}
+.sched thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.sched td.p{font-weight:600}
+.sched td.tm{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:var(--ink)}
+.sched tr:last-child td{border-bottom:none}
+.sched tr.book td{color:var(--gray);font-weight:600}
+.sched tr.lunch td{background:var(--gold-soft);font-weight:700}
+.sched tr.lunch td.p{color:var(--red-deep)}
+.schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+
+/* duty table */
+.duty{width:100%;border-collapse:collapse}
+.duty th,.duty td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);
+  vertical-align:top;font-size:15px}
+.duty thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border-bottom:none}
+.duty tbody tr:last-child td{border-bottom:none}
+.duty tbody tr:nth-child(even) td{background:#FBF9F5}
+.duty td.who{font-weight:700;white-space:nowrap;width:1%;padding-right:20px}
+.duty td.loc b{color:var(--red-deep)}
+@media (max-width:560px){
+  .duty td.who{white-space:normal}
+}
+
 footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   text-align:center;padding:18px 20px 30px}
 
@@ -174,11 +201,148 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 </div>
 
 <div class="card">
+  <h2><span class="tag">//</span> Daily Bell Schedule</h2>
+  <p style="margin:0 0 14px">Doors open <b>8:05</b> · Dismissal <b>3:05</b> every day. Pick a schedule below.</p>
+  <div class="btnbar" data-tabs role="tablist" aria-label="Bell schedule">
+    <button data-sched="hsa" aria-pressed="true">HS &middot; A Lunch</button>
+    <button data-sched="hsb" aria-pressed="false">HS &middot; B Lunch</button>
+    <button data-sched="g78" aria-pressed="false">7th/8th Grade</button>
+    <button data-sched="g56" aria-pressed="false">5th/6th Grade</button>
+  </div>
+
+  <table class="sched" id="sched-hsa">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:49</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">10:52</td><td class="tm">11:37</td></tr>
+      <tr><td class="p">CLD</td><td class="tm">11:40</td><td class="tm">12:00</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:03</td><td class="tm">12:13</td></tr>
+      <tr class="lunch"><td class="p">C Lunch</td><td class="tm">12:15</td><td class="tm">12:45</td></tr>
+      <tr><td class="p">Bell 5 <span style="color:var(--gray);font-weight:400">(cont.)</span></td><td class="tm">12:47</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <table class="sched hide" id="sched-hsb">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:49</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">10:52</td><td class="tm">11:37</td></tr>
+      <tr><td class="p">CLD</td><td class="tm">11:40</td><td class="tm">12:00</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:03</td><td class="tm">12:50</td></tr>
+      <tr class="lunch"><td class="p">D Lunch</td><td class="tm">12:53</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <table class="sched hide" id="sched-g78">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:47</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">10:50</td><td class="tm">11:27</td></tr>
+      <tr class="lunch"><td class="p">B Lunch</td><td class="tm">11:30</td><td class="tm">12:00</td></tr>
+      <tr><td class="p">Bell 4 <span style="color:var(--gray);font-weight:400">(cont.)</span></td><td class="tm">12:03</td><td class="tm">12:10</td></tr>
+      <tr><td class="p">Trojan Time</td><td class="tm">12:13</td><td class="tm">12:33</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:35</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <table class="sched hide" id="sched-g56">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:47</td></tr>
+      <tr class="lunch"><td class="p">A Lunch</td><td class="tm">10:50</td><td class="tm">11:20</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">11:23</td><td class="tm">12:10</td></tr>
+      <tr><td class="p">Trojan Time</td><td class="tm">12:13</td><td class="tm">12:33</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:35</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <p class="schednote"><b>Grades 5&ndash;8 tardy bell</b> rings at 8:31, 10:07, 10:53, 12:37, 1:29 &amp; 2:20.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> PM Dismissal Duty Assignments</h2>
+  <p style="margin:0 0 14px">Supervision runs <b>3:05&ndash;3:15&nbsp;PM</b> daily. ACA &amp; credit-recovery students dismiss at 3:00&nbsp;PM.</p>
+  <table class="duty">
+    <thead><tr><th>Staff</th><th>Duty Location</th></tr></thead>
+    <tbody>
+      <tr><td class="who">Minor</td><td class="loc"><b>Cafeteria &mdash; Double Doors:</b> Close double doors and do not allow students to exit through the cafeteria.</td></tr>
+      <tr><td class="who">A.D.</td><td class="loc"><b>Cafeteria &mdash; Outside of HS:</b> Supervising and monitoring area; students may NOT re-enter through the cafeteria (athletes must be picked up by their coach).</td></tr>
+      <tr><td class="who">Behr/Sauers</td><td class="loc"><b>Cafeteria &mdash; Outside of HS:</b> Supervising and monitoring area; students may NOT re-enter through the cafeteria (athletes must be picked up by their coach).</td></tr>
+      <tr><td class="who">Gentry</td><td class="loc"><b>Cafeteria &mdash; Outside of HS&ndash;MS:</b> Supervising and monitoring area; students may NOT re-enter through the cafeteria (athletes must be picked up by their coach).</td></tr>
+      <tr><td class="who">Miller</td><td class="loc"><b>Library:</b> Clear all students out of the area and down the H.S. steps in library.</td></tr>
+      <tr><td class="who">Arvedon</td><td class="loc"><b>Fine Arts Hallway:</b> Clear all students out of the area.</td></tr>
+      <tr><td class="who">JJ and Walton</td><td class="loc"><b>ACA Hallway:</b> Supervising and monitoring area; ensuring NO students go up the ramp for any reason (dismiss ACA and credit recovery students at 3:00&nbsp;PM).</td></tr>
+      <tr><td class="who">Choudhury</td><td class="loc"><b>Outside of ACA Hallway Doors:</b> Supervising and monitoring area; pushing students off campus.</td></tr>
+      <tr><td class="who">Monk and Bahler</td><td class="loc"><b>Downstairs Hallway &mdash; Outside of Room 029:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Brown/Heusmann/Johnston</td><td class="loc"><b>Downstairs Hallway &mdash; Outside of Rooms 35 and 37:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Carr and Corbitt</td><td class="loc"><b>Downstairs Hallway &mdash; Outside of Rooms 31 and 33:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Conwell/Kemphaus</td><td class="loc"><b>Outside of Hamilton Ave Doors (Outside of Rooms 039 and 036):</b> Supervising and monitoring area; pushing students off campus.</td></tr>
+      <tr><td class="who">Forbes/Bahler</td><td class="loc"><b>Outside of Hamilton Ave Doors &mdash; Pathway Next To Church:</b> Supervising and monitoring area; pushing students off campus.</td></tr>
+      <tr><td class="who">Devery/Elmore</td><td class="loc"><b>PAC Hallway:</b> Supervising and monitoring; clearing the hallway; not allowing students to exit through the front office.</td></tr>
+      <tr><td class="who">Nutter/Dr.&nbsp;Zhong</td><td class="loc"><b>Front Office Hallway:</b> Supervising and monitoring; clearing the hallway; not allowing students to exit through the front office.</td></tr>
+      <tr><td class="who">Kimberlin and Wachowski</td><td class="loc"><b>Top of Stairs &mdash; Outside of Rooms 118 and 120:</b> Supervising and monitoring; clearing the hallway; pushing students to correct exits.</td></tr>
+      <tr><td class="who">Gissendanner/Hopkins</td><td class="loc"><b>Upstairs Bathrooms:</b> Clear students out of the upstairs bathroom and push to correct exits.</td></tr>
+      <tr><td class="who">Uran and Payne</td><td class="loc"><b>Upstairs Hallway &mdash; Outside of Room 131:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Ellis/Ficker/Wellbaum</td><td class="loc"><b>Upstairs Hallway &mdash; Outside of Rooms 132, 133, 136, and 139:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Williamson/Spangler/Farrar</td><td class="loc"><b>Outside &mdash; Horseshoe Double Doors:</b> Supervising and monitoring; pushing students off campus.</td></tr>
+      <tr><td class="who">Keya</td><td class="loc"><b>Outside &mdash; Corner of Galbraith &amp; Trojan Way (Italianette/NCHFD):</b> Students are not permitted to re-enter campus grounds.</td></tr>
+      <tr><td class="who">Kraus</td><td class="loc"><b>Outside &mdash; Galbraith Road @ HS Main Entrance (before police station):</b> Students are not permitted to re-enter campus grounds; prevent student jaywalking.</td></tr>
+      <tr><td class="who">Anders</td><td class="loc"><b>Outside &mdash; Crossing Guard @ Hamilton &amp; Galbraith.</b></td></tr>
+      <tr><td class="who">Chaney/Marshall/Barnes</td><td class="loc"><b>Front of Building:</b> Supervising and monitoring; pushing students off campus.</td></tr>
+      <tr><td class="who">Craig/King</td><td class="loc"><b>Front of Building:</b> Supervising and monitoring; pushing students off campus.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
   <h2><span class="tag">//</span> Coming Soon</h2>
-  <p style="margin:0" class="soon">Bell schedules, the duty roster, and quick links will be posted here once the final versions are released.</p>
+  <p style="margin:0" class="soon">Quick links and additional staff resources will be posted here as they&rsquo;re released.</p>
 </div>
 
 </main>
+<script>
+document.querySelectorAll('.btnbar[data-tabs]').forEach(function(bar){
+  var card = bar.closest('.card');
+  bar.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      bar.querySelectorAll('button').forEach(function(b){
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      card.querySelectorAll('.sched').forEach(function(t){
+        t.classList.toggle('hide', t.id !== 'sched-' + btn.dataset.sched);
+      });
+    });
+  });
+});
+</script>
 <footer>
   NCH Trojan Staff Hub · An unofficial staff resource · Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
 </footer>
