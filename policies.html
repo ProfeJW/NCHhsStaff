@@ -211,6 +211,27 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   nav a{padding:11px 12px}
 }
 
+/* accordion sections */
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.jump a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:6px 15px}
+.jump a:hover{background:var(--gold-soft);border-color:var(--gold)}
+.acc{padding:0;overflow:hidden}
+.acc>summary{list-style:none;cursor:pointer;padding:16px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary:hover{background:#FBF9F5}
+.acc>summary h2{margin:0;font-size:24px}
+.acc>summary::after{content:'+';font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--red);flex-shrink:0}
+.acc[open]>summary::after{content:'\2212'}
+.acc[open]>summary{border-bottom:1px solid var(--line)}
+.acc>.accbody{padding:18px 22px 20px}
+.acc:target{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.drivelist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.drivelist .pending{margin-top:0}
+
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -239,8 +260,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 <div class="page-h"><h1>Policies</h1><span class="sub">Handbook rules that affect your classroom</span></div>
 <div class="rule"></div>
 
-<div class="card">
-  <h2><span class="tag">//</span> Grading &amp; Coursework</h2>
+<div class="jump"><a href="#grading">Grading</a><a href="#documents">Documents</a><a href="#classroom">Classroom</a><a href="#attendance">Attendance</a><a href="#emergency">Emergency</a><a href="#reporting">Reporting</a><a href="#quickref">Quick Refs</a></div>
+<div class="btnbar"><button id="expandall" aria-pressed="false">Expand all</button></div>
+<details class="card acc" id="grading">
+  <summary><h2><span class="tag">//</span> Grading &amp; Coursework</h2></summary>
+  <div class="accbody">
   <div class="pol">
     <h3>Gradebook Weights</h3>
     <p>Teachers are responsible for setting these weights in Progress Book.</p>
@@ -250,6 +274,9 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <div><span class="pct">10%</span><span class="lbl">Homework</span></div>
     </div>
     <p style="color:var(--gray);font-size:14px;margin:0">Assessments = tests, quizzes, projects. Classwork = participation, labs, rubric-based project work.</p>
+    <div class="alert">
+      <b>Minimum one grade per week</b> must be entered in <b>Progress Book by Thursday</b>.
+    </div>
   </div>
   <div class="pol">
     <h3>Late Work &amp; Retakes</h3>
@@ -300,9 +327,58 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     </ul>
   </div>
 </div>
+</details>
 
-<div class="card">
-  <h2><span class="tag">//</span> Classroom &amp; Hallway Policies</h2>
+<details class="card acc" id="documents">
+  <summary><h2><span class="tag">//</span> Required Documents &amp; Staff Drive</h2></summary>
+  <div class="accbody">
+  <p style="margin:0 0 16px">Everything below lives in the <b>Staff Google Drive</b>. Each item goes in its own folder &mdash; create yours if it isn&rsquo;t there yet.</p>
+
+  <div class="pol">
+    <h3>Lesson Plans</h3>
+    <ul>
+      <li>Lesson plans must be <b>completed and placed in your folder</b> in the Google Drive.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Sub Folder <span style="font-weight:400;color:var(--gray);font-size:15px">&mdash; emergency use</span></h3>
+    <ul>
+      <li>Turn in a <b>completed sub folder</b> with <b>at least two weeks of specific sub plans</b>.</li>
+      <li>These are for <b>emergency purposes</b> &mdash; write them so any sub could pick them up cold.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Syllabi &amp; Classroom Management Plans</h3>
+    <ul>
+      <li>A <b>syllabus</b> must be created for each course and placed in the syllabus folder.</li>
+      <li>A <b>classroom management plan</b> must be created and placed in its folder.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Scope &amp; Sequence</h3>
+    <ul>
+      <li><b>Scope and sequence documents</b> must be created and placed in the scope &amp; sequence folder.</li>
+    </ul>
+  </div>
+
+  <div class="pol">
+    <h3>Drive Shortcuts</h3>
+    <ul class="linklist drivelist">
+      <li><b>Staff Drive</b> &mdash; main shared drive <span class="pending">link coming</span></li>
+      <li><b>Master Schedule</b> <span class="pending">link coming</span></li>
+      <li><b>Lesson Plan folders</b> <span class="pending">link coming</span></li>
+      <li><b>Scope &amp; Sequence folders</b> <span class="pending">link coming</span></li>
+      <li><b>Syllabus folders</b> <span class="pending">link coming</span></li>
+      <li><b>Classroom Management Plan folders</b> <span class="pending">link coming</span></li>
+      <li><b>Sub Plan folders</b> <span class="pending">link coming</span></li>
+    </ul>
+  </div>
+</div>
+</details>
+
+<details class="card acc" id="classroom">
+  <summary><h2><span class="tag">//</span> Classroom &amp; Hallway Policies</h2></summary>
+  <div class="accbody">
   <div class="alert" style="margin:0 0 16px">
     <b>Cell phones &mdash; Ohio House Bill 250:</b> Students may have phones, but they must be <b>turned off</b> (not silent or vibrate) and <b>left in their lockers</b> during the school day. <b>At no time</b> should a student use a phone during the school day, or before, during, or after school instructional activities. All other electronic devices stay in lockers.
   </div>
@@ -363,9 +439,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     </ul>
   </div>
 </div>
+</details>
 
-<div class="card">
-  <h2><span class="tag">//</span> Attendance &amp; Discipline</h2>
+<details class="card acc" id="attendance">
+  <summary><h2><span class="tag">//</span> Attendance &amp; Discipline</h2></summary>
+  <div class="accbody">
   <div class="pol">
     <h3>Attendance</h3>
     <ul>
@@ -401,9 +479,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     </ul>
   </div>
 </div>
+</details>
 
-<div class="card">
-  <h2><span class="tag">//</span> Emergency Procedures</h2>
+<details class="card acc" id="emergency">
+  <summary><h2><span class="tag">//</span> Emergency Procedures</h2></summary>
+  <div class="accbody">
   <div class="alert" style="margin:0 0 16px">
     <b>Log your students in Navigate&nbsp;360.</b> During a fire drill &mdash; and any evacuation &mdash; you must account for every student in the <b>Navigate&nbsp;360</b> app, not just on paper. Download it before the first drill so you aren&rsquo;t setting it up in the parking lot.
     <span class="pending">Navigate&nbsp;360 download link &mdash; coming</span>
@@ -440,9 +520,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     <p style="margin:6px 0 0"><span class="pending">Full tornado drill PDF &mdash; coming</span></p>
   </div>
 </div>
+</details>
 
-<div class="card">
-  <h2><span class="tag">//</span> Reporting &amp; Student Support</h2>
+<details class="card acc" id="reporting">
+  <summary><h2><span class="tag">//</span> Reporting &amp; Student Support</h2></summary>
+  <div class="accbody">
   <div class="alert" style="margin:0 0 16px">
     <b>Mandatory reporting:</b> All school personnel who become aware of harassment, intimidation, or bullying <b>must immediately report it to the building principal</b>. Any staff member receiving a report must put it in writing on the Board&rsquo;s HIB complaint form and forward it to the principal.
   </div>
@@ -466,9 +548,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     </ul>
   </div>
 </div>
+</details>
 
-<div class="card">
-  <h2><span class="tag">//</span> Quick References</h2>
+<details class="card acc" id="quickref">
+  <summary><h2><span class="tag">//</span> Quick References</h2></summary>
+  <div class="accbody">
   <div class="two">
     <div class="pol">
       <h3>Oaks / Vocational Buses</h3>
@@ -499,7 +583,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     </ul>
   </div>
 </div>
-
+</details>
 </main>
 <footer>
   NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
@@ -516,6 +600,31 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   n.addEventListener('click',function(e){
     if(e.target.tagName==='A'){ n.classList.remove('open');
       t.setAttribute('aria-expanded','false'); }
+  });
+})();
+</script>
+<script>
+(function(){
+  var accs=[].slice.call(document.querySelectorAll('details.acc'));
+  function openTarget(){
+    var id=location.hash.slice(1); if(!id) return;
+    var el=document.getElementById(id);
+    if(el&&el.tagName==='DETAILS'){ el.open=true; el.scrollIntoView({block:'start'}); }
+  }
+  document.querySelectorAll('.jump a').forEach(function(a){
+    a.addEventListener('click',function(){
+      var el=document.querySelector(a.getAttribute('href'));
+      if(el) el.open=true;
+    });
+  });
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+  var btn=document.getElementById('expandall');
+  if(btn) btn.addEventListener('click',function(){
+    var expand=btn.getAttribute('aria-pressed')!=='true';
+    accs.forEach(function(d){ d.open=expand; });
+    btn.setAttribute('aria-pressed', expand?'true':'false');
+    btn.textContent = expand ? 'Collapse all' : 'Expand all';
   });
 })();
 </script>
