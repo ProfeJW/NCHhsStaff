@@ -189,6 +189,24 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   .row{flex-wrap:wrap}
   .row .badges{width:100%;padding-top:0}
 }
+/* mobile nav toggle */
+.navtoggle{display:none;background:none;border:1.5px solid rgba(255,255,255,.45);
+  color:#fff;border-radius:5px;padding:7px 12px;font-size:20px;line-height:1;
+  cursor:pointer;font-family:inherit}
+.navtoggle:hover{background:rgba(255,255,255,.12)}
+.navtoggle .x{display:none}
+.navtoggle[aria-expanded="true"] .x{display:inline}
+.navtoggle[aria-expanded="true"] .b{display:none}
+@media (max-width:760px){
+  .navtoggle{display:block;flex-shrink:0}
+  .brand{flex:1;min-width:0}
+  .brand b{font-size:22px}
+  nav{display:none;width:100%;flex-direction:column;gap:2px;
+    border-top:1px solid rgba(255,255,255,.15);margin-top:10px;padding-top:8px}
+  nav.open{display:flex}
+  nav a{padding:11px 12px}
+}
+
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -199,7 +217,8 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <b>Trojan <span>Staff Hub</span></b>
       <small>North College Hill High School</small>
     </a>
-    <nav aria-label="Site">
+        <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="sitenav" aria-label="Menu"><span class="b">&#9776;</span><span class="x">&#10005;</span></button>
+    <nav id="sitenav" aria-label="Site">
       <a href="index.html">Home</a>
       <a href="calendar.html">Calendar</a>
       <a href="sports.html">Athletics</a>
@@ -382,5 +401,19 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
 </footer>
 
+<script>
+(function(){
+  var t=document.getElementById('navtoggle'), n=document.getElementById('sitenav');
+  if(!t||!n) return;
+  t.addEventListener('click',function(){
+    var open=n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open?'true':'false');
+  });
+  n.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){ n.classList.remove('open');
+      t.setAttribute('aria-expanded','false'); }
+  });
+})();
+</script>
 </body>
 </html>
