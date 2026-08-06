@@ -149,6 +149,20 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   padding:12px 16px;margin:14px 0 0}
 .alert b{color:var(--red-deep)}
 
+/* extensions directory */
+.extgrid{columns:2;column-gap:32px}
+.extgrid>section{break-inside:avoid;margin-bottom:14px}
+.extgrid h3{font-size:15px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--red);
+  border-radius:4px;padding:4px 9px;margin-bottom:6px}
+.extrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:4px 2px;border-bottom:1px dotted var(--line)}
+.extrow .nm{font-size:15px}
+.extrow .nm .role{display:block;color:var(--gray);font-size:12.5px}
+.extrow .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--red-deep);
+  white-space:nowrap;font-size:15px}
+@media (max-width:640px){.extgrid{columns:1}}
+
 footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   text-align:center;padding:18px 20px 30px}
 
@@ -246,11 +260,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="two admin">
     <div>
       <h3>Nikki Elmore</h3>
-      <ul><li>Last names <b>A&ndash;J</b></li></ul>
+      <ul><li>Last names <b>A&ndash;J</b></li><li>Ext. <b>10005</b></li></ul>
     </div>
     <div>
       <h3>Natasha Nutter</h3>
-      <ul><li>Last names <b>K&ndash;Z</b></li></ul>
+      <ul><li>Last names <b>K&ndash;Z</b></li><li>Ext. <b>10006</b></li></ul>
     </div>
   </div>
 </div>
@@ -384,6 +398,121 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <tr><td class="who">Craig/King</td><td class="loc"><b>Front of Building:</b> Supervising and monitoring; pushing students off campus.</td></tr>
     </tbody>
   </table>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Phone Extensions</h2>
+  <p style="margin:0 0 16px">Dial the 5-digit extension from any building phone. Grouped by role; names listed last-name first.</p>
+  <div class="extgrid">
+
+    <section>
+      <h3>Administration</h3>
+      <div class="extrow"><span class="nm">Mack, Dr. Yejide<span class="role">Principal</span></span><span class="num">10010</span></div>
+      <div class="extrow"><span class="nm">Casanova, JP<span class="role">Asst. Principal</span></span><span class="num">10011</span></div>
+    </section>
+
+    <section>
+      <h3>Secretaries</h3>
+      <div class="extrow"><span class="nm">Bratchette, Rana</span><span class="num">10000</span></div>
+      <div class="extrow"><span class="nm">Engleman, Myia</span><span class="num">10001</span></div>
+    </section>
+
+    <section>
+      <h3>Academic Supports</h3>
+      <div class="extrow"><span class="nm">Elmore, Nikki<span class="role">A&ndash;J Counselor</span></span><span class="num">10005</span></div>
+      <div class="extrow"><span class="nm">Nutter, Natasha<span class="role">K&ndash;Z Counselor</span></span><span class="num">10006</span></div>
+      <div class="extrow"><span class="nm">Zhong, Dr. Yu<span class="role">Psychologist</span></span><span class="num">10007</span></div>
+    </section>
+
+    <section>
+      <h3>Teachers</h3>
+      <div class="extrow"><span class="nm">Behr, Dylan</span><span class="num">10056</span></div>
+      <div class="extrow"><span class="nm">Bodey, Michelle</span><span class="num">10130</span></div>
+      <div class="extrow"><span class="nm">Brown, Kristen</span><span class="num">10133</span></div>
+      <div class="extrow"><span class="nm">Buchanan, Heather</span><span class="num">10035</span></div>
+      <div class="extrow"><span class="nm">Corbitt, Lexi</span><span class="num">10034</span></div>
+      <div class="extrow"><span class="nm">Danieley, Kenneth</span><span class="num">10033</span></div>
+      <div class="extrow"><span class="nm">Ellis, Lisa</span><span class="num">10136</span></div>
+      <div class="extrow"><span class="nm">Forbes, Kelsey</span><span class="num">10032</span></div>
+      <div class="extrow"><span class="nm">Gallagher, Tammy</span><span class="num">10052</span></div>
+      <div class="extrow"><span class="nm">Gissendanner, Toni</span><span class="num">10132</span></div>
+      <div class="extrow"><span class="nm">Graham, Kara</span><span class="num">10037</span></div>
+      <div class="extrow"><span class="nm">Henderson, Robin</span><span class="num">10037</span></div>
+      <div class="extrow"><span class="nm">Heusmann, Alex</span><span class="num">10133</span></div>
+      <div class="extrow"><span class="nm">Kemphaus, Abby</span><span class="num">10036</span></div>
+      <div class="extrow"><span class="nm">Kimberlin, Stephanie</span><span class="num">10118</span></div>
+      <div class="extrow"><span class="nm">Marshall, Kris</span><span class="num">10137</span></div>
+      <div class="extrow"><span class="nm">Massara, Angela</span><span class="num">10018</span></div>
+      <div class="extrow"><span class="nm">Meridy, Trish</span><span class="num">10135</span></div>
+      <div class="extrow"><span class="nm">Minor, Shannon</span><span class="num">11252</span></div>
+      <div class="extrow"><span class="nm">Penkalski, Chris</span><span class="num">10033</span></div>
+      <div class="extrow"><span class="nm">Rampe, Alec</span><span class="num">10039</span></div>
+      <div class="extrow"><span class="nm">Saurs, Mike</span><span class="num">10131</span></div>
+      <div class="extrow"><span class="nm">Smith, Justin</span><span class="num">10139</span></div>
+      <div class="extrow"><span class="nm">Spangler, Keith</span><span class="num">10138</span></div>
+      <div class="extrow"><span class="nm">Spradlin, Dr. Chris</span><span class="num">10139</span></div>
+      <div class="extrow"><span class="nm">Stockfish, Adam</span><span class="num">10030</span></div>
+      <div class="extrow"><span class="nm">Stockton, Robert</span><span class="num">10054</span></div>
+      <div class="extrow"><span class="nm">Uran, Christopher</span><span class="num">11235</span></div>
+      <div class="extrow"><span class="nm">Westmoreland, Guy</span><span class="num">10031</span></div>
+      <div class="extrow"><span class="nm">Wiggins, Derek</span><span class="num">10022</span></div>
+    </section>
+
+    <section>
+      <h3>Paraprofessionals</h3>
+      <div class="extrow"><span class="nm">Anders, Ryan</span><span class="num">10034</span></div>
+      <div class="extrow"><span class="nm">Johnson, Janeen &ldquo;JJ&rdquo;<span class="role">ACA</span></span><span class="num">10129</span></div>
+      <div class="extrow"><span class="nm">Kraus, Chad</span><span class="num">10136</span></div>
+      <div class="extrow"><span class="nm">Price, Tammy</span><span class="num">10034</span></div>
+      <div class="extrow"><span class="nm">Reese, Casey<span class="role">Library / Tech Secretary</span></span><span class="num">11203</span></div>
+      <div class="extrow"><span class="nm">Stanley, Ja&rsquo;lynn</span><span class="num">10032</span></div>
+    </section>
+
+    <section>
+      <h3>Other Support Staff</h3>
+      <div class="extrow"><span class="nm">Benson-Cole, Angela<span class="role">Speech</span></span><span class="num">10120</span></div>
+      <div class="extrow"><span class="nm">Buchanan, Heather<span class="role">Asst. AD</span></span><span class="num">10035</span></div>
+      <div class="extrow"><span class="nm">Howard, Brandon<span class="role">Athletic Director</span></span><span class="num">11241</span></div>
+      <div class="extrow"><span class="nm">Lane, Jessica<span class="role">Academic Coach</span></span><span class="num">10012</span></div>
+      <div class="extrow"><span class="nm">Morris, Evan<span class="role">Tech Coordinator</span></span><span class="num">11233</span></div>
+      <div class="extrow"><span class="nm">Mulcahey, Emily<span class="role">Academic Coach</span></span><span class="num">10012</span></div>
+      <div class="extrow"><span class="nm">Petry, Dottie<span class="role">Food Services</span></span><span class="num">11006</span></div>
+      <div class="extrow"><span class="nm">Shaw, Terri<span class="role">District Nurse</span></span><span class="num">10004</span></div>
+      <div class="extrow"><span class="nm">Wilson, Aaron<span class="role">Tech Support</span></span><span class="num">11255</span></div>
+      <div class="extrow"><span class="nm">Clinic</span><span class="num">11103</span></div>
+    </section>
+
+    <section>
+      <h3>New Path</h3>
+      <div class="extrow"><span class="nm">Klein, Karen</span><span class="num">10049</span></div>
+      <div class="extrow"><span class="nm">Thomas, Val</span><span class="num">10049</span></div>
+    </section>
+
+    <section>
+      <h3>Gear Up</h3>
+      <div class="extrow"><span class="nm">Lott, Kate</span><span class="num">10134</span></div>
+      <div class="extrow"><span class="nm">Neeley, Keya</span><span class="num">10134</span></div>
+      <div class="extrow"><span class="nm">Smith, Aaron</span><span class="num">10134</span></div>
+    </section>
+
+    <section>
+      <h3>Custodians</h3>
+      <div class="extrow"><span class="nm">Ayaya, Jose</span><span class="num">&mdash;</span></div>
+    </section>
+
+    <section>
+      <h3>Locations</h3>
+      <div class="extrow"><span class="nm">Athletic Office</span><span class="num">11251</span></div>
+      <div class="extrow"><span class="nm">Conference Room</span><span class="num">10008</span></div>
+      <div class="extrow"><span class="nm">Copier Room &mdash; 1st Floor</span><span class="num">10015</span></div>
+      <div class="extrow"><span class="nm">Copier Room &mdash; 2nd Floor</span><span class="num">10102</span></div>
+      <div class="extrow"><span class="nm">SRO Office</span><span class="num">10048</span></div>
+      <div class="extrow"><span class="nm">Student Phone</span><span class="num">10002</span></div>
+      <div class="extrow"><span class="nm">Teacher&rsquo;s Lounge</span><span class="num">10050</span></div>
+    </section>
+
+  </div>
+  <p class="schednote">Ext. shown as listed on the 2026&ndash;27 building directory. Jose Ayaya (custodian) had no extension listed.</p>
 </div>
 
 <div class="card">
