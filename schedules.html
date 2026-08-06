@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Schedules &middot; NCH Trojan Staff Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#B31B34; --red-deep:#8C1128; --gold:#E9A13B; --gold-soft:#F6E3C2;
+  --ink:#1D1A20; --paper:#F6F4EF; --card:#FFFFFF; --gray:#6E6A72; --line:#E4E0D9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3,.disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  text-transform:uppercase;letter-spacing:.02em;margin:0}
+a{color:var(--red-deep)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* header */
+.top{background:var(--ink);color:#fff}
+.top-inner{max-width:1020px;margin:0 auto;padding:14px 20px;display:flex;
+  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.05;text-decoration:none;color:#fff}
+.brand b{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;
+  text-transform:uppercase;letter-spacing:.03em}
+.brand b span{color:var(--gold)}
+.brand small{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#CFC9D1}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;
+  text-transform:uppercase;letter-spacing:.06em;color:#fff;text-decoration:none;
+  padding:8px 14px;border-radius:4px}
+nav a:hover{background:rgba(255,255,255,.12)}
+nav a[aria-current="page"]{background:var(--red);color:#fff}
+.plume{height:10px;background:repeating-linear-gradient(135deg,
+  var(--red) 0 16px, var(--gold) 16px 24px, var(--ink) 24px 32px)}
+
+/* layout */
+.wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
+.page-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 6px}
+.page-h h1{font-size:44px;font-weight:800}
+.page-h .sub{color:var(--gray);font-size:15px}
+.rule{height:3px;background:var(--red);width:64px;margin:10px 0 24px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;margin-bottom:22px}
+.card h2{font-size:26px;font-weight:800;margin-bottom:10px}
+.card h2 .tag{color:var(--red)}
+
+/* badges */
+.badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;
+  padding:2px 8px;white-space:nowrap}
+.b-noschool{background:var(--ink);color:#fff}
+.b-grades{background:var(--red);color:#fff}
+.b-pd{background:var(--gold);color:var(--ink)}
+.b-spirit{background:#fff;color:var(--red-deep);border:1.5px solid var(--red)}
+.b-ath{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.b-key{background:var(--red-deep);color:#fff}
+.b-home{background:var(--gold);color:var(--ink)}
+
+/* schedule rows */
+.rows{display:flex;flex-direction:column}
+.row{display:flex;gap:16px;align-items:flex-start;padding:12px 6px;
+  border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row.home-game{border-left:4px solid var(--gold);padding-left:10px;background:#FDFAF3}
+.datechip{min-width:64px;text-align:center;flex-shrink:0}
+.datechip .dow{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.datechip .num{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--ink)}
+.ev{flex:1;min-width:200px}
+.ev .t{font-weight:600}
+.ev .meta{color:var(--gray);font-size:14px}
+.row .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:3px}
+
+/* filter + tab buttons */
+.btnbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.btnbar button{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
+  text-transform:uppercase;letter-spacing:.06em;border:1.5px solid var(--ink);
+  background:#fff;color:var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer}
+.btnbar button:hover{background:var(--gold-soft)}
+.btnbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.hide{display:none !important}
+
+/* home page bits */
+.hero{background:var(--ink);color:#fff;border-radius:12px;padding:34px 30px;margin-bottom:24px;
+  background-image:linear-gradient(120deg,rgba(179,27,52,.35),rgba(0,0,0,0) 55%)}
+.hero h1{font-size:56px;font-weight:800;line-height:.95}
+.hero h1 span{color:var(--gold)}
+.hero p{margin:10px 0 0;color:#DDD8E0;max-width:56ch}
+.count{display:inline-block;margin-top:18px;background:var(--red);color:#fff;border-radius:6px;
+  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
+  text-transform:uppercase;letter-spacing:.05em}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.q{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);
+  border-radius:8px;padding:12px 14px;text-align:center}
+.q .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.q .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.linklist{list-style:none;margin:0;padding:0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist li:last-child{border-bottom:none}
+.linklist a{font-weight:600;text-decoration:none}
+.linklist a:hover{text-decoration:underline}
+.linklist .note{color:var(--gray);font-size:14px;display:block}
+.soon{color:var(--gray);font-size:13px;font-style:italic}
+
+/* schedule tables */
+.sched{width:100%;border-collapse:collapse;margin-top:4px}
+.sched th,.sched td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:15px}
+.sched thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.sched td.p{font-weight:600}
+.sched td.tm{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:var(--ink)}
+.sched tr:last-child td{border-bottom:none}
+.sched tr.book td{color:var(--gray);font-weight:600}
+.sched tr.lunch td{background:var(--gold-soft);font-weight:700}
+.sched tr.lunch td.p{color:var(--red-deep)}
+.schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+
+/* duty table */
+.duty{width:100%;border-collapse:collapse}
+.duty th,.duty td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);
+  vertical-align:top;font-size:15px}
+.duty thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border-bottom:none}
+.duty tbody tr:last-child td{border-bottom:none}
+.duty tbody tr:nth-child(even) td{background:#FBF9F5}
+.duty td.who{font-weight:700;white-space:nowrap;width:1%;padding-right:20px}
+.duty td.loc b{color:var(--red-deep)}
+@media (max-width:560px){
+  .duty td.who{white-space:normal}
+}
+
+/* admin split + alert */
+.admin h3{font-size:22px;font-weight:800;color:var(--red-deep);
+  border-bottom:2px solid var(--gold);padding-bottom:5px;margin-bottom:10px}
+.admin ul{margin:0;padding-left:18px}
+.admin li{padding:4px 0;font-size:15px}
+.alert{border-left:4px solid var(--red);background:#FDF3F1;border-radius:8px;
+  padding:12px 16px;margin:14px 0 0}
+.alert b{color:var(--red-deep)}
+
+/* policy blocks */
+.pol{margin:0 0 16px}
+.pol:last-child{margin-bottom:0}
+.pol h3{font-size:19px;font-weight:800;color:var(--red-deep);margin-bottom:6px}
+.pol ul{margin:0;padding-left:20px}
+.pol li{padding:3px 0;font-size:15px}
+.pol p{margin:0 0 6px}
+.wt{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 12px}
+.wt div{flex:1;min-width:150px;background:var(--gold-soft);border-radius:8px;
+  padding:10px 14px;text-align:center}
+.wt .pct{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;
+  color:var(--red-deep);line-height:1}
+.wt .lbl{font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700}
+
+/* extensions directory */
+.extgrid{columns:2;column-gap:32px}
+.extgrid>section{break-inside:avoid;margin-bottom:14px}
+.extgrid h3{font-size:15px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--red);
+  border-radius:4px;padding:4px 9px;margin-bottom:6px}
+.extrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:4px 2px;border-bottom:1px dotted var(--line)}
+.extrow .nm{font-size:15px}
+.extrow .nm .role{display:block;color:var(--gray);font-size:12.5px}
+.extrow .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--red-deep);
+  white-space:nowrap;font-size:15px}
+@media (max-width:640px){.extgrid{columns:1}}
+
+footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
+  text-align:center;padding:18px 20px 30px}
+
+@media (max-width:720px){
+  .page-h h1{font-size:34px}
+  .hero h1{font-size:38px}
+  .qgrid{grid-template-columns:repeat(2,1fr)}
+  .two{grid-template-columns:1fr}
+  .row{flex-wrap:wrap}
+  .row .badges{width:100%;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="index.html">
+      <b>Trojan <span>Staff Hub</span></b>
+      <small>North College Hill High School</small>
+    </a>
+    <nav aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="sports.html">Athletics</a>
+      <a href="schedules.html" aria-current="page">Schedules</a>
+      <a href="policies.html">Policies</a>
+      <a href="directory.html">Directory</a>
+      <a href="staff.html">Staff Info</a>
+    </nav>
+  </div>
+</header>
+<div class="plume" role="presentation"></div>
+<main class="wrap">
+
+<div class="page-h"><h1>Schedules</h1><span class="sub">Bell schedules &amp; dismissal duty</span></div>
+<div class="rule"></div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Daily Bell Schedule</h2>
+  <p style="margin:0 0 14px">Doors open <b>8:05</b> · Dismissal <b>3:05</b> every day. High school students have <b>A</b> or <b>B</b> lunch; the middle grades eat earlier on their own schedules. Pick a schedule below.</p>
+  <div class="btnbar" data-tabs role="tablist" aria-label="Bell schedule">
+    <button data-sched="hsa" aria-pressed="true">HS &middot; A Lunch</button>
+    <button data-sched="hsb" aria-pressed="false">HS &middot; B Lunch</button>
+    <button data-sched="g78" aria-pressed="false">7th/8th Grade</button>
+    <button data-sched="g56" aria-pressed="false">5th/6th Grade</button>
+    <button data-sched="delay" aria-pressed="false">2-Hour Delay</button>
+  </div>
+
+  <table class="sched" id="sched-hsa">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:49</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">10:52</td><td class="tm">11:37</td></tr>
+      <tr><td class="p">CLD</td><td class="tm">11:40</td><td class="tm">12:00</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:03</td><td class="tm">12:13</td></tr>
+      <tr class="lunch"><td class="p">A Lunch</td><td class="tm">12:15</td><td class="tm">12:45</td></tr>
+      <tr><td class="p">Bell 5 <span style="color:var(--gray);font-weight:400">(cont.)</span></td><td class="tm">12:47</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <table class="sched hide" id="sched-hsb">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:49</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">10:52</td><td class="tm">11:37</td></tr>
+      <tr><td class="p">CLD</td><td class="tm">11:40</td><td class="tm">12:00</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:03</td><td class="tm">12:50</td></tr>
+      <tr class="lunch"><td class="p">B Lunch</td><td class="tm">12:53</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <table class="sched hide" id="sched-g78">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:47</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">10:50</td><td class="tm">11:27</td></tr>
+      <tr class="lunch"><td class="p">B Lunch</td><td class="tm">11:30</td><td class="tm">12:00</td></tr>
+      <tr><td class="p">Bell 4 <span style="color:var(--gray);font-weight:400">(cont.)</span></td><td class="tm">12:03</td><td class="tm">12:10</td></tr>
+      <tr><td class="p">Trojan Time</td><td class="tm">12:13</td><td class="tm">12:33</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:35</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <table class="sched hide" id="sched-g56">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Doors Open</td><td class="tm">8:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">8:15</td><td class="tm">8:25</td></tr>
+      <tr><td class="p">Bell 1</td><td class="tm">8:28</td><td class="tm">9:13</td></tr>
+      <tr><td class="p">Bell 2</td><td class="tm">9:16</td><td class="tm">10:01</td></tr>
+      <tr><td class="p">Bell 3</td><td class="tm">10:04</td><td class="tm">10:47</td></tr>
+      <tr class="lunch"><td class="p">A Lunch</td><td class="tm">10:50</td><td class="tm">11:20</td></tr>
+      <tr><td class="p">Bell 4</td><td class="tm">11:23</td><td class="tm">12:10</td></tr>
+      <tr><td class="p">Trojan Time</td><td class="tm">12:13</td><td class="tm">12:33</td></tr>
+      <tr><td class="p">Bell 5</td><td class="tm">12:35</td><td class="tm">1:23</td></tr>
+      <tr><td class="p">Bell 6</td><td class="tm">1:26</td><td class="tm">2:14</td></tr>
+      <tr><td class="p">Bell 7</td><td class="tm">2:17</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <table class="sched hide" id="sched-delay">
+    <thead><tr><th>Period</th><th style="text-align:right">Start</th><th style="text-align:right">End</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p">Enter Building</td><td class="tm">10:05</td><td class="tm">&mdash;</td></tr>
+      <tr><td class="p">HR</td><td class="tm">10:15</td><td class="tm">10:27</td></tr>
+      <tr><td class="p">Period 1</td><td class="tm">10:30</td><td class="tm">11:02</td></tr>
+      <tr><td class="p">Period 2</td><td class="tm">11:05</td><td class="tm">11:37</td></tr>
+      <tr><td class="p">Period 3</td><td class="tm">11:40</td><td class="tm">12:12</td></tr>
+      <tr><td class="p">Period 4</td><td class="tm">12:15</td><td class="tm">12:47</td></tr>
+      <tr class="lunch"><td class="p">Lunch</td><td class="tm">12:50</td><td class="tm">1:20</td></tr>
+      <tr><td class="p">Period 5</td><td class="tm">1:23</td><td class="tm">1:55</td></tr>
+      <tr><td class="p">Period 6</td><td class="tm">1:58</td><td class="tm">2:30</td></tr>
+      <tr><td class="p">Period 7</td><td class="tm">2:33</td><td class="tm">3:05</td></tr>
+      <tr class="book"><td class="p">Dismissal</td><td class="tm">3:05</td><td class="tm">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <p class="schednote"><b>CLD</b> = Character &amp; Leadership Development. &nbsp;<b>Grades 5&ndash;8 tardy bell</b> rings at 8:31, 10:07, 10:53, 12:37, 1:29 &amp; 2:20.</p>
+  <div class="alert">
+    <b>Inclement weather:</b> <b>Plan A</b> = one-hour delay (day runs 9:05&ndash;3:05). <b>Plan B</b> = two-hour delay (see tab above, 10:05&ndash;3:05).<br>
+    On a two-hour delay students should not arrive before 9:50; those arriving 9:50&ndash;10:05 report to the cafeteria and may not be elsewhere without a pass.
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> PM Dismissal Duty Assignments</h2>
+  <p style="margin:0 0 14px">Supervision runs <b>3:05&ndash;3:15&nbsp;PM</b> daily. ACA &amp; credit-recovery students dismiss at 3:00&nbsp;PM.</p>
+  <table class="duty">
+    <thead><tr><th>Staff</th><th>Duty Location</th></tr></thead>
+    <tbody>
+      <tr><td class="who">Minor</td><td class="loc"><b>Cafeteria &mdash; Double Doors:</b> Close double doors and do not allow students to exit through the cafeteria.</td></tr>
+      <tr><td class="who">A.D.</td><td class="loc"><b>Cafeteria &mdash; Outside of HS:</b> Supervising and monitoring area; students may NOT re-enter through the cafeteria (athletes must be picked up by their coach).</td></tr>
+      <tr><td class="who">Behr/Sauers</td><td class="loc"><b>Cafeteria &mdash; Outside of HS:</b> Supervising and monitoring area; students may NOT re-enter through the cafeteria (athletes must be picked up by their coach).</td></tr>
+      <tr><td class="who">Gentry</td><td class="loc"><b>Cafeteria &mdash; Outside of HS&ndash;MS:</b> Supervising and monitoring area; students may NOT re-enter through the cafeteria (athletes must be picked up by their coach).</td></tr>
+      <tr><td class="who">Miller</td><td class="loc"><b>Library:</b> Clear all students out of the area and down the H.S. steps in library.</td></tr>
+      <tr><td class="who">Arvedon</td><td class="loc"><b>Fine Arts Hallway:</b> Clear all students out of the area.</td></tr>
+      <tr><td class="who">JJ and Walton</td><td class="loc"><b>ACA Hallway:</b> Supervising and monitoring area; ensuring NO students go up the ramp for any reason (dismiss ACA and credit recovery students at 3:00&nbsp;PM).</td></tr>
+      <tr><td class="who">Choudhury</td><td class="loc"><b>Outside of ACA Hallway Doors:</b> Supervising and monitoring area; pushing students off campus.</td></tr>
+      <tr><td class="who">Monk and Bahler</td><td class="loc"><b>Downstairs Hallway &mdash; Outside of Room 029:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Brown/Heusmann/Johnston</td><td class="loc"><b>Downstairs Hallway &mdash; Outside of Rooms 35 and 37:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Carr and Corbitt</td><td class="loc"><b>Downstairs Hallway &mdash; Outside of Rooms 31 and 33:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Conwell/Kemphaus</td><td class="loc"><b>Outside of Hamilton Ave Doors (Outside of Rooms 039 and 036):</b> Supervising and monitoring area; pushing students off campus.</td></tr>
+      <tr><td class="who">Forbes/Bahler</td><td class="loc"><b>Outside of Hamilton Ave Doors &mdash; Pathway Next To Church:</b> Supervising and monitoring area; pushing students off campus.</td></tr>
+      <tr><td class="who">Devery/Elmore</td><td class="loc"><b>PAC Hallway:</b> Supervising and monitoring; clearing the hallway; not allowing students to exit through the front office.</td></tr>
+      <tr><td class="who">Nutter/Dr.&nbsp;Zhong</td><td class="loc"><b>Front Office Hallway:</b> Supervising and monitoring; clearing the hallway; not allowing students to exit through the front office.</td></tr>
+      <tr><td class="who">Kimberlin and Wachowski</td><td class="loc"><b>Top of Stairs &mdash; Outside of Rooms 118 and 120:</b> Supervising and monitoring; clearing the hallway; pushing students to correct exits.</td></tr>
+      <tr><td class="who">Gissendanner/Hopkins</td><td class="loc"><b>Upstairs Bathrooms:</b> Clear students out of the upstairs bathroom and push to correct exits.</td></tr>
+      <tr><td class="who">Uran and Payne</td><td class="loc"><b>Upstairs Hallway &mdash; Outside of Room 131:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Ellis/Ficker/Wellbaum</td><td class="loc"><b>Upstairs Hallway &mdash; Outside of Rooms 132, 133, 136, and 139:</b> Supervising and monitoring; clearing the hallway and pushing students to correct exits.</td></tr>
+      <tr><td class="who">Williamson/Spangler/Farrar</td><td class="loc"><b>Outside &mdash; Horseshoe Double Doors:</b> Supervising and monitoring; pushing students off campus.</td></tr>
+      <tr><td class="who">Keya</td><td class="loc"><b>Outside &mdash; Corner of Galbraith &amp; Trojan Way (Italianette/NCHFD):</b> Students are not permitted to re-enter campus grounds.</td></tr>
+      <tr><td class="who">Kraus</td><td class="loc"><b>Outside &mdash; Galbraith Road @ HS Main Entrance (before police station):</b> Students are not permitted to re-enter campus grounds; prevent student jaywalking.</td></tr>
+      <tr><td class="who">Anders</td><td class="loc"><b>Outside &mdash; Crossing Guard @ Hamilton &amp; Galbraith.</b></td></tr>
+      <tr><td class="who">Chaney/Marshall/Barnes</td><td class="loc"><b>Front of Building:</b> Supervising and monitoring; pushing students off campus.</td></tr>
+      <tr><td class="who">Craig/King</td><td class="loc"><b>Front of Building:</b> Supervising and monitoring; pushing students off campus.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+<script>
+document.querySelectorAll('.btnbar[data-tabs]').forEach(function(bar){
+  var card = bar.closest('.card');
+  bar.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      bar.querySelectorAll('button').forEach(function(b){
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      card.querySelectorAll('.sched').forEach(function(t){
+        t.classList.toggle('hide', t.id !== 'sched-' + btn.dataset.sched);
+      });
+    });
+  });
+});
+</script>
+<footer>
+  NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
+</footer>
+
+</body>
+</html>

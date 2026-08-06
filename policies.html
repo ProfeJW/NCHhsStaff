@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Policies &middot; NCH Trojan Staff Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#B31B34; --red-deep:#8C1128; --gold:#E9A13B; --gold-soft:#F6E3C2;
+  --ink:#1D1A20; --paper:#F6F4EF; --card:#FFFFFF; --gray:#6E6A72; --line:#E4E0D9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3,.disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  text-transform:uppercase;letter-spacing:.02em;margin:0}
+a{color:var(--red-deep)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* header */
+.top{background:var(--ink);color:#fff}
+.top-inner{max-width:1020px;margin:0 auto;padding:14px 20px;display:flex;
+  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.05;text-decoration:none;color:#fff}
+.brand b{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;
+  text-transform:uppercase;letter-spacing:.03em}
+.brand b span{color:var(--gold)}
+.brand small{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#CFC9D1}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;
+  text-transform:uppercase;letter-spacing:.06em;color:#fff;text-decoration:none;
+  padding:8px 14px;border-radius:4px}
+nav a:hover{background:rgba(255,255,255,.12)}
+nav a[aria-current="page"]{background:var(--red);color:#fff}
+.plume{height:10px;background:repeating-linear-gradient(135deg,
+  var(--red) 0 16px, var(--gold) 16px 24px, var(--ink) 24px 32px)}
+
+/* layout */
+.wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
+.page-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 6px}
+.page-h h1{font-size:44px;font-weight:800}
+.page-h .sub{color:var(--gray);font-size:15px}
+.rule{height:3px;background:var(--red);width:64px;margin:10px 0 24px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;margin-bottom:22px}
+.card h2{font-size:26px;font-weight:800;margin-bottom:10px}
+.card h2 .tag{color:var(--red)}
+
+/* badges */
+.badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;
+  padding:2px 8px;white-space:nowrap}
+.b-noschool{background:var(--ink);color:#fff}
+.b-grades{background:var(--red);color:#fff}
+.b-pd{background:var(--gold);color:var(--ink)}
+.b-spirit{background:#fff;color:var(--red-deep);border:1.5px solid var(--red)}
+.b-ath{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.b-key{background:var(--red-deep);color:#fff}
+.b-home{background:var(--gold);color:var(--ink)}
+
+/* schedule rows */
+.rows{display:flex;flex-direction:column}
+.row{display:flex;gap:16px;align-items:flex-start;padding:12px 6px;
+  border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row.home-game{border-left:4px solid var(--gold);padding-left:10px;background:#FDFAF3}
+.datechip{min-width:64px;text-align:center;flex-shrink:0}
+.datechip .dow{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.datechip .num{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--ink)}
+.ev{flex:1;min-width:200px}
+.ev .t{font-weight:600}
+.ev .meta{color:var(--gray);font-size:14px}
+.row .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:3px}
+
+/* filter + tab buttons */
+.btnbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.btnbar button{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
+  text-transform:uppercase;letter-spacing:.06em;border:1.5px solid var(--ink);
+  background:#fff;color:var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer}
+.btnbar button:hover{background:var(--gold-soft)}
+.btnbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.hide{display:none !important}
+
+/* home page bits */
+.hero{background:var(--ink);color:#fff;border-radius:12px;padding:34px 30px;margin-bottom:24px;
+  background-image:linear-gradient(120deg,rgba(179,27,52,.35),rgba(0,0,0,0) 55%)}
+.hero h1{font-size:56px;font-weight:800;line-height:.95}
+.hero h1 span{color:var(--gold)}
+.hero p{margin:10px 0 0;color:#DDD8E0;max-width:56ch}
+.count{display:inline-block;margin-top:18px;background:var(--red);color:#fff;border-radius:6px;
+  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
+  text-transform:uppercase;letter-spacing:.05em}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.q{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);
+  border-radius:8px;padding:12px 14px;text-align:center}
+.q .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.q .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.linklist{list-style:none;margin:0;padding:0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist li:last-child{border-bottom:none}
+.linklist a{font-weight:600;text-decoration:none}
+.linklist a:hover{text-decoration:underline}
+.linklist .note{color:var(--gray);font-size:14px;display:block}
+.soon{color:var(--gray);font-size:13px;font-style:italic}
+
+/* schedule tables */
+.sched{width:100%;border-collapse:collapse;margin-top:4px}
+.sched th,.sched td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:15px}
+.sched thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.sched td.p{font-weight:600}
+.sched td.tm{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:var(--ink)}
+.sched tr:last-child td{border-bottom:none}
+.sched tr.book td{color:var(--gray);font-weight:600}
+.sched tr.lunch td{background:var(--gold-soft);font-weight:700}
+.sched tr.lunch td.p{color:var(--red-deep)}
+.schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+
+/* duty table */
+.duty{width:100%;border-collapse:collapse}
+.duty th,.duty td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);
+  vertical-align:top;font-size:15px}
+.duty thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border-bottom:none}
+.duty tbody tr:last-child td{border-bottom:none}
+.duty tbody tr:nth-child(even) td{background:#FBF9F5}
+.duty td.who{font-weight:700;white-space:nowrap;width:1%;padding-right:20px}
+.duty td.loc b{color:var(--red-deep)}
+@media (max-width:560px){
+  .duty td.who{white-space:normal}
+}
+
+/* admin split + alert */
+.admin h3{font-size:22px;font-weight:800;color:var(--red-deep);
+  border-bottom:2px solid var(--gold);padding-bottom:5px;margin-bottom:10px}
+.admin ul{margin:0;padding-left:18px}
+.admin li{padding:4px 0;font-size:15px}
+.alert{border-left:4px solid var(--red);background:#FDF3F1;border-radius:8px;
+  padding:12px 16px;margin:14px 0 0}
+.alert b{color:var(--red-deep)}
+
+/* policy blocks */
+.pol{margin:0 0 16px}
+.pol:last-child{margin-bottom:0}
+.pol h3{font-size:19px;font-weight:800;color:var(--red-deep);margin-bottom:6px}
+.pol ul{margin:0;padding-left:20px}
+.pol li{padding:3px 0;font-size:15px}
+.pol p{margin:0 0 6px}
+.wt{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 12px}
+.wt div{flex:1;min-width:150px;background:var(--gold-soft);border-radius:8px;
+  padding:10px 14px;text-align:center}
+.wt .pct{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;
+  color:var(--red-deep);line-height:1}
+.wt .lbl{font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700}
+
+/* extensions directory */
+.extgrid{columns:2;column-gap:32px}
+.extgrid>section{break-inside:avoid;margin-bottom:14px}
+.extgrid h3{font-size:15px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--red);
+  border-radius:4px;padding:4px 9px;margin-bottom:6px}
+.extrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:4px 2px;border-bottom:1px dotted var(--line)}
+.extrow .nm{font-size:15px}
+.extrow .nm .role{display:block;color:var(--gray);font-size:12.5px}
+.extrow .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--red-deep);
+  white-space:nowrap;font-size:15px}
+@media (max-width:640px){.extgrid{columns:1}}
+
+footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
+  text-align:center;padding:18px 20px 30px}
+
+@media (max-width:720px){
+  .page-h h1{font-size:34px}
+  .hero h1{font-size:38px}
+  .qgrid{grid-template-columns:repeat(2,1fr)}
+  .two{grid-template-columns:1fr}
+  .row{flex-wrap:wrap}
+  .row .badges{width:100%;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="index.html">
+      <b>Trojan <span>Staff Hub</span></b>
+      <small>North College Hill High School</small>
+    </a>
+    <nav aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="sports.html">Athletics</a>
+      <a href="schedules.html">Schedules</a>
+      <a href="policies.html" aria-current="page">Policies</a>
+      <a href="directory.html">Directory</a>
+      <a href="staff.html">Staff Info</a>
+    </nav>
+  </div>
+</header>
+<div class="plume" role="presentation"></div>
+<main class="wrap">
+
+<div class="page-h"><h1>Policies</h1><span class="sub">Handbook rules that affect your classroom</span></div>
+<div class="rule"></div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Grading &amp; Coursework</h2>
+  <div class="pol">
+    <h3>Gradebook Weights</h3>
+    <p>Teachers are responsible for setting these weights in Progress Book.</p>
+    <div class="wt">
+      <div><span class="pct">45%</span><span class="lbl">Assessments</span></div>
+      <div><span class="pct">45%</span><span class="lbl">Classwork</span></div>
+      <div><span class="pct">10%</span><span class="lbl">Homework</span></div>
+    </div>
+    <p style="color:var(--gray);font-size:14px;margin:0">Assessments = tests, quizzes, projects. Classwork = participation, labs, rubric-based project work.</p>
+  </div>
+  <div class="pol">
+    <h3>Late Work &amp; Retakes</h3>
+    <ul>
+      <li><b>Late work</b> must be submitted within <b>2 weeks</b> of the due date &mdash; except the last week of each quarter.</li>
+      <li>Deduct <b>no more than 20%</b> (two letter grades) for late work.</li>
+      <li><b>Retakes are non-negotiable at student request</b> and must be reflected in the grade.</li>
+      <li>Retakes must occur within <b>2 weeks</b> of the original assessment date.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Make-Up Work &amp; Incompletes</h3>
+    <ul>
+      <li>Make-up work is the <b>student&rsquo;s</b> responsibility &mdash; they must contact you immediately upon return.</li>
+      <li>For full credit, work should be completed within the <b>number of days absent</b>.</li>
+      <li>Suspended students may make up tests and assignments; work assigned <i>before</i> the suspension is accepted as previously assigned.</li>
+      <li><b>Incompletes</b> must be made up within <b>2 weeks</b> after the course ends. Fourth-quarter arrangements are made before the last day of school.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Grading Scale</h3>
+    <table class="sched">
+      <thead><tr><th>Grade</th><th>Percentage</th><th style="text-align:right">GPA</th></tr></thead>
+      <tbody>
+        <tr><td class="p">A</td><td>90&ndash;100%</td><td class="tm">3.5 &ndash; 4.0</td></tr>
+        <tr><td class="p">B</td><td>80&ndash;89%</td><td class="tm">2.5 &ndash; 3.49</td></tr>
+        <tr><td class="p">C</td><td>70&ndash;79%</td><td class="tm">1.5 &ndash; 2.49</td></tr>
+        <tr><td class="p">D</td><td>60&ndash;69%</td><td class="tm">1.0 &ndash; 1.49</td></tr>
+        <tr><td class="p">F</td><td>0&ndash;59%</td><td class="tm">0.0 &ndash; 0.99</td></tr>
+      </tbody>
+    </table>
+    <p class="schednote">A student needs at least a <b>&ldquo;D&rdquo; (1.0) average for the year</b> to earn credit. Honor roll tiers: 4.0, 3.5, 3.0 &mdash; no grade below a C in the four major disciplines, and no F in any subject.</p>
+  </div>
+  <div class="pol">
+    <h3>Homework Guidelines</h3>
+    <ul>
+      <li>Maximum daily outside preparation &mdash; <b>9th grade: 120 minutes</b>; <b>10th&ndash;12th: 150 minutes</b>. These are <i>totals across all teachers</i>, not per class.</li>
+      <li>Homework is <b>not</b> used for disciplinary purposes.</li>
+      <li>Assignments may be started in class to allow supervised study and questions.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Progress Reports, Plagiarism &amp; Schedule Changes</h3>
+    <ul>
+      <li><b>Progress reports</b> go out approximately every <b>5 weeks</b>; dates are on the school calendar. Reports include reasons for lack of progress and recommended remedial action.</li>
+      <li><b>Plagiarism:</b> the degree of penalty is <b>at the discretion of the classroom teacher</b> the work was submitted to. Appeals go to the building administrator after a parent/student/teacher conference.</li>
+      <li><b>Schedule changes</b> require parent, counselor &amp; administrator approval. A drop after the <b>third week</b> of class results in a grade of <b>&ldquo;F.&rdquo;</b></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Classroom &amp; Hallway Policies</h2>
+  <div class="alert" style="margin:0 0 16px">
+    <b>Cell phones &mdash; Ohio House Bill 250:</b> Students may have phones, but they must be <b>turned off</b> (not silent or vibrate) and <b>kept in lockers</b> during the school day. <b>At no time</b> should a student use a phone during the school day, or before, during, or after school instructional activities. All other electronic devices stay in lockers.
+  </div>
+  <div class="pol">
+    <h3>Hall Passes</h3>
+    <ul>
+      <li>Students complete an <b>E Hall Pass</b> and wear a <b>lanyard pass</b> around the neck to leave the room.</li>
+      <li>Passes are for <b>emergencies only</b> so students don&rsquo;t miss instruction.</li>
+      <li><b>No passes during the first ten minutes or the last ten minutes of class.</b></li>
+      <li>Students should use the restroom between periods.</li>
+      <li>Don&rsquo;t write passes to the gym for students not in a scheduled PE/health class.</li>
+      <li>A student who feels ill needs an <b>E Hall Pass and a written pass</b> from you before reporting to the clinic.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Tardies &amp; Arrival</h3>
+    <ul>
+      <li>Any student <b>not in the classroom at the start of the period is tardy</b>.</li>
+      <li>Students must be in first period no later than <b>8:15 AM</b> and begin bell work immediately.</li>
+      <li>Students arriving after 8:15 enter through the front doors, clear security, and <b>sign in at the swipe machine</b>.</li>
+      <li>They have <b>5 minutes</b> from their swipe to hit their locker and reach class &mdash; longer is a tardy consequence.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Dress Code &mdash; Quick Reference</h3>
+    <ul>
+      <li><b>Tops:</b> one solid <b>white, red, blue, black, or gray</b> collared shirt. Logos no larger than a closed fist. Sweaters/sweatshirts/fleece in the same colors may go over it. <b>Spirit wear counts</b> and may replace the collared shirt.</li>
+      <li><b>Bottoms:</b> plain <b>navy, khaki, or black</b>. No shorter than <b>3&Prime; above the knee</b>. Leggings only <i>under</i> other bottoms.</li>
+      <li><b>Not permitted:</b> denim, jackets/coats, t-shirts/jerseys, hoods worn in the building, spandex or oversized clothing, slippers/crocs/flip-flops, bandanas or head coverings, chains.</li>
+      <li>Bags &amp; backpacks stay in lockers; small purses/fanny packs up to 6&times;8&Prime; may be carried.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Food &amp; Prohibited Items</h3>
+    <ul>
+      <li>Food and drink are for the <b>cafeteria only</b> &mdash; never in the halls or classrooms.</li>
+      <li>No outside or delivered food. DoorDash/GrubHub orders are held in the office until dismissal.</li>
+      <li>Blocked at entry: <b>Stanleys/Yetis or any non-clear bottle</b>, drinks other than water, opened food packages, medication without nurse paperwork, pepper spray, vapes, drug paraphernalia, weapons.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Attendance &amp; Discipline</h2>
+  <div class="pol">
+    <h3>Attendance</h3>
+    <ul>
+      <li>Parents are expected to call in an absence by <b>9:00 AM</b>.</li>
+      <li>A written or doctor&rsquo;s note must reach the front office <b>within a week</b> of the absence or it stays <b>unexcused</b>.</li>
+      <li>Students must be in attendance <b>each class</b> that day to participate in after-school or extracurricular activities.</li>
+      <li>Students without current emergency medical forms in FinalForms are excluded from school beginning the first full week of September.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Alternative Classroom Assignment (ACA)</h3>
+    <ul>
+      <li>Runs <b>8:15 AM &ndash; 3:05 PM</b>. Students sent out of class for disrupting the learning environment report to ACA.</li>
+      <li>The <b>ACA monitor collects classwork</b> from teachers for the duration. Students must complete it &mdash; <b>failure to complete work results in an &ldquo;F.&rdquo;</b></li>
+      <li>Credit is granted if ACA is served as assigned, behavior is appropriate, and all work is completed <b>to the best of the student&rsquo;s ability as determined by the classroom teacher</b>.</li>
+      <li>Labs, demonstrations, and group work can&rsquo;t be duplicated in ACA; alternate assignments earn credit.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>After-School Detention</h3>
+    <ul>
+      <li><b>Tuesday or Thursday, 3:15&ndash;5:15 PM.</b> No student admitted after 3:15.</li>
+      <li>Students report to their locker and be in the assigned room <b>by 3:15 PM</b>.</li>
+      <li>Students bring enough work for the full period; no food, devices, or sleeping.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Emergency Removal &mdash; Teacher Rights</h3>
+    <ul>
+      <li>If a student is reinstated before an emergency-removal hearing, <b>the teacher may request and must be given written reasons</b> for the reinstatement.</li>
+      <li>The teacher <b>cannot refuse</b> to reinstate the student.</li>
+      <li>Suspended or ACA-placed students and a parent must meet with an administrator before returning to class.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Emergency Procedures</h2>
+  <div class="two">
+    <div class="pol">
+      <h3>Fire Drill</h3>
+      <ul>
+        <li>Close windows before leaving; <b>last person out closes the door</b>.</li>
+        <li>Walk rapidly in single file &mdash; do not run. No talking.</li>
+        <li>Once outside, <b>the classroom teacher takes attendance</b>.</li>
+        <li>Stay in line and quiet until all students are accounted for.</li>
+      </ul>
+    </div>
+    <div class="pol">
+      <h3>Lockdown</h3>
+      <ul>
+        <li><b>Teachers lock classroom doors.</b></li>
+        <li>All students remain in the classroom.</li>
+        <li>If there is an emergency inside the room, <b>call the office</b>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pol">
+    <h3>Tornado Drill</h3>
+    <ul>
+      <li>Move students to designated areas &mdash; usually <b>interior hallways on the lowest floor</b>.</li>
+      <li>Students sit, head to knees, face covered with folded arms.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Reporting &amp; Student Support</h2>
+  <div class="alert" style="margin:0 0 16px">
+    <b>Mandatory reporting:</b> All school personnel who become aware of harassment, intimidation, or bullying <b>must immediately report it to the building principal</b>. Any staff member receiving a report must put it in writing on the Board&rsquo;s HIB complaint form and forward it to the principal.
+  </div>
+  <div class="pol">
+    <ul>
+      <li><b>Good-faith immunity:</b> Staff who report promptly and in good faith under this policy are <b>individually immune from civil liability</b>.</li>
+      <li>Intervene promptly whenever you observe student-on-student misbehavior &mdash; even before it rises to the level of bullying.</li>
+      <li><b>Student/Parent Hotline (Speak Up!):</b> <b>1-866-547-8362</b> (1-866-LISTEN2ME) &mdash; live attendant or voicemail.</li>
+      <li><b>988 Suicide &amp; Crisis Lifeline</b> &mdash; call or text <b>988</b>. Veterans press 1; en espa&ntilde;ol marque 2 or text AYUDA.</li>
+      <li>Retaliation against anyone who reports or participates in an investigation is prohibited.</li>
+    </ul>
+  </div>
+  <div class="pol">
+    <h3>Texting Students &mdash; Staff Requirements</h3>
+    <ul>
+      <li>You must have <b>written permission</b> from the student and parent (if under 18) <b>before</b> texting, and must specify how and when you&rsquo;ll use it.</li>
+      <li>All employees who text students must sign the <b>District Texting Agreement</b>.</li>
+      <li>Content must be <b>school-related only</b> &mdash; never a personal conversation. Use it sparingly.</li>
+      <li>If a student sends an inappropriate reply, contact the parent and administration <b>immediately</b>.</li>
+      <li>No expectation of privacy &mdash; district messages may be reviewed at any time.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Quick References</h2>
+  <div class="two">
+    <div class="pol">
+      <h3>Oaks / Vocational Buses</h3>
+      <ul>
+        <li>Leaves NCH <b>7:00 AM</b> for Scarlet, <b>7:10 AM</b> for Diamond</li>
+        <li>Leaves Diamond/Scarlet Oaks <b>2:20 PM</b></li>
+        <li><b>1-hour delay:</b> depart <b>8:10 AM</b> (both)</li>
+        <li><b>2-hour delay:</b> depart <b>9:10 AM</b> (both)</li>
+        <li><b>NCH closed:</b> no attendance required, no buses</li>
+      </ul>
+    </div>
+    <div class="pol">
+      <h3>Announcements</h3>
+      <ul>
+        <li>Submit on the form from the principal&rsquo;s office with administrator approval.</li>
+        <li>Must reach building secretaries by <b>12:00 noon the preceding day</b>.</li>
+        <li>Emergency announcements go out over the PA during the <b>last five minutes of 7th bell</b>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pol">
+    <h3>Credits &amp; Graduation</h3>
+    <ul>
+      <li><b>Grade classification:</b> 10th = 5 credits &middot; 11th = 10 credits &middot; 12th = 15 credits.</li>
+      <li><b>Diploma:</b> 20 credits, competency, and two seals. Students need <b>684+</b> on the Algebra I and English II EOCs, and must sit all six EOCs.</li>
+      <li>Students register for <b>seven periods</b>; seniors meeting requirements may take independent study or study hall.</li>
+      <li>Textbooks are issued and recorded by teachers; students pay for lost or damaged books.</li>
+    </ul>
+  </div>
+</div>
+
+</main>
+<footer>
+  NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
+</footer>
+
+</body>
+</html>
