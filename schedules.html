@@ -125,6 +125,13 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td{background:var(--gold-soft);font-weight:700}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+.sched a{overflow-wrap:anywhere}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:620px){
+  .sched th,.sched td{padding:7px 6px;font-size:14px}
+  .tscroll{margin:0 -8px;padding:0 8px}
+  .tscroll>.sched{min-width:520px}
+}
 
 /* duty table */
 .duty{width:100%;border-collapse:collapse}

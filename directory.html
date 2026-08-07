@@ -125,6 +125,13 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td{background:var(--gold-soft);font-weight:700}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+.sched a{overflow-wrap:anywhere}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:620px){
+  .sched th,.sched td{padding:7px 6px;font-size:14px}
+  .tscroll{margin:0 -8px;padding:0 8px}
+  .tscroll>.sched{min-width:520px}
+}
 
 /* duty table */
 .duty{width:100%;border-collapse:collapse}
@@ -287,7 +294,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 <div class="card">
   <h2><span class="tag">//</span> Who to Ask</h2>
   <p style="margin:0 0 14px">When something comes up, start here. Extensions are dialled from any building phone.</p>
-  <table class="sched">
+  <div class="tscroll"><table class="sched">
     <thead><tr><th>If you need&hellip;</th><th>Go to</th><th style="text-align:right">Ext.</th></tr></thead>
     <tbody>
       <tr><td class="p">A student is failing / needs intervention</td><td>MTSS &mdash; academics: <b>King</b> &middot; behaviour: <b>Craig-Roach</b></td><td class="tm">10004 / 10010</td></tr>
@@ -322,7 +329,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <tr><td class="p">A supplemental position &mdash; what it pays or involves</td><td><b>Craig-Roach</b> &middot; see <a href="staff.html#supplementals">Supplemental Positions</a></td><td class="tm">10010</td></tr>
       <tr><td class="p">Something district-wide, past the building</td><td><b>Central Office</b> &mdash; see the table below</td><td class="tm">&mdash;</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="schednote">Built from the 2026&ndash;27 extension list and the administration split. If something here is wrong or missing, say so and it gets fixed.</p>
 </div>
 
