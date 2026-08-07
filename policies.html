@@ -164,6 +164,10 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   color:var(--red-deep);line-height:1}
 .wt .lbl{font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;
   font-family:'Barlow Condensed',sans-serif;font-weight:700}
+.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
 .pending{display:inline-block;margin-top:8px;font-size:12.5px;font-style:italic;
   color:var(--gray);background:#F1EEE8;border:1px dashed var(--line);
   border-radius:5px;padding:3px 9px}
@@ -485,8 +489,8 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <summary><h2><span class="tag">//</span> Emergency Procedures</h2></summary>
   <div class="accbody">
   <div class="alert" style="margin:0 0 16px">
-    <b>Log your students in Navigate&nbsp;360.</b> During a fire drill &mdash; and any evacuation &mdash; you must account for every student in the <b>Navigate&nbsp;360</b> app, not just on paper. Download it before the first drill so you aren&rsquo;t setting it up in the parking lot.
-    <span class="pending">Navigate&nbsp;360 download link &mdash; coming</span>
+    <b>Log your students in Naviance&nbsp;360.</b> During a fire drill &mdash; and any evacuation or lockdown &mdash; you must account for every student in the <b>Naviance&nbsp;360</b> app, not just on paper. Download it before the first drill so you aren&rsquo;t setting it up in the parking lot.
+    <span class="pending">Naviance&nbsp;360 download link &mdash; coming</span>
   </div>
   <div class="two">
     <div class="pol">
@@ -494,33 +498,40 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <ul>
         <li>Close windows before leaving; <b>last person out closes the door</b>.</li>
         <li>Walk rapidly in single file &mdash; do not run. No talking.</li>
-        <li>Once outside, <b>take attendance and log every student in Navigate&nbsp;360</b>.</li>
+        <li>Once outside, <b>take attendance and log every student in Naviance&nbsp;360</b>.</li>
         <li>Report any student you cannot account for immediately.</li>
         <li>Stay in line and quiet until all students are accounted for.</li>
       </ul>
     </div>
     <div class="pol">
-      <h3>Lockdown</h3>
+      <h3>Tornado Drill</h3>
       <ul>
-        <li><b>Teachers lock classroom doors.</b></li>
-        <li>All students remain in the classroom.</li>
-        <li>If there is an emergency inside the room, <b>call the office</b>.</li>
-        <li>Account for your students in <b>Navigate&nbsp;360</b> when directed.</li>
+        <li>Move students to your room&rsquo;s <b>assigned area</b> &mdash; routes differ by room and floor.</li>
+        <li><b>Protection position:</b> crouch low on knees facing the wall, head down, arms covering the back of the head and neck. Under a desk or table in that position is better still.</li>
+        <li>Keep students <b>clear of windows and doors</b>.</li>
+        <li>Account for your students in <b>Naviance&nbsp;360</b> once in position.</li>
       </ul>
-      <p style="margin:6px 0 0"><span class="pending">Full lockdown procedure PDF &mdash; coming</span></p>
+      <p style="margin:8px 0 0"><a class="doclink" href="docs/tornado-drill-procedures-2026-27.pdf" target="_blank" rel="noopener">Tornado Drill Procedures &mdash; room-by-room routes (PDF)</a></p>
     </div>
   </div>
+
   <div class="pol">
-    <h3>Tornado Drill</h3>
-    <ul>
-      <li>Move students to designated areas &mdash; usually <b>interior hallways on the lowest floor</b>.</li>
-      <li>Students sit, head to knees, face covered with folded arms.</li>
-      <li>Account for your students in <b>Navigate&nbsp;360</b> once in position.</li>
+    <h3>Lockdown Levels</h3>
+    <p>Every level: <b>students and staff secured in classrooms</b>, <b>hallways clear</b>, and <b>exit only when the alert is lifted</b>.</p>
+    <table class="sched">
+      <thead><tr><th>Level</th><th>Called when</th><th>Adds</th></tr></thead>
+      <tbody>
+        <tr><td class="p">1 &mdash; Medical / Non-Emergency</td><td>A medical situation arises</td><td>No hallway movement.</td></tr>
+        <tr><td class="p">2 &mdash; Perimeter</td><td>A situation inside or outside may affect the school</td><td>All outside <b>and</b> classroom doors locked; no one in or out of the building; <b>attendance taken immediately</b>.</td></tr>
+        <tr><td class="p">3 &mdash; Full Security<br><span style="font-weight:400;color:var(--gray)">(shelter in place)</span></td><td>A situation threatens the safety of students and staff</td><td>Everything in Level&nbsp;2, plus stay <b>out of sight of doors and windows</b>, <b>lights and monitors off</b>, no movement, <b>silence</b>; <b>attendance taken immediately</b>.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:10px 0 0"><a class="doclink" href="docs/lockdown-levels-and-procedures-2026-27.pdf" target="_blank" rel="noopener">Lockdown Levels &amp; Procedures (PDF)</a></p>
+    <ul style="margin-top:10px">
+      <li>If there is an emergency inside your room during a lockdown, <b>call the office</b>.</li>
     </ul>
-    <p style="margin:6px 0 0"><span class="pending">Full tornado drill PDF &mdash; coming</span></p>
   </div>
-</div>
-</details>
+  </details>
 
 <details class="card acc" id="reporting">
   <summary><h2><span class="tag">//</span> Reporting &amp; Student Support</h2></summary>
