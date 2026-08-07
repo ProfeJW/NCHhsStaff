@@ -125,6 +125,12 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td{background:var(--gold-soft);font-weight:700}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.jump a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:6px 15px}
+.jump a:hover{background:var(--gold-soft);border-color:var(--gold)}
+
 .sched .sec{display:inline-block;margin-top:2px;font-weight:400;font-size:12.5px;color:var(--gray);font-variant-numeric:tabular-nums;white-space:nowrap}
 .sched a{overflow-wrap:anywhere}
 .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -258,6 +264,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 
 <div class="page-h"><h1>Staff Info</h1><span class="sub">Timesheets, payroll &amp; paperwork</span></div>
 <div class="rule"></div>
+<div class="jump"><a href="#contract">Contract</a><a href="#weeklyforms">Weekly Forms</a><a href="#fieldtrips">Field Trips</a><a href="#supplementals">Supplementals</a><a href="#timesheets">Timesheets</a><a href="#injury">Injury</a><a href="#leave">Leave</a><a href="#pay">Pay</a><a href="#backtoschool">Back to School</a></div>
 
 <div class="card" id="contract">
   <h2><span class="tag">//</span> Master Contract 2025&ndash;2027</h2>
@@ -286,7 +293,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <p class="schednote">A plain-language summary for quick reference &mdash; it is not the contract. <b>The PDF governs.</b> For anything contested, read the section itself and talk to your NCHEA representative.</p>
 </div>
 
-<div class="card">
+<div class="card" id="weeklyforms">
     <h2><span class="tag">//</span> Internal Sub &amp; Detention Forms</h2>
     <p><b>Due every week</b> — submit even if you only covered one period, and even in weeks with no days used per the district instructions.</p>
     <ul style="margin:0;padding-left:20px">
@@ -334,7 +341,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <p class="schednote">Interested in a supplemental that isn&rsquo;t filled? Ask <b>Craig-Roach</b> (ext.&nbsp;10010). Supplemental contracts are approved by the Board.</p>
 </div>
 
-<div class="card">
+<div class="card" id="timesheets">
     <h2><span class="tag">//</span> Classified Staff Timesheets</h2>
     <p>Submitted <b>biweekly, on the 15th and 30th</b> of each month.</p>
     <ul style="margin:0;padding-left:20px">
@@ -345,7 +352,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     <p style="margin:10px 0 0"><a class="doclink" href="docs/timesheet-template-classified.xlsx">Timesheet Template (XLSX)</a></p>
   </div>
 
-<div class="card">
+<div class="card" id="injury">
   <h2><span class="tag">//</span> Injury &amp; Incident Reporting</h2>
   <div class="alert" style="margin:0 0 16px">
     <b>Report every injury or incident &mdash; even if you don&rsquo;t expect a Workers&rsquo; Comp claim.</b> The district files a year-end report with the state covering all workplace injuries, so nothing can be skipped. Call <b>911 first</b> for anything serious or life-threatening.
@@ -375,7 +382,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </div>
 </div>
 
-<div class="card">
+<div class="card" id="leave">
   <h2><span class="tag">//</span> Leave &amp; Employee Support</h2>
   <div class="pol">
     <h3>Employee Assistance Program</h3>
@@ -397,12 +404,12 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </div>
 </div>
 
-<div class="card">
+<div class="card" id="pay">
   <h2><span class="tag">//</span> Pay Discrepancies</h2>
   <p style="margin:0">Notice something off with your pay? Contact <a href="mailto:payroll@nchcityschools.org">payroll@nchcityschools.org</a> right away so it can be resolved before the next cycle.</p>
 </div>
 
-<div class="card">
+<div class="card" id="backtoschool">
   <h2><span class="tag">//</span> Back to School Forms</h2>
   <p style="margin:0"><b>FinalForms</b> is now the single portal for all student back-to-school forms &mdash; enrollment, athletics, tech &amp; handbook. <b>One portal for everything.</b></p>
   <div class="alert">

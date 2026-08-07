@@ -125,6 +125,12 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td{background:var(--gold-soft);font-weight:700}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.jump a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:6px 15px}
+.jump a:hover{background:var(--gold-soft);border-color:var(--gold)}
+
 .sched a{overflow-wrap:anywhere}
 .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 @media (max-width:620px){
@@ -244,8 +250,9 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 
 <div class="page-h"><h1>Directory</h1><span class="sub">Who to see &amp; phone extensions</span></div>
 <div class="rule"></div>
+<div class="jump"><a href="#admin">Admin</a><a href="#counselors">Counselors</a><a href="#whotoask">Who to Ask</a><a href="#central">Central Office</a><a href="#board">Board</a><a href="#extensions">Extensions</a></div>
 
-<div class="card">
+<div class="card" id="admin">
   <h2><span class="tag">//</span> Administration &mdash; Who Handles What</h2>
   <p style="margin:0 0 16px">Not sure who to see? Here&rsquo;s how the assistant principals split responsibilities.</p>
   <div class="two admin">
@@ -276,7 +283,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </div>
 </div>
 
-<div class="card">
+<div class="card" id="counselors">
   <h2><span class="tag">//</span> Counselors&rsquo; Corner</h2>
   <p style="margin:0 0 16px">Students are assigned a counselor by last name.</p>
   <div class="two admin">
@@ -291,7 +298,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </div>
 </div>
 
-<div class="card">
+<div class="card" id="whotoask">
   <h2><span class="tag">//</span> Who to Ask</h2>
   <p style="margin:0 0 14px">When something comes up, start here. Extensions are dialled from any building phone.</p>
   <div class="tscroll"><table class="sched">
@@ -391,7 +398,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </p>
 </div>
 
-<div class="card">
+<div class="card" id="extensions">
   <h2><span class="tag">//</span> Phone Extensions</h2>
   <p style="margin:0 0 16px">Dial the 5-digit extension from any building phone. Grouped by role; names listed last-name first.</p>
   <div class="extgrid">
