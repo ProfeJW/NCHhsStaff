@@ -124,6 +124,22 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   .row{flex-wrap:wrap}
   .row .badges{width:100%;padding-top:0}
 }
+/* daily tracker banner */
+.tracker{display:block;text-decoration:none;background:var(--red);color:#fff;border-radius:12px;
+  padding:20px 24px;margin:0 0 22px;border:2px solid var(--red-deep)}
+.tracker:hover{background:var(--red-deep)}
+.tracker .th{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tracker .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;
+  text-transform:uppercase;letter-spacing:.02em;line-height:1;color:#fff}
+.tracker .live{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;background:var(--gold);color:var(--ink);
+  border-radius:20px;padding:4px 11px}
+.tracker p{margin:8px 0 0;color:#FBE9EC;font-size:15px;max-width:62ch}
+.tracker .go{display:inline-block;margin-top:12px;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;
+  background:#fff;color:var(--red-deep);border-radius:6px;padding:8px 16px}
+@media (max-width:560px){.tracker .lbl{font-size:24px}}
+
 /* mobile nav toggle */
 .navtoggle{display:none;background:none;border:1.5px solid rgba(255,255,255,.45);
   color:#fff;border-radius:5px;padding:7px 12px;font-size:20px;line-height:1;
@@ -168,6 +184,12 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 <div class="plume" role="presentation"></div>
 <main class="wrap">
 
+<a class="tracker" href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener">
+  <span class="th"><span class="lbl">Daily Tracker</span><span class="live">Updated daily</span></span>
+  <p>Who&rsquo;s absent, who&rsquo;s covering, which subs are in the building, and which students are on what consequences. Check it every morning &mdash; it changes constantly.</p>
+  <span class="go">Open the tracker &rarr;</span>
+</a>
+
 <section class="hero">
   <h1>Welcome back,<br><span>Trojans</span></h1>
   <p>One spot for the building calendar, athletic schedules, and the paperwork that keeps everyone paid. Bookmark it and share it in the building only.</p>
@@ -191,12 +213,13 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="card">
     <h2><span class="tag">//</span> Quick Links</h2>
     <ul class="linklist">
+      <li><a href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener">Daily Tracker</a><span class="note">Absences, coverage, subs &amp; student consequences &mdash; updated daily</span></li>
       <li><a href="schedules.html">Bell Schedules &amp; Duty Roster</a><span class="note">Daily bell times, 2-hour delay &amp; PM dismissal posts</span></li>
       <li><a href="data.html">Building Data</a><span class="note">EOC, attendance, discipline &amp; pass rates</span></li>
       <li><a href="policies.html">Classroom Policies</a><span class="note">Grading, late work, phones, passes &amp; emergencies</span></li>
       <li><a href="directory.html">Staff Directory</a><span class="note">Phone extensions, counselors &amp; admin duties</span></li>
       <li><a href="staff.html">Timesheets &amp; Payroll</a><span class="note">Weekly and biweekly submission deadlines</span></li>
-      <li><a href="calendar.html">First Semester Calendar</a><span class="note">PD days, grade buckets, spirit weeks, breaks</span></li>
+      <li><a href="calendar.html">First Semester Calendar</a><span class="note">PD days, grade buckets, spirit weeks, breaks &mdash; <a href="docs/nch-hs-calendar-2026-27.pdf" target="_blank" rel="noopener">official PDF</a></span></li>
       <li><a href="sports.html">Fall Athletics</a><span class="note">Football, volleyball &amp; soccer — home games flagged</span></li>
     </ul>
   </div>

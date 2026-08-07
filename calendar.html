@@ -142,6 +142,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   nav a{padding:11px 12px}
 }
 
+.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
+
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -170,6 +175,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 
 <div class="page-h"><h1>First Semester Calendar</h1><span class="sub">2026&ndash;27 · August through Winter Break</span></div>
 <div class="rule"></div>
+<p style="margin:0 0 18px"><a class="doclink" href="docs/nch-hs-calendar-2026-27.pdf" target="_blank" rel="noopener">Official 2026&ndash;27 Calendar (PDF)</a></p>
 <div class="btnbar" role="group" aria-label="Filter events">
   <button data-f="all" aria-pressed="true">All</button>
   <button data-f="noschool" aria-pressed="false">No School</button>
