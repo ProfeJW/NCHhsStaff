@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Data &middot; NCH Trojan Staff Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#B31B34; --red-deep:#8C1128; --gold:#E9A13B; --gold-soft:#F6E3C2;
+  --ink:#1D1A20; --paper:#F6F4EF; --card:#FFFFFF; --gray:#6E6A72; --line:#E4E0D9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3,.disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  text-transform:uppercase;letter-spacing:.02em;margin:0}
+a{color:var(--red-deep)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* header */
+.top{background:var(--ink);color:#fff}
+.top-inner{max-width:1020px;margin:0 auto;padding:14px 20px;display:flex;
+  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.05;text-decoration:none;color:#fff}
+.brand b{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;
+  text-transform:uppercase;letter-spacing:.03em}
+.brand b span{color:var(--gold)}
+.brand small{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#CFC9D1}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;
+  text-transform:uppercase;letter-spacing:.06em;color:#fff;text-decoration:none;
+  padding:8px 14px;border-radius:4px}
+nav a:hover{background:rgba(255,255,255,.12)}
+nav a[aria-current="page"]{background:var(--red);color:#fff}
+.plume{height:10px;background:repeating-linear-gradient(135deg,
+  var(--red) 0 16px, var(--gold) 16px 24px, var(--ink) 24px 32px)}
+
+/* layout */
+.wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
+.page-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 6px}
+.page-h h1{font-size:44px;font-weight:800}
+.page-h .sub{color:var(--gray);font-size:15px}
+.rule{height:3px;background:var(--red);width:64px;margin:10px 0 24px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;margin-bottom:22px}
+.card h2{font-size:26px;font-weight:800;margin-bottom:10px}
+.card h2 .tag{color:var(--red)}
+
+/* badges */
+.badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;
+  padding:2px 8px;white-space:nowrap}
+.b-noschool{background:var(--ink);color:#fff}
+.b-grades{background:var(--red);color:#fff}
+.b-pd{background:var(--gold);color:var(--ink)}
+.b-spirit{background:#fff;color:var(--red-deep);border:1.5px solid var(--red)}
+.b-ath{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.b-key{background:var(--red-deep);color:#fff}
+.b-home{background:var(--gold);color:var(--ink)}
+
+/* schedule rows */
+.rows{display:flex;flex-direction:column}
+.row{display:flex;gap:16px;align-items:flex-start;padding:12px 6px;
+  border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row.home-game{border-left:4px solid var(--gold);padding-left:10px;background:#FDFAF3}
+.datechip{min-width:64px;text-align:center;flex-shrink:0}
+.datechip .dow{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.datechip .num{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--ink)}
+.ev{flex:1;min-width:200px}
+.ev .t{font-weight:600}
+.ev .meta{color:var(--gray);font-size:14px}
+.row .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:3px}
+
+/* filter + tab buttons */
+.btnbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.btnbar button{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
+  text-transform:uppercase;letter-spacing:.06em;border:1.5px solid var(--ink);
+  background:#fff;color:var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer}
+.btnbar button:hover{background:var(--gold-soft)}
+.btnbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.hide{display:none !important}
+
+/* home page bits */
+.hero{background:var(--ink);color:#fff;border-radius:12px;padding:34px 30px;margin-bottom:24px;
+  background-image:linear-gradient(120deg,rgba(179,27,52,.35),rgba(0,0,0,0) 55%)}
+.hero h1{font-size:56px;font-weight:800;line-height:.95}
+.hero h1 span{color:var(--gold)}
+.hero p{margin:10px 0 0;color:#DDD8E0;max-width:56ch}
+.count{display:inline-block;margin-top:18px;background:var(--red);color:#fff;border-radius:6px;
+  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
+  text-transform:uppercase;letter-spacing:.05em}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.q{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);
+  border-radius:8px;padding:12px 14px;text-align:center}
+.q .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.q .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.linklist{list-style:none;margin:0;padding:0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist li:last-child{border-bottom:none}
+.linklist a{font-weight:600;text-decoration:none}
+.linklist a:hover{text-decoration:underline}
+.linklist .note{color:var(--gray);font-size:14px;display:block}
+.soon{color:var(--gray);font-size:13px;font-style:italic}
+
+/* schedule tables */
+.sched{width:100%;border-collapse:collapse;margin-top:4px}
+.sched th,.sched td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:15px}
+.sched thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.sched td.p{font-weight:600}
+.sched td.tm{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:var(--ink)}
+.sched tr:last-child td{border-bottom:none}
+.sched tr.book td{color:var(--gray);font-weight:600}
+.sched tr.lunch td{background:var(--gold-soft);font-weight:700}
+.sched tr.lunch td.p{color:var(--red-deep)}
+.schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+
+/* duty table */
+.duty{width:100%;border-collapse:collapse}
+.duty th,.duty td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);
+  vertical-align:top;font-size:15px}
+.duty thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border-bottom:none}
+.duty tbody tr:last-child td{border-bottom:none}
+.duty tbody tr:nth-child(even) td{background:#FBF9F5}
+.duty td.who{font-weight:700;white-space:nowrap;width:1%;padding-right:20px}
+.duty td.loc b{color:var(--red-deep)}
+@media (max-width:560px){
+  .duty td.who{white-space:normal;overflow-wrap:anywhere;width:auto}
+  .duty th,.duty td{padding:8px 7px;font-size:14px}
+}
+
+/* admin split + alert */
+.admin h3{font-size:22px;font-weight:800;color:var(--red-deep);
+  border-bottom:2px solid var(--gold);padding-bottom:5px;margin-bottom:10px}
+.admin ul{margin:0;padding-left:18px}
+.admin li{padding:4px 0;font-size:15px}
+.alert{border-left:4px solid var(--red);background:#FDF3F1;border-radius:8px;
+  padding:12px 16px;margin:14px 0 0}
+.alert b{color:var(--red-deep)}
+
+/* policy blocks */
+.pol{margin:0 0 16px}
+.pol:last-child{margin-bottom:0}
+.pol h3{font-size:19px;font-weight:800;color:var(--red-deep);margin-bottom:6px}
+.pol ul{margin:0;padding-left:20px}
+.pol li{padding:3px 0;font-size:15px}
+.pol p{margin:0 0 6px}
+.wt{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 12px}
+.wt div{flex:1;min-width:150px;background:var(--gold-soft);border-radius:8px;
+  padding:10px 14px;text-align:center}
+.wt .pct{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;
+  color:var(--red-deep);line-height:1}
+.wt .lbl{font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700}
+.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
+.pending{display:inline-block;margin-top:8px;font-size:12.5px;font-style:italic;
+  color:var(--gray);background:#F1EEE8;border:1px dashed var(--line);
+  border-radius:5px;padding:3px 9px}
+
+/* extensions directory */
+.extgrid{columns:2;column-gap:32px}
+.extgrid>section{break-inside:avoid;margin-bottom:14px}
+.extgrid h3{font-size:15px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--red);
+  border-radius:4px;padding:4px 9px;margin-bottom:6px}
+.extrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:4px 2px;border-bottom:1px dotted var(--line)}
+.extrow .nm{font-size:15px}
+.extrow .nm .role{display:block;color:var(--gray);font-size:12.5px}
+.extrow .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--red-deep);
+  white-space:nowrap;font-size:15px}
+@media (max-width:640px){.extgrid{columns:1}}
+
+footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
+  text-align:center;padding:18px 20px 30px}
+
+@media (max-width:720px){
+  .page-h h1{font-size:34px}
+  .hero h1{font-size:38px}
+  .qgrid{grid-template-columns:repeat(2,1fr)}
+  .two{grid-template-columns:1fr}
+  .row{flex-wrap:wrap}
+  .row .badges{width:100%;padding-top:0}
+}
+/* mobile nav toggle */
+.navtoggle{display:none;background:none;border:1.5px solid rgba(255,255,255,.45);
+  color:#fff;border-radius:5px;padding:7px 12px;font-size:20px;line-height:1;
+  cursor:pointer;font-family:inherit}
+.navtoggle:hover{background:rgba(255,255,255,.12)}
+.navtoggle .x{display:none}
+.navtoggle[aria-expanded="true"] .x{display:inline}
+.navtoggle[aria-expanded="true"] .b{display:none}
+@media (max-width:760px){
+  .navtoggle{display:block;flex-shrink:0}
+  .brand{flex:1;min-width:0}
+  .brand b{font-size:22px}
+  nav{display:none;width:100%;flex-direction:column;gap:2px;
+    border-top:1px solid rgba(255,255,255,.15);margin-top:10px;padding-top:8px}
+  nav.open{display:flex}
+  nav a{padding:11px 12px}
+}
+
+/* accordion sections */
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.jump a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:6px 15px}
+.jump a:hover{background:var(--gold-soft);border-color:var(--gold)}
+.acc{padding:0;overflow:hidden}
+.acc>summary{list-style:none;cursor:pointer;padding:16px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary:hover{background:#FBF9F5}
+.acc>summary h2{margin:0;font-size:24px}
+.acc>summary::after{content:'+';font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--red);flex-shrink:0}
+.acc[open]>summary::after{content:'\2212'}
+.acc[open]>summary{border-bottom:1px solid var(--line)}
+.acc>.accbody{padding:18px 22px 20px}
+.acc:target{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.drivelist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.drivelist .pending{margin-top:0}
+
+/* data page */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 22px}
+.tile{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);
+  border-radius:9px;padding:14px 16px}
+.tile .big{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;
+  line-height:1;color:var(--red-deep)}
+.tile .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-top:5px}
+.tile .sub{font-size:13px;color:var(--gray);margin-top:5px}
+.tile.warn{border-top-color:var(--ink)}
+.bar{display:flex;align-items:center;gap:10px;padding:6px 0}
+.bar .bn{flex:0 0 150px;font-size:14.5px;font-weight:600}
+.bar .btrack{flex:1;background:#EFEBE4;border-radius:4px;height:20px;position:relative;min-width:60px}
+.bar .bfill{background:var(--red);height:100%;border-radius:4px}
+.bar .bfill.good{background:#2E7D57}
+.bar .bv{flex:0 0 52px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;font-size:14.5px}
+.src{color:var(--gray);font-size:12.5px;font-style:italic;margin:10px 0 0}
+@media (max-width:620px){.bar .bn{flex-basis:104px;font-size:13.5px}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="index.html">
+      <b>Trojan <span>Staff Hub</span></b>
+      <small>North College Hill High School</small>
+    </a>
+    <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="sitenav" aria-label="Menu"><span class="b">&#9776;</span><span class="x">&#10005;</span></button>
+    <nav id="sitenav" aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="sports.html">Athletics</a>
+      <a href="schedules.html">Schedules</a>
+      <a href="policies.html">Policies</a>
+      <a href="data.html" aria-current="page">Data</a>
+      <a href="directory.html">Directory</a>
+      <a href="staff.html">Staff Info</a>
+    </nav>
+  </div>
+</header>
+<div class="plume" role="presentation"></div>
+<main class="wrap">
+
+<div class="page-h"><h1>Building Data</h1><span class="sub">Highlights &mdash; EOCs, attendance, discipline &amp; grades</span></div>
+<div class="rule"></div>
+
+<div class="alert" style="margin:0 0 22px">
+  <b>The headline:</b> about <b>one in three</b> EOC results reach proficient, chronic absenteeism has climbed every year for four years, and discipline referrals nearly quadrupled before levelling off. Math proficiency is the single steepest problem.
+</div>
+
+<div class="tiles">
+  <div class="tile"><div class="big">32.9%</div><div class="lbl">EOC Proficient+</div><div class="sub">193 of 587 results, 2024&ndash;25</div></div>
+  <div class="tile warn"><div class="big">7.3%</div><div class="lbl">Algebra I Proficient+</div><div class="sub">6 of 82 &mdash; a graduation-required test</div></div>
+  <div class="tile warn"><div class="big">64%</div><div class="lbl">Chronic Absenteeism</div><div class="sub">up from 47% in 2021&ndash;22</div></div>
+  <div class="tile"><div class="big">164</div><div class="lbl">Discipline Referrals</div><div class="sub">2026, down from a 175 peak</div></div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> End-of-Course Exams</h2>
+  <p style="margin:0 0 4px">Percent scoring <b>Proficient or above</b>, 2024&ndash;25. Green clears 40%.</p>
+      <div class="bar"><span class="bn">Algebra I</span><span class="btrack"><span class="bfill" style="width:7.3%"></span></span><span class="bv">7.3%</span></div>
+      <div class="bar"><span class="bn">Geometry</span><span class="btrack"><span class="bfill" style="width:14.9%"></span></span><span class="bv">14.9%</span></div>
+      <div class="bar"><span class="bn">Biology</span><span class="btrack"><span class="bfill" style="width:32.7%"></span></span><span class="bv">32.7%</span></div>
+      <div class="bar"><span class="bn">English II</span><span class="btrack"><span class="bfill" style="width:34.3%"></span></span><span class="bv">34.3%</span></div>
+      <div class="bar"><span class="bn">Am. History</span><span class="btrack"><span class="bfill good" style="width:45.8%"></span></span><span class="bv">45.8%</span></div>
+      <div class="bar"><span class="bn">Am. Government</span><span class="btrack"><span class="bfill good" style="width:54.3%"></span></span><span class="bv">54.3%</span></div>
+
+  <div class="alert">
+    <b>Math is the priority.</b> Algebra I sits at <b>7.3%</b> proficient with <b>61% scoring Limited</b>, and Geometry at <b>14.9%</b> with 54% Limited. Algebra I is one of the two EOCs students must pass (684+) to graduate.
+  </div>
+  <table class="sched" style="margin-top:14px">
+    <thead><tr><th>Subject</th><th style="text-align:right">Tested</th><th style="text-align:right">Limited</th><th style="text-align:right">Basic</th><th style="text-align:right">Prof+</th></tr></thead>
+    <tbody>
+      <tr><td class="p">Algebra I</td><td class="tm">82</td><td class="tm">61.0%</td><td class="tm">25.6%</td><td class="tm">7.3%</td></tr>
+      <tr><td class="p">Geometry</td><td class="tm">87</td><td class="tm">54.0%</td><td class="tm">27.6%</td><td class="tm">14.9%</td></tr>
+      <tr><td class="p">Biology</td><td class="tm">104</td><td class="tm">29.8%</td><td class="tm">32.7%</td><td class="tm">32.7%</td></tr>
+      <tr><td class="p">English Language Arts II</td><td class="tm">102</td><td class="tm">31.4%</td><td class="tm">33.3%</td><td class="tm">34.3%</td></tr>
+      <tr><td class="p">American History</td><td class="tm">118</td><td class="tm">14.4%</td><td class="tm">37.3%</td><td class="tm">45.8%</td></tr>
+      <tr><td class="p">American Government</td><td class="tm">94</td><td class="tm">20.2%</td><td class="tm">24.5%</td><td class="tm">54.3%</td></tr>
+      <tr class="book"><td class="p">All subjects</td><td class="tm">587</td><td class="tm">33.4%</td><td class="tm">30.7%</td><td class="tm">32.9%</td></tr>
+    </tbody>
+  </table>
+  <p class="src">Source: ODEW School Proficiency Levels, 2024&ndash;25. &ldquo;Prof+&rdquo; combines Proficient, Accomplished and Advanced.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Chronic Absenteeism</h2>
+  <p style="margin:0 0 4px"><b>All high school students</b> &mdash; chronically absent rate by year.</p>
+      <div class="bar"><span class="bn">2021&ndash;22</span><span class="btrack"><span class="bfill" style="width:47.0%"></span></span><span class="bv">47%</span></div>
+      <div class="bar"><span class="bn">2022&ndash;23</span><span class="btrack"><span class="bfill" style="width:52.0%"></span></span><span class="bv">52%</span></div>
+      <div class="bar"><span class="bn">2023&ndash;24</span><span class="btrack"><span class="bfill" style="width:58.0%"></span></span><span class="bv">58%</span></div>
+      <div class="bar"><span class="bn">2024&ndash;25</span><span class="btrack"><span class="bfill" style="width:64.0%"></span></span><span class="bv">64%</span></div>
+
+  <p style="margin:16px 0 4px"><b>Students with disabilities</b> &mdash; same measure.</p>
+      <div class="bar"><span class="bn">2021&ndash;22</span><span class="btrack"><span class="bfill" style="width:48.0%"></span></span><span class="bv">48%</span></div>
+      <div class="bar"><span class="bn">2022&ndash;23</span><span class="btrack"><span class="bfill" style="width:60.0%"></span></span><span class="bv">60%</span></div>
+      <div class="bar"><span class="bn">2023&ndash;24</span><span class="btrack"><span class="bfill" style="width:68.0%"></span></span><span class="bv">68%</span></div>
+      <div class="bar"><span class="bn">2024&ndash;25</span><span class="btrack"><span class="bfill" style="width:80.0%"></span></span><span class="bv">80%</span></div>
+
+  <div class="alert">
+    <b>Four straight years of increase.</b> Overall chronic absenteeism rose <b>47% &rarr; 64%</b>. For students with disabilities it rose <b>48% &rarr; 80%</b> &mdash; the gap widened from 1 point to 16.
+  </div>
+  <p style="margin:16px 0 6px"><b>Students by attendance category</b> (FTE):</p>
+  <table class="sched">
+    <thead><tr><th>Category</th><th style="text-align:right">22&ndash;23</th><th style="text-align:right">23&ndash;24</th><th style="text-align:right">24&ndash;25</th><th style="text-align:right">25&ndash;26</th></tr></thead>
+    <tbody>
+      <tr><td class="p">Satisfactory</td><td class="tm">56.8</td><td class="tm">48.4</td><td class="tm">41.0</td><td class="tm">38.5</td></tr>
+      <tr><td class="p">At-Risk</td><td class="tm">71.6</td><td class="tm">76.5</td><td class="tm">70.1</td><td class="tm">61.4</td></tr>
+      <tr><td class="p">Moderate</td><td class="tm">88.4</td><td class="tm">90.2</td><td class="tm">98.5</td><td class="tm">110.7</td></tr>
+      <tr><td class="p">Severe</td><td class="tm">52.0</td><td class="tm">83.1</td><td class="tm">100.3</td><td class="tm">106.7</td></tr>
+      <tr class="book"><td class="p">Total base FTE</td><td class="tm">268.7</td><td class="tm">298.1</td><td class="tm">309.8</td><td class="tm">317.3</td></tr>
+    </tbody>
+  </table>
+  <p class="src">Severe absenteeism has more than doubled (52 &rarr; 107 FTE) while Satisfactory fell by a third. Source: ODEW Student Data Report Portal.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Discipline Occurrences</h2>
+  <p style="margin:0 0 4px">Referrals by year (bar length relative to the 175 peak).</p>
+      <div class="bar"><span class="bn">2023</span><span class="btrack"><span class="bfill" style="width:25.7%"></span></span><span class="bv">45</span></div>
+      <div class="bar"><span class="bn">2024</span><span class="btrack"><span class="bfill" style="width:76.0%"></span></span><span class="bv">133</span></div>
+      <div class="bar"><span class="bn">2025</span><span class="btrack"><span class="bfill" style="width:100.0%"></span></span><span class="bv">175</span></div>
+      <div class="bar"><span class="bn">2026</span><span class="btrack"><span class="bfill" style="width:93.7%"></span></span><span class="bv">164</span></div>
+
+  <div class="alert">
+    Referrals <b>nearly quadrupled</b> from 45 in 2023 to a peak of 175 in 2025, then eased to <b>164</b> in 2026 &mdash; the first decline in the series. In 2026 the split was near even: <b>83 female / 81 male</b>.
+  </div>
+  <p class="src">Source: ODEW Discipline Occurrences (Incident Location, School Level) &mdash; 5-Year Trend.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Course Pass Rates</h2>
+  <p style="margin:0 0 12px">Percent <b>passing</b> by grade and subject, Quarters 1&ndash;3 (grades as of week of 12/1).</p>
+  <table class="sched">
+    <thead><tr><th>Grade</th><th style="text-align:right">ELA</th><th style="text-align:right">Math</th><th style="text-align:right">Science</th><th style="text-align:right">Soc. Studies</th></tr></thead>
+    <tbody>
+      <tr class="book"><td class="p" colspan="5">Quarter 1</td></tr>
+      <tr><td class="p">9th</td><td class="tm">64%</td><td class="tm">80%</td><td class="tm">71%</td><td class="tm">50%</td></tr>
+      <tr><td class="p">10th</td><td class="tm">77%</td><td class="tm">77%</td><td class="tm">83%</td><td class="tm">73%</td></tr>
+      <tr><td class="p">11th</td><td class="tm">94%</td><td class="tm">75%</td><td class="tm">70%</td><td class="tm">75%</td></tr>
+      <tr><td class="p">12th</td><td class="tm">85%</td><td class="tm">84%</td><td class="tm">77%</td><td class="tm">80%</td></tr>
+      <tr class="book"><td class="p" colspan="5">Quarter 2</td></tr>
+      <tr><td class="p">9th</td><td class="tm">63%</td><td class="tm">86%</td><td class="tm">66%</td><td class="tm">66%</td></tr>
+      <tr><td class="p">10th</td><td class="tm">73%</td><td class="tm">79%</td><td class="tm">71%</td><td class="tm">72%</td></tr>
+      <tr><td class="p">11th</td><td class="tm">59%</td><td class="tm">76%</td><td class="tm">87%</td><td class="tm">79%</td></tr>
+      <tr><td class="p">12th</td><td class="tm">70%</td><td class="tm">77%</td><td class="tm">77%</td><td class="tm">80%</td></tr>
+      <tr class="book"><td class="p" colspan="5">Quarter 3</td></tr>
+      <tr><td class="p">9th</td><td class="tm">65%</td><td class="tm">84%</td><td class="tm">77%</td><td class="tm">58%</td></tr>
+      <tr><td class="p">10th</td><td class="tm">80%</td><td class="tm">85%</td><td class="tm">79%</td><td class="tm">82%</td></tr>
+      <tr><td class="p">11th</td><td class="tm">92%</td><td class="tm">83%</td><td class="tm">67%</td><td class="tm">90%</td></tr>
+      <tr><td class="p">12th</td><td class="tm">93%</td><td class="tm">96%</td><td class="tm">68%</td><td class="tm">87%</td></tr>
+    </tbody>
+  </table>
+  <div class="alert">
+    <b>9th grade social studies is the weak point</b> &mdash; a 50% pass rate in Q1 means half the class failed, and it was still 58% by Q3. The building&rsquo;s own problem-solving notes flag exactly this, along with 9th graders showing &ldquo;no urgency or understanding of credits.&rdquo;
+  </div>
+  <p class="src">Source: Progress Book, HS Academic Data. Percentages are pass rates; the source also tracks the share of passes that are D&rsquo;s.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Where the full data lives</h2>
+  <p style="margin:0 0 10px">These are highlights only. Every chart, demographic breakdown and the reflection questions are in the shared folder.</p>
+  <p><a class="doclink" href="https://drive.google.com/drive/folders/1T5qBlDtI5FXrKL_AwllvL6uOYCOxj8-_" target="_blank" rel="noopener">School Data &mdash; EOC, Attendance &amp; Discipline</a></p>
+  <p class="src">Also in the Staff 2026&ndash;2027 Drive under <b>Welcome Back &mdash; Game Day Analysis</b>.</p>
+</div>
+
+</main>
+<script>
+(function(){
+  var t=document.getElementById('navtoggle'), n=document.getElementById('sitenav');
+  if(!t||!n) return;
+  t.addEventListener('click',function(){
+    var open=n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open?'true':'false');
+  });
+  n.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){ n.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
+  });
+})();
+</script>
+<footer>
+  NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
+</footer>
+
+</body>
+</html>
