@@ -208,6 +208,31 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   nav a{padding:11px 12px}
 }
 
+.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
+.pending{display:inline-block;margin-top:8px;font-size:12.5px;font-style:italic;
+  color:var(--gray);background:#F1EEE8;border:1px dashed var(--line);
+  border-radius:5px;padding:3px 9px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
+
+.drivelist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.drivelist .pending{margin-top:0}
+/* meeting log */
+.mtg{display:flex;gap:14px;align-items:flex-start;padding:14px 4px;border-bottom:1px solid var(--line)}
+.mtg:last-of-type{border-bottom:none}
+.mtg .when{flex:0 0 74px;text-align:center}
+.mtg .when .mo{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.mtg .when .dy{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:27px;line-height:1;color:var(--ink)}
+.mtg .body{flex:1;min-width:0}
+.mtg .body h4{margin:0 0 3px;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:19px;text-transform:uppercase;letter-spacing:.02em}
+.mtg .body p{margin:0 0 6px;font-size:14.8px}
+.mtg .body .pending,.mtg .body .doclink{margin-top:2px}
+@media (max-width:560px){.mtg .when{flex-basis:56px}}
+
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -379,6 +404,74 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     </div>
   </div>
   <p class="schednote">Only Week 1&rsquo;s detailed agenda has been released; Weeks 2&ndash;4 will be posted when available.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Meeting Agendas</h2>
+  <p style="margin:0 0 4px">Completed agendas for staff meetings, newest first. Each entry links to the agenda itself.</p>
+  <p style="margin:0 0 16px"><span class="pending">Agenda folder link &mdash; coming</span></p>
+
+    <div class="mtg">
+      <div class="when"><span class="mo">Aug</span><span class="dy">5</span></div>
+      <div class="body">
+        <h4>Opening Day &mdash; Game Day Analysis</h4>
+        <p>Data stations rotation. Teams worked four stations &mdash; <b>EOCs</b>, <b>attendance</b>, <b>discipline</b> and <b>pass/fail</b> &mdash; each with a team captain guide, printed data and reflection questions, answered once per team on a Google Form. Findings are summarised on the <a href="data.html">Data</a> page.</p>
+        <span class="pending">agenda link &mdash; coming</span>
+      </div>
+    </div>
+    <div class="mtg">
+      <div class="when"><span class="mo">Aug</span><span class="dy">17</span></div>
+      <div class="body">
+        <h4>Team Leads &amp; Admin Meeting</h4>
+        <p>Team leads meet with administration ahead of the first Monday meeting cycle.</p>
+        <span class="pending">agenda link &mdash; coming</span>
+      </div>
+    </div>
+    <div class="mtg">
+      <div class="when"><span class="mo">Aug</span><span class="dy">31</span></div>
+      <div class="body">
+        <h4>Monday Meeting &mdash; Week 1</h4>
+        <p>Staff Huddle 7:45 &middot; GLT 8:00&ndash;9:00 &middot; Teacher &amp; Admin plan time 9:00&ndash;11:00 &middot; Literacy Team 11:30&ndash;1:00 &middot; MTSS Academics 2:00&ndash;3:00.</p>
+        <span class="pending">agenda link &mdash; coming</span>
+      </div>
+    </div>
+    <div class="mtg">
+      <div class="when"><span class="mo">Sep</span><span class="dy">14</span></div>
+      <div class="body">
+        <h4>Monday Meeting &mdash; Week 2</h4>
+        <p>Second meeting Monday. Detailed agenda not yet released.</p>
+        <span class="pending">agenda link &mdash; coming</span>
+      </div>
+    </div>
+    <div class="mtg">
+      <div class="when"><span class="mo">Sep</span><span class="dy">21</span></div>
+      <div class="body">
+        <h4>Monday Meeting &mdash; Week 3</h4>
+        <p>Third meeting Monday. Detailed agenda not yet released.</p>
+        <span class="pending">agenda link &mdash; coming</span>
+      </div>
+    </div>
+    <div class="mtg">
+      <div class="when"><span class="mo">Sep</span><span class="dy">28</span></div>
+      <div class="body">
+        <h4>Monday Meeting &mdash; Week 4</h4>
+        <p>Fourth meeting Monday. Detailed agenda not yet released.</p>
+        <span class="pending">agenda link &mdash; coming</span>
+      </div>
+    </div>
+  <p class="schednote">New meetings are added here as agendas are completed. Send the folder or an individual agenda link and it gets attached to the matching entry.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Board of Education</h2>
+  <p style="margin:0 0 14px">Agendas and minutes from Board meetings, posted as they become available.</p>
+  <ul class="linklist drivelist">
+    <li><b>Board agendas &amp; minutes</b> <span class="pending">link coming</span></li>
+  </ul>
+  <div class="alert">
+    <b>Nothing posted yet for 2026&ndash;27.</b> Agendas typically appear before each meeting and minutes after they are approved at the following meeting &mdash; so minutes usually run one meeting behind.
+  </div>
+  <p class="schednote">Send a folder link, or individual agenda and minutes files, and each meeting gets its own dated entry here the same way staff meetings do.</p>
 </div>
 
 <div class="card">
