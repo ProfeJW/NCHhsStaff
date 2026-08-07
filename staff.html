@@ -208,6 +208,19 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   nav a{padding:11px 12px}
 }
 
+.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
+.pending{display:inline-block;margin-top:8px;font-size:12.5px;font-style:italic;
+  color:var(--gray);background:#F1EEE8;border:1px dashed var(--line);
+  border-radius:5px;padding:3px 9px}
+.pol h3{font-size:19px;font-weight:800;color:var(--red-deep);margin-bottom:6px}
+.pol ul{margin:0;padding-left:20px}
+.pol li{padding:3px 0;font-size:15px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
+
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -226,6 +239,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <a href="schedules.html">Schedules</a>
       <a href="policies.html">Policies</a>
       <a href="data.html">Data</a>
+      <a href="links.html">Links</a>
       <a href="directory.html">Directory</a>
       <a href="staff.html" aria-current="page">Staff Info</a>
     </nav>
@@ -237,15 +251,57 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 <div class="page-h"><h1>Staff Info</h1><span class="sub">Timesheets, payroll &amp; paperwork</span></div>
 <div class="rule"></div>
 
+<div class="card" id="contract">
+  <h2><span class="tag">//</span> Master Contract 2025&ndash;2027</h2>
+  <p style="margin:0 0 14px">The negotiated agreement between the <b>North College Hill Education Association</b> and the <b>Board of Education</b>, effective <b>August 1, 2025 through July 31, 2027</b>. This is the document that governs your workday, your leave and your pay &mdash; when a question comes up about any of them, this is the answer.</p>
+  <p style="margin:0 0 16px"><a class="doclink" href="docs/master-contract-2025-27.pdf" target="_blank" rel="noopener">Read the Master Contract (PDF)</a></p>
+  <table class="sched">
+    <thead><tr><th>Provision</th><th>What the contract says</th><th style="text-align:right">Section</th></tr></thead>
+    <tbody>
+      <tr><td class="p">Contract year</td><td>Maximum <b>187 work days</b>, no more than <b>180 student days</b>. Teachers are not required to report for the first five calamity days.</td><td class="tm">6.0201</td></tr>
+      <tr><td class="p">Length of the workday (5&ndash;12)</td><td><b>460 consecutive minutes</b>, including a <b>30-minute duty-free lunch</b>.</td><td class="tm">6.0302</td></tr>
+      <tr><td class="p">Planning period</td><td>Every full-time secondary teacher gets a <b>daily planning period</b> of no less than one regularly scheduled class period. Non-classroom members get at least 150 minutes.</td><td class="tm">6.0302</td></tr>
+      <tr><td class="p">Sick leave</td><td><b>15 days per year</b> (1&frac14; days per completed month). Five days may be advanced and repaid from future accrual.</td><td class="tm">7.06</td></tr>
+      <tr><td class="p">Personal leave</td><td><b>4 unrestricted days</b> per year, requested electronically. <b>Not</b> on the first or last day of school, a PD day, the day before or after a holiday or vacation, or during state testing &mdash; unless the Superintendent approves. No more than 10% of a building out on the same day.</td><td class="tm">7.03</td></tr>
+      <tr><td class="p">Unused personal days</td><td>Roll into your <b>sick leave</b> accumulation at the end of the contract year.</td><td class="tm">7.0301</td></tr>
+      <tr><td class="p">Parental leave</td><td>Up to <b>10 days of sick leave</b> immediately following birth, adoption or foster placement; more available with documentation.</td><td class="tm">7.07</td></tr>
+      <tr><td class="p">Professional leave</td><td>Conferences, conventions and observing work in another district &mdash; request in advance through the district&rsquo;s online system, with Board or designee approval.</td><td class="tm">7.04</td></tr>
+      <tr><td class="p">Salary schedule</td><td><b>2% base increase</b> in 2025&ndash;26 and again in 2026&ndash;27. All horizontal steps honored.</td><td class="tm">9.01</td></tr>
+      <tr><td class="p">Pay dates</td><td><b>24 equal installments</b> on the 15th and 30th, by direct deposit. First check of the year is issued <b>August 30</b>.</td><td class="tm">9.0201</td></tr>
+      <tr><td class="p">Tuition reimbursement</td><td><b>$150 per semester hour</b> for graduate work earning a <b>B or better</b>, up to <b>9 semester hours</b> a year, with Superintendent approval and a return to teach the following fall.</td><td class="tm">9.07</td></tr>
+      <tr><td class="p">Severance at retirement</td><td><b>One-third of accumulated unused sick leave</b>, capped at <b>75 days</b>, paid once STRS confirms eligibility.</td><td class="tm">9.09</td></tr>
+      <tr><td class="p">Field trips</td><td>Students go in Board vehicles when available. <b>No one can be required</b> to transport students in a personal vehicle.</td><td class="tm">6.06</td></tr>
+      <tr><td class="p">Grievances</td><td>A prompt, impartial hearing is guaranteed, and <b>no reprisals</b> may be taken against anyone who files or takes part in one.</td><td class="tm">4.01</td></tr>
+      <tr><td class="p">Evaluation</td><td>Post-observation conference and written report within <b>5 school days</b> of the observation. OTES-evaluated teachers follow Board policy and the attached MOU.</td><td class="tm">5.02</td></tr>
+    </tbody>
+  </table>
+  <p class="schednote">A plain-language summary for quick reference &mdash; it is not the contract. <b>The PDF governs.</b> For anything contested, read the section itself and talk to your NCHEA representative.</p>
+</div>
+
 <div class="card">
     <h2><span class="tag">//</span> Internal Sub &amp; Detention Forms</h2>
     <p><b>Due every week</b> — submit even if you only covered one period, and even in weeks with no days used per the district instructions.</p>
     <ul style="margin:0;padding-left:20px">
-      <li>Complete the <b>Internal Sub</b> form</li>
-      <li>Complete the <b>Detention</b> form</li>
+      <li>Complete the <b>Internal Sub</b> form &mdash; this is how you get <b>paid for covering</b></li>
+      <li>Complete the <b>Detention</b> form &mdash; this is how you get <b>paid for detention hours</b></li>
       <li>Late forms are processed in the <b>next</b> pay period</li>
     </ul>
+    <p style="margin:12px 0 0;display:flex;gap:8px;flex-wrap:wrap">
+      <a class="doclink" href="https://docs.google.com/forms/d/e/1FAIpQLSf10EdeWF2fPr_ez5IR6gSpnEyf-7Ohe68vk1nqCsZy46bKrw/viewform" target="_blank" rel="noopener">Internal Sub Form</a>
+      <a class="doclink" href="https://docs.google.com/forms/d/e/1FAIpQLScJ08Conv2j9D4b5Y3a4QpzWz0KoJgvERu-6oPFZIzQg9JvuA/viewform" target="_blank" rel="noopener">Detention Form</a>
+    </p>
   </div>
+
+<div class="card" id="supplementals">
+  <h2><span class="tag">//</span> Supplemental Positions</h2>
+  <p style="margin:0 0 14px">Work you take on beyond your teaching contract &mdash; club sponsor, lead teacher, coordinator, mentor &mdash; is paid on the <b>academic supplemental salary schedule</b>, separate from your base pay. The two documents below are the pair you need: <b>what each role is responsible for</b>, and <b>what it pays</b>.</p>
+  <p style="margin:0 0 14px">Roles on the FY26 schedule include class sponsors by grade, Director of Dramatics &amp; Forensics, E-Sports Coordinator, Instrumental Music Director, Building Special Ed Leads, NHS Advisors, PAC Coordinator and Technical Director, Title&nbsp;I Building Coordinator, Lead Teachers and Resident Educator Mentors.</p>
+  <p style="margin:0;display:flex;gap:8px;flex-wrap:wrap">
+    <a class="doclink" href="docs/district-job-descriptions-2025-26.pdf" target="_blank" rel="noopener">Job Descriptions (PDF)</a>
+    <a class="doclink" href="docs/supplemental-salary-schedule-fy26.pdf" target="_blank" rel="noopener">FY26 Supplemental Salary Schedule (PDF)</a>
+  </p>
+  <p class="schednote">Interested in a supplemental that isn&rsquo;t filled? Ask <b>Craig-Roach</b> (ext.&nbsp;10010). Supplemental contracts are approved by the Board.</p>
+</div>
 
 <div class="card">
     <h2><span class="tag">//</span> Classified Staff Timesheets</h2>
@@ -253,8 +309,62 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     <ul style="margin:0;padding-left:20px">
       <li>Place completed forms in <b>Ms.&nbsp;Bratchette&rsquo;s mailbox</b></li>
       <li>Forms received after the cutoff move to the next pay period</li>
+      <li>Hours may not be changed, and <b>overtime or comp time needs prior written approval</b></li>
     </ul>
+    <p style="margin:10px 0 0"><a class="doclink" href="docs/timesheet-template-classified.xlsx">Timesheet Template (XLSX)</a></p>
   </div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Injury &amp; Incident Reporting</h2>
+  <div class="alert" style="margin:0 0 16px">
+    <b>Report every injury or incident &mdash; even if you don&rsquo;t expect a Workers&rsquo; Comp claim.</b> The district files a year-end report with the state covering all workplace injuries, so nothing can be skipped. Call <b>911 first</b> for anything serious or life-threatening.
+  </div>
+  <div class="pol">
+    <h3>What to do</h3>
+    <ul>
+      <li><b>Tell your supervisor immediately.</b></li>
+      <li>Complete the <b>First Report of Injury (FROI)</b> &mdash; normally <b>within 24 hours</b>.</li>
+      <li>Seek treatment if needed and <b>give the Sedgwick ID card</b> (in the packet) to every provider you see.</li>
+      <li>If you see a doctor <b>at any point within a year</b>, take the <b>Physician&rsquo;s Report of Work Ability</b> and return it to your building administrator.</li>
+      <li>Have witnesses complete a <b>Statement of Witness</b>. The form says notarised &mdash; <b>have them fill it out either way</b>. Extra copies are with your building secretary.</li>
+      <li>Return the packet to the <b>building principal</b>, who forwards it to Central Office Payroll. Keep the physician portion if you haven&rsquo;t been seen yet.</li>
+      <li>Keep administration updated on your status until Workers&rsquo; Comp accepts or denies the claim.</li>
+    </ul>
+    <p class="schednote">The <b>Supervisor&rsquo;s Investigation Report</b> is completed by the building administrator, not by you. Questions &rarr; your building secretary.</p>
+  </div>
+  <div class="pol">
+    <h3>Sedgwick Managed Care Ohio</h3>
+    <ul>
+      <li>Phone <b>888.627.7586</b> &middot; <a href="https://resources.sedgwickmco.com" target="_blank" rel="noopener">resources.sedgwickmco.com</a></li>
+    </ul>
+    <p style="margin:10px 0 0;display:flex;gap:8px;flex-wrap:wrap">
+      <a class="doclink" href="docs/incident-report-process-fy27.docx" target="_blank" rel="noopener">Incident Report Process</a>
+      <a class="doclink" href="docs/injury-reporting-packet.pdf" target="_blank" rel="noopener">Injury Reporting Packet</a>
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Leave &amp; Employee Support</h2>
+  <div class="pol">
+    <h3>Employee Assistance Program</h3>
+    <p style="margin:0 0 8px"><b>Free, confidential, 24/7</b> &mdash; for you <b>and your household members</b>. Counselling, plus legal, financial, and child/elder care support.</p>
+    <ul>
+      <li><b>Call 855.435.4333</b> &middot; TRS: dial <b>711</b></li>
+      <li><a href="https://www.guidanceresources.com" target="_blank" rel="noopener">guidanceresources.com</a> or the <b>GuidanceNow</b> app &mdash; Web ID <b>GCICEAP</b></li>
+    </ul>
+    <p style="margin:10px 0 0"><a class="doclink" href="docs/eap-guidance-resources.pdf" target="_blank" rel="noopener">EAP Overview</a></p>
+  </div>
+  <div class="pol">
+    <h3>FMLA</h3>
+    <p style="margin:0 0 8px">Unpaid, <b>job-protected</b> leave for your own serious health condition or to care for a parent, spouse or child. Leave can be taken all at once or intermittently.</p>
+    <ul>
+      <li><b>Schools are covered regardless of size</b> &mdash; the 50-employee threshold doesn&rsquo;t apply here.</li>
+      <li>You must have worked for the district <b>12 months</b> (not necessarily consecutive) and <b>1,250 hours</b> in the past year.</li>
+    </ul>
+    <p style="margin:10px 0 0"><a class="doclink" href="docs/fmla-employee-guide.pdf" target="_blank" rel="noopener">FMLA Employee Guide (US DOL)</a></p>
+  </div>
+</div>
 
 <div class="card">
   <h2><span class="tag">//</span> Pay Discrepancies</h2>

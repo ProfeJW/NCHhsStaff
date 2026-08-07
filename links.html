@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Links &middot; NCH Trojan Staff Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#B31B34; --red-deep:#8C1128; --gold:#E9A13B; --gold-soft:#F6E3C2;
+  --ink:#1D1A20; --paper:#F6F4EF; --card:#FFFFFF; --gray:#6E6A72; --line:#E4E0D9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3,.disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  text-transform:uppercase;letter-spacing:.02em;margin:0}
+a{color:var(--red-deep)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* header */
+.top{background:var(--ink);color:#fff}
+.top-inner{max-width:1020px;margin:0 auto;padding:14px 20px;display:flex;
+  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.05;text-decoration:none;color:#fff}
+.brand b{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;
+  text-transform:uppercase;letter-spacing:.03em}
+.brand b span{color:var(--gold)}
+.brand small{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#CFC9D1}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;
+  text-transform:uppercase;letter-spacing:.06em;color:#fff;text-decoration:none;
+  padding:8px 14px;border-radius:4px}
+nav a:hover{background:rgba(255,255,255,.12)}
+nav a[aria-current="page"]{background:var(--red);color:#fff}
+.plume{height:10px;background:repeating-linear-gradient(135deg,
+  var(--red) 0 16px, var(--gold) 16px 24px, var(--ink) 24px 32px)}
+
+/* layout */
+.wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
+.page-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 6px}
+.page-h h1{font-size:44px;font-weight:800}
+.page-h .sub{color:var(--gray);font-size:15px}
+.rule{height:3px;background:var(--red);width:64px;margin:10px 0 24px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;margin-bottom:22px}
+.card h2{font-size:26px;font-weight:800;margin-bottom:10px}
+.card h2 .tag{color:var(--red)}
+
+/* badges */
+.badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;
+  padding:2px 8px;white-space:nowrap}
+.b-noschool{background:var(--ink);color:#fff}
+.b-grades{background:var(--red);color:#fff}
+.b-pd{background:var(--gold);color:var(--ink)}
+.b-spirit{background:#fff;color:var(--red-deep);border:1.5px solid var(--red)}
+.b-ath{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.b-key{background:var(--red-deep);color:#fff}
+.b-home{background:var(--gold);color:var(--ink)}
+
+/* schedule rows */
+.rows{display:flex;flex-direction:column}
+.row{display:flex;gap:16px;align-items:flex-start;padding:12px 6px;
+  border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row.home-game{border-left:4px solid var(--gold);padding-left:10px;background:#FDFAF3}
+.datechip{min-width:64px;text-align:center;flex-shrink:0}
+.datechip .dow{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.datechip .num{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--ink)}
+.ev{flex:1;min-width:200px}
+.ev .t{font-weight:600}
+.ev .meta{color:var(--gray);font-size:14px}
+.row .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:3px}
+
+/* filter + tab buttons */
+.btnbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.btnbar button{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
+  text-transform:uppercase;letter-spacing:.06em;border:1.5px solid var(--ink);
+  background:#fff;color:var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer}
+.btnbar button:hover{background:var(--gold-soft)}
+.btnbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.hide{display:none !important}
+
+/* home page bits */
+.hero{background:var(--ink);color:#fff;border-radius:12px;padding:34px 30px;margin-bottom:24px;
+  background-image:linear-gradient(120deg,rgba(179,27,52,.35),rgba(0,0,0,0) 55%)}
+.hero h1{font-size:56px;font-weight:800;line-height:.95}
+.hero h1 span{color:var(--gold)}
+.hero p{margin:10px 0 0;color:#DDD8E0;max-width:56ch}
+.count{display:inline-block;margin-top:18px;background:var(--red);color:#fff;border-radius:6px;
+  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
+  text-transform:uppercase;letter-spacing:.05em}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.q{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);
+  border-radius:8px;padding:12px 14px;text-align:center}
+.q .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.q .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.linklist{list-style:none;margin:0;padding:0}
+.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
+.linklist li:last-child{border-bottom:none}
+.linklist a{font-weight:600;text-decoration:none}
+.linklist a:hover{text-decoration:underline}
+.linklist .note{color:var(--gray);font-size:14px;display:block}
+.soon{color:var(--gray);font-size:13px;font-style:italic}
+
+/* schedule tables */
+.sched{width:100%;border-collapse:collapse;margin-top:4px}
+.sched th,.sched td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:15px}
+.sched thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.sched td.p{font-weight:600}
+.sched td.tm{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:var(--ink)}
+.sched tr:last-child td{border-bottom:none}
+.sched tr.book td{color:var(--gray);font-weight:600}
+.sched tr.lunch td{background:var(--gold-soft);font-weight:700}
+.sched tr.lunch td.p{color:var(--red-deep)}
+.schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+
+/* duty table */
+.duty{width:100%;border-collapse:collapse}
+.duty th,.duty td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);
+  vertical-align:top;font-size:15px}
+.duty thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border-bottom:none}
+.duty tbody tr:last-child td{border-bottom:none}
+.duty tbody tr:nth-child(even) td{background:#FBF9F5}
+.duty td.who{font-weight:700;white-space:nowrap;width:1%;padding-right:20px}
+.duty td.loc b{color:var(--red-deep)}
+@media (max-width:560px){
+  .duty td.who{white-space:normal;overflow-wrap:anywhere;width:auto}
+  .duty th,.duty td{padding:8px 7px;font-size:14px}
+}
+
+/* admin split + alert */
+.admin h3{font-size:22px;font-weight:800;color:var(--red-deep);
+  border-bottom:2px solid var(--gold);padding-bottom:5px;margin-bottom:10px}
+.admin ul{margin:0;padding-left:18px}
+.admin li{padding:4px 0;font-size:15px}
+.alert{border-left:4px solid var(--red);background:#FDF3F1;border-radius:8px;
+  padding:12px 16px;margin:14px 0 0}
+.alert b{color:var(--red-deep)}
+
+/* policy blocks */
+.pol{margin:0 0 16px}
+.pol:last-child{margin-bottom:0}
+.pol h3{font-size:19px;font-weight:800;color:var(--red-deep);margin-bottom:6px}
+.pol ul{margin:0;padding-left:20px}
+.pol li{padding:3px 0;font-size:15px}
+.pol p{margin:0 0 6px}
+.wt{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 12px}
+.wt div{flex:1;min-width:150px;background:var(--gold-soft);border-radius:8px;
+  padding:10px 14px;text-align:center}
+.wt .pct{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;
+  color:var(--red-deep);line-height:1}
+.wt .lbl{font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700}
+.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
+.pending{display:inline-block;margin-top:8px;font-size:12.5px;font-style:italic;
+  color:var(--gray);background:#F1EEE8;border:1px dashed var(--line);
+  border-radius:5px;padding:3px 9px}
+
+/* extensions directory */
+.extgrid{columns:2;column-gap:32px}
+.extgrid>section{break-inside:avoid;margin-bottom:14px}
+.extgrid h3{font-size:15px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--red);
+  border-radius:4px;padding:4px 9px;margin-bottom:6px}
+.extrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:4px 2px;border-bottom:1px dotted var(--line)}
+.extrow .nm{font-size:15px}
+.extrow .nm .role{display:block;color:var(--gray);font-size:12.5px}
+.extrow .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--red-deep);
+  white-space:nowrap;font-size:15px}
+@media (max-width:640px){.extgrid{columns:1}}
+
+footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
+  text-align:center;padding:18px 20px 30px}
+
+@media (max-width:720px){
+  .page-h h1{font-size:34px}
+  .hero h1{font-size:38px}
+  .qgrid{grid-template-columns:repeat(2,1fr)}
+  .two{grid-template-columns:1fr}
+  .row{flex-wrap:wrap}
+  .row .badges{width:100%;padding-top:0}
+}
+/* mobile nav toggle */
+.navtoggle{display:none;background:none;border:1.5px solid rgba(255,255,255,.45);
+  color:#fff;border-radius:5px;padding:7px 12px;font-size:20px;line-height:1;
+  cursor:pointer;font-family:inherit}
+.navtoggle:hover{background:rgba(255,255,255,.12)}
+.navtoggle .x{display:none}
+.navtoggle[aria-expanded="true"] .x{display:inline}
+.navtoggle[aria-expanded="true"] .b{display:none}
+@media (max-width:760px){
+  .navtoggle{display:block;flex-shrink:0}
+  .brand{flex:1;min-width:0}
+  .brand b{font-size:22px}
+  nav{display:none;width:100%;flex-direction:column;gap:2px;
+    border-top:1px solid rgba(255,255,255,.15);margin-top:10px;padding-top:8px}
+  nav.open{display:flex}
+  nav a{padding:11px 12px}
+}
+
+/* accordion sections */
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.jump a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:6px 15px}
+.jump a:hover{background:var(--gold-soft);border-color:var(--gold)}
+.acc{padding:0;overflow:hidden}
+.acc>summary{list-style:none;cursor:pointer;padding:16px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary:hover{background:#FBF9F5}
+.acc>summary h2{margin:0;font-size:24px}
+.acc>summary::after{content:'+';font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--red);flex-shrink:0}
+.acc[open]>summary::after{content:'\2212'}
+.acc[open]>summary{border-bottom:1px solid var(--line)}
+.acc>.accbody{padding:18px 22px 20px}
+.acc:target{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.drivelist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.drivelist .pending{margin-top:0}
+
+/* daily tracker banner */
+.tracker{display:block;text-decoration:none;background:var(--red);color:#fff;border-radius:12px;
+  padding:20px 24px;margin:0 0 22px;border:2px solid var(--red-deep)}
+.tracker:hover{background:var(--red-deep)}
+.tracker .th{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tracker .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;
+  text-transform:uppercase;letter-spacing:.02em;line-height:1;color:#fff}
+.tracker .live{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;background:var(--gold);color:var(--ink);
+  border-radius:20px;padding:4px 11px}
+.tracker p{margin:8px 0 0;color:#FBE9EC;font-size:15px;max-width:62ch}
+.tracker .go{display:inline-block;margin-top:12px;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;
+  background:#fff;color:var(--red-deep);border-radius:6px;padding:8px 16px}
+@media (max-width:560px){.tracker .lbl{font-size:24px}}
+
+/* links hub */
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.tool{display:block;background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);
+  border-radius:9px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+a.tool:hover{background:var(--gold-soft);border-left-color:var(--gold)}
+.tool .nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:19px;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--red-deep);display:block}
+.tool .ds{font-size:14px;color:var(--gray);display:block;margin-top:3px}
+.tool.wait{border-left-color:var(--line);opacity:.85}
+.tool.wait .nm{color:var(--gray)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="index.html">
+      <b>Trojan <span>Staff Hub</span></b>
+      <small>North College Hill High School</small>
+    </a>
+    <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="sitenav" aria-label="Menu"><span class="b">&#9776;</span><span class="x">&#10005;</span></button>
+    <nav id="sitenav" aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="sports.html">Athletics</a>
+      <a href="schedules.html">Schedules</a>
+      <a href="policies.html">Policies</a>
+      <a href="data.html">Data</a>
+      <a href="links.html" aria-current="page">Links</a>
+      <a href="directory.html">Directory</a>
+      <a href="staff.html">Staff Info</a>
+    </nav>
+  </div>
+</header>
+<div class="plume" role="presentation"></div>
+<main class="wrap">
+
+<div class="page-h"><h1>Links</h1><span class="sub">Everything staff sign into, in one place</span></div>
+<div class="rule"></div>
+
+<a class="tracker" href="https://www.nchcityschools.org/staff/index" target="_blank" rel="noopener">
+  <span class="th"><span class="lbl">District Staff Page</span></span>
+  <p>The official NCH City Schools staff portal &mdash; the authoritative source for district systems and announcements.</p>
+  <span class="go">Open nchcityschools.org &rarr;</span>
+</a>
+
+<div class="card">
+  <h2><span class="tag">//</span> Daily Systems</h2>
+  <p style="margin:0 0 14px">The tools you sign into most. Reach them through the district staff page above until direct links are added here.</p>
+  <div class="tools">
+    <a class="tool" href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener"><span class="nm">Daily Tracker</span><span class="ds">Absences, coverage, subs &amp; consequences</span></a>
+    <div class="tool wait"><span class="nm">Frontline</span><span class="ds">Report your absence &amp; request a sub &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">PublicSchoolWORKS</span><span class="ds">Code of conduct entries &amp; referrals &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">Progress Book</span><span class="ds">Gradebook &mdash; 1 grade/week by Thursday &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">Clever</span><span class="ds">Single sign-on to classroom apps &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">School Connect</span><span class="ds">District messaging &amp; notifications &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">FinalForms</span><span class="ds">Student back-to-school forms &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">Naviance 360</span><span class="ds">Emergency attendance &mdash; log students during drills &mdash; <i>link coming</i></span></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Staff Drive</h2>
+  <div class="tools">
+    <a class="tool" href="https://docs.google.com/spreadsheets/d/1BXYEW-c9R13g_w2_NhdfnzoGY0j_K8BeG2PbVGXcfbw/edit" target="_blank" rel="noopener"><span class="nm">Master Schedule</span><span class="ds">Building master schedule</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/15N-Hx8poj8f4ZK86oZ9-PewngS82uG68" target="_blank" rel="noopener"><span class="nm">Lesson Plans &amp; Scope</span><span class="ds">Drop lesson plans &amp; scope here</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1-IFCBu17Sdlf7KtkdHck-ewADVhnpItW" target="_blank" rel="noopener"><span class="nm">Syllabi</span><span class="ds">One per course</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1HVFe-b_zZW0zJJ89tF4MJ-5L2-ipWigo" target="_blank" rel="noopener"><span class="nm">Management Plans</span><span class="ds">Classroom management plans</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1lvV8WSfc9uIgu9nbgUhTW4NnkYhwvvWR" target="_blank" rel="noopener"><span class="nm">Staff Coverage</span><span class="ds">Rosters &amp; emergency sub plans</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1T5qBlDtI5FXrKL_AwllvL6uOYCOxj8-_" target="_blank" rel="noopener"><span class="nm">School Data</span><span class="ds">EOC, attendance &amp; discipline</span></a>
+    <a class="tool" href="https://docs.google.com/document/d/1IW-1dp3kyNAl1TVcGNTqi45ZC5OlShxSv5sbsTAWcn8/edit" target="_blank" rel="noopener"><span class="nm">Student Handbook</span><span class="ds">2026&ndash;27 digital handbook</span></a>
+  </div>
+  <p class="schednote">Sign in with your <b>@nchcityschools.org</b> account.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Weekly Forms</h2>
+  <p style="margin:0 0 14px">Both are due every week &mdash; this is how the hours get paid.</p>
+  <div class="tools">
+    <a class="tool" href="https://docs.google.com/forms/d/e/1FAIpQLSf10EdeWF2fPr_ez5IR6gSpnEyf-7Ohe68vk1nqCsZy46bKrw/viewform" target="_blank" rel="noopener"><span class="nm">Internal Sub Form</span><span class="ds">Paid for covering a period</span></a>
+    <a class="tool" href="https://docs.google.com/forms/d/e/1FAIpQLScJ08Conv2j9D4b5Y3a4QpzWz0KoJgvERu-6oPFZIzQg9JvuA/viewform" target="_blank" rel="noopener"><span class="nm">Detention Form</span><span class="ds">Paid for detention hours</span></a>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Free Supplies for Your Room</h2>
+  <p style="margin:0 0 14px"><b>Crayons &amp; Beyond</b> (formerly Crayons2Calculators) runs a Teacher Resource Center where K&ndash;12 educators shop for classroom supplies. Registration for <b>2026&ndash;27 is open</b>. There is a <b>$30 access fee</b> for the year &mdash; <b>$25 if you register early</b>. <b>Some schools pay the fee for their teachers</b>, so check with the office before you pay it yourself.</p>
+  <div class="tools">
+    <a class="tool" href="docs/c2c-teacher-resource-center.pdf" target="_blank" rel="noopener"><span class="nm">C&amp;B Flyer</span><span class="ds">Registration details &amp; fee</span></a>
+    <a class="tool" href="mailto:educatorsupport@crayonsandbeyond.org"><span class="nm">Educator Support</span><span class="ds">Password resets &amp; account help</span></a>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Documents</h2>
+  <div class="tools">
+    <a class="tool" href="docs/master-contract-2025-27.pdf" target="_blank" rel="noopener"><span class="nm">Master Contract</span><span class="ds">NCHEA &amp; Board &middot; Aug 2025&ndash;Jul 2027</span></a>
+    <a class="tool" href="docs/supplemental-salary-schedule-fy26.pdf" target="_blank" rel="noopener"><span class="nm">Supplemental Salaries</span><span class="ds">FY26 academic supplementals</span></a>
+    <a class="tool" href="docs/district-job-descriptions-2025-26.pdf" target="_blank" rel="noopener"><span class="nm">Job Descriptions</span><span class="ds">Supplemental positions 2025&ndash;26</span></a>
+    <a class="tool" href="docs/district-calendar-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">District Calendar</span><span class="ds">2026&ndash;27 board-approved</span></a>
+    <a class="tool" href="docs/district-calendar-2024-25.pdf" target="_blank" rel="noopener"><span class="nm">District Calendar</span><span class="ds">2024&ndash;25 &mdash; for comparison</span></a>
+    <a class="tool" href="docs/mtss-staff-handbook.pdf" target="_blank" rel="noopener"><span class="nm">MTSS Handbook</span><span class="ds">Tiers, 4-step process &amp; FAQs</span></a>
+    <a class="tool" href="docs/team-structures-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">Team Structures</span><span class="ds">DLT, BLT, GLTs &mdash; who reports where</span></a>
+    <a class="tool" href="docs/district-resource-chart-2026-27.xlsx"><span class="nm">Resource Chart</span><span class="ds">Approved resources by skill &amp; tier</span></a>
+    <a class="tool" href="docs/dress-code-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">Dress Code</span><span class="ds">2026&ndash;27 infographic</span></a>
+    <a class="tool" href="docs/lockdown-levels-and-procedures-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">Lockdown Levels</span><span class="ds">All three levels</span></a>
+    <a class="tool" href="docs/tornado-drill-procedures-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">Tornado Procedures</span><span class="ds">Room-by-room routes</span></a>
+    <a class="tool" href="docs/injury-reporting-packet.pdf" target="_blank" rel="noopener"><span class="nm">Injury Packet</span><span class="ds">FROI &amp; Sedgwick card</span></a>
+    <a class="tool" href="docs/fmla-employee-guide.pdf" target="_blank" rel="noopener"><span class="nm">FMLA Guide</span><span class="ds">US Dept. of Labor</span></a>
+    <a class="tool" href="docs/eap-guidance-resources.pdf" target="_blank" rel="noopener"><span class="nm">EAP</span><span class="ds">855.435.4333 &middot; ID GCICEAP</span></a>
+    <a class="tool" href="docs/timesheet-template-classified.xlsx"><span class="nm">Timesheet Template</span><span class="ds">Classified staff</span></a>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Help me finish this page</h2>
+  <p style="margin:0">Anything marked <i>link coming</i> just needs its URL. Grab it from the district staff page, paste it in, and it goes live.</p>
+</div>
+
+</main>
+<script>
+(function(){
+  var t=document.getElementById('navtoggle'), n=document.getElementById('sitenav');
+  if(!t||!n) return;
+  t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});
+  n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');t.setAttribute('aria-expanded','false');}});
+})();
+</script>
+<footer>
+  NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
+</footer>
+
+</body>
+</html>
