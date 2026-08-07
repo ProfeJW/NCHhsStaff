@@ -95,6 +95,25 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .hero h1{font-size:56px;font-weight:800;line-height:.95}
 .hero h1 span{color:var(--gold)}
 .hero p{margin:10px 0 0;color:#DDD8E0;max-width:56ch}
+.hero{display:flex;align-items:center;gap:26px}
+.herotext{flex:1;min-width:0}
+.hero .mascot{width:150px;height:auto;flex-shrink:0;
+  filter:drop-shadow(0 3px 10px rgba(0,0,0,.45))}
+@media (max-width:620px){
+  .hero{gap:16px}
+  .hero .mascot{width:88px;align-self:flex-start}
+  .hero h1{font-size:40px}
+}
+
+/* school contact strip */
+.contact{display:flex;align-items:center;gap:18px}
+.contact img{width:62px;height:auto;flex-shrink:0}
+.contact .nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
+  text-transform:uppercase;letter-spacing:.02em;display:block;line-height:1.1}
+.contact span{display:block;font-size:15px;color:var(--ink)}
+.contact span.note{color:var(--gray);font-size:13.5px;margin-top:5px}
+.contact span.note b{font-weight:600;color:var(--ink)}
+@media (max-width:520px){.contact{gap:14px}.contact img{width:48px}.contact .nm{font-size:19px}}
 .count{display:inline-block;margin-top:18px;background:var(--red);color:#fff;border-radius:6px;
   padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
   text-transform:uppercase;letter-spacing:.05em}
@@ -171,10 +190,23 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 <main class="wrap">
 
 <section class="hero">
-  <h1>Welcome back,<br><span>Trojans</span></h1>
-  <p>One spot for the building calendar, athletic schedules, and the paperwork that keeps everyone paid. Bookmark it and share it in the building only.</p>
-  <span class="count" id="countdown">2026&ndash;27 School Year</span>
+  <div class="herotext">
+    <h1>Welcome back,<br><span>Trojans</span></h1>
+    <p>One spot for the building calendar, athletic schedules, and the paperwork that keeps everyone paid. Bookmark it and share it in the building only.</p>
+    <span class="count" id="countdown">2026&ndash;27 School Year</span>
+  </div>
+  <img class="mascot" src="docs/trojan.png" alt="North College Hill Trojans mascot &mdash; a Trojan helmet in profile" width="360" height="360">
 </section>
+
+<div class="card contact">
+  <img src="docs/trojan.png" alt="" width="360" height="360" aria-hidden="true">
+  <div>
+    <span class="nm">North College Hill City Schools</span>
+    <span>1731 Goodman Avenue, Cincinnati, OH 45239</span>
+    <span><a href="tel:+15139318181">(513)&nbsp;931-8181</a> &middot; fax (513)&nbsp;728-4786</span>
+    <span class="note">Home of the <b>Trojans</b>. Building extensions are on the <a href="directory.html#extensions">Directory</a>.</span>
+  </div>
+</div>
 
 <div class="qgrid">
   <div class="q"><span class="lbl">Q1 Ends</span><span class="val">Oct 9</span></div>
