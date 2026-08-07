@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Staff Info &middot; NCH Trojan Staff Hub</title>
+<title>Links &middot; NCH Trojan Staff Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
@@ -164,6 +164,13 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   color:var(--red-deep);line-height:1}
 .wt .lbl{font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;
   font-family:'Barlow Condensed',sans-serif;font-weight:700}
+.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
+.doclink::before{content:'\1F4C4  '}
+.doclink:hover{background:#F0DDB8}
+.pending{display:inline-block;margin-top:8px;font-size:12.5px;font-style:italic;
+  color:var(--gray);background:#F1EEE8;border:1px dashed var(--line);
+  border-radius:5px;padding:3px 9px}
 
 /* extensions directory */
 .extgrid{columns:2;column-gap:32px}
@@ -208,18 +215,53 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   nav a{padding:11px 12px}
 }
 
-.doclink{display:inline-block;font-weight:600;text-decoration:none;background:var(--gold-soft);
-  border:1.5px solid var(--gold);border-radius:6px;padding:7px 13px;font-size:14.5px}
-.doclink::before{content:'\1F4C4  '}
-.doclink:hover{background:#F0DDB8}
-.pending{display:inline-block;margin-top:8px;font-size:12.5px;font-style:italic;
-  color:var(--gray);background:#F1EEE8;border:1px dashed var(--line);
-  border-radius:5px;padding:3px 9px}
-.pol h3{font-size:19px;font-weight:800;color:var(--red-deep);margin-bottom:6px}
-.pol ul{margin:0;padding-left:20px}
-.pol li{padding:3px 0;font-size:15px}
-.doclink::before{content:'\1F4C4  '}
-.doclink:hover{background:#F0DDB8}
+/* accordion sections */
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.jump a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:6px 15px}
+.jump a:hover{background:var(--gold-soft);border-color:var(--gold)}
+.acc{padding:0;overflow:hidden}
+.acc>summary{list-style:none;cursor:pointer;padding:16px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary:hover{background:#FBF9F5}
+.acc>summary h2{margin:0;font-size:24px}
+.acc>summary::after{content:'+';font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:30px;line-height:1;color:var(--red);flex-shrink:0}
+.acc[open]>summary::after{content:'\2212'}
+.acc[open]>summary{border-bottom:1px solid var(--line)}
+.acc>.accbody{padding:18px 22px 20px}
+.acc:target{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.drivelist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.drivelist .pending{margin-top:0}
+
+/* daily tracker banner */
+.tracker{display:block;text-decoration:none;background:var(--red);color:#fff;border-radius:12px;
+  padding:20px 24px;margin:0 0 22px;border:2px solid var(--red-deep)}
+.tracker:hover{background:var(--red-deep)}
+.tracker .th{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tracker .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;
+  text-transform:uppercase;letter-spacing:.02em;line-height:1;color:#fff}
+.tracker .live{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;background:var(--gold);color:var(--ink);
+  border-radius:20px;padding:4px 11px}
+.tracker p{margin:8px 0 0;color:#FBE9EC;font-size:15px;max-width:62ch}
+.tracker .go{display:inline-block;margin-top:12px;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;
+  background:#fff;color:var(--red-deep);border-radius:6px;padding:8px 16px}
+@media (max-width:560px){.tracker .lbl{font-size:24px}}
+
+/* links hub */
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.tool{display:block;background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);
+  border-radius:9px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+a.tool:hover{background:var(--gold-soft);border-left-color:var(--gold)}
+.tool .nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:19px;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--red-deep);display:block}
+.tool .ds{font-size:14px;color:var(--gray);display:block;margin-top:3px}
+.tool.wait{border-left-color:var(--line);opacity:.85}
+.tool.wait .nm{color:var(--gray)}
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -231,7 +273,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <b>Trojan <span>Staff Hub</span></b>
       <small>North College Hill High School</small>
     </a>
-        <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="sitenav" aria-label="Menu"><span class="b">&#9776;</span><span class="x">&#10005;</span></button>
+    <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="sitenav" aria-label="Menu"><span class="b">&#9776;</span><span class="x">&#10005;</span></button>
     <nav id="sitenav" aria-label="Site">
       <a href="index.html">Home</a>
       <a href="calendar.html">Calendar</a>
@@ -239,127 +281,93 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <a href="schedules.html">Schedules</a>
       <a href="policies.html">Policies</a>
       <a href="data.html">Data</a>
-      <a href="links.html">Links</a>
+      <a href="links.html" aria-current="page">Links</a>
       <a href="directory.html">Directory</a>
-      <a href="staff.html" aria-current="page">Staff Info</a>
+      <a href="staff.html">Staff Info</a>
     </nav>
   </div>
 </header>
 <div class="plume" role="presentation"></div>
 <main class="wrap">
 
-<div class="page-h"><h1>Staff Info</h1><span class="sub">Timesheets, payroll &amp; paperwork</span></div>
+<div class="page-h"><h1>Links</h1><span class="sub">Everything staff sign into, in one place</span></div>
 <div class="rule"></div>
 
-<div class="card">
-    <h2><span class="tag">//</span> Internal Sub &amp; Detention Forms</h2>
-    <p><b>Due every week</b> — submit even if you only covered one period, and even in weeks with no days used per the district instructions.</p>
-    <ul style="margin:0;padding-left:20px">
-      <li>Complete the <b>Internal Sub</b> form &mdash; this is how you get <b>paid for covering</b></li>
-      <li>Complete the <b>Detention</b> form &mdash; this is how you get <b>paid for detention hours</b></li>
-      <li>Late forms are processed in the <b>next</b> pay period</li>
-    </ul>
-    <p style="margin:12px 0 0;display:flex;gap:8px;flex-wrap:wrap">
-      <a class="doclink" href="https://docs.google.com/forms/d/e/1FAIpQLSf10EdeWF2fPr_ez5IR6gSpnEyf-7Ohe68vk1nqCsZy46bKrw/viewform" target="_blank" rel="noopener">Internal Sub Form</a>
-      <a class="doclink" href="https://docs.google.com/forms/d/e/1FAIpQLScJ08Conv2j9D4b5Y3a4QpzWz0KoJgvERu-6oPFZIzQg9JvuA/viewform" target="_blank" rel="noopener">Detention Form</a>
-    </p>
-  </div>
+<a class="tracker" href="https://www.nchcityschools.org/staff/index" target="_blank" rel="noopener">
+  <span class="th"><span class="lbl">District Staff Page</span></span>
+  <p>The official NCH City Schools staff portal &mdash; the authoritative source for district systems and announcements.</p>
+  <span class="go">Open nchcityschools.org &rarr;</span>
+</a>
 
 <div class="card">
-    <h2><span class="tag">//</span> Classified Staff Timesheets</h2>
-    <p>Submitted <b>biweekly, on the 15th and 30th</b> of each month.</p>
-    <ul style="margin:0;padding-left:20px">
-      <li>Place completed forms in <b>Ms.&nbsp;Bratchette&rsquo;s mailbox</b></li>
-      <li>Forms received after the cutoff move to the next pay period</li>
-      <li>Hours may not be changed, and <b>overtime or comp time needs prior written approval</b></li>
-    </ul>
-    <p style="margin:10px 0 0"><a class="doclink" href="docs/timesheet-template-classified.xlsx">Timesheet Template (XLSX)</a></p>
-  </div>
-
-<div class="card">
-  <h2><span class="tag">//</span> Injury &amp; Incident Reporting</h2>
-  <div class="alert" style="margin:0 0 16px">
-    <b>Report every injury or incident &mdash; even if you don&rsquo;t expect a Workers&rsquo; Comp claim.</b> The district files a year-end report with the state covering all workplace injuries, so nothing can be skipped. Call <b>911 first</b> for anything serious or life-threatening.
-  </div>
-  <div class="pol">
-    <h3>What to do</h3>
-    <ul>
-      <li><b>Tell your supervisor immediately.</b></li>
-      <li>Complete the <b>First Report of Injury (FROI)</b> &mdash; normally <b>within 24 hours</b>.</li>
-      <li>Seek treatment if needed and <b>give the Sedgwick ID card</b> (in the packet) to every provider you see.</li>
-      <li>If you see a doctor <b>at any point within a year</b>, take the <b>Physician&rsquo;s Report of Work Ability</b> and return it to your building administrator.</li>
-      <li>Have witnesses complete a <b>Statement of Witness</b>. The form says notarised &mdash; <b>have them fill it out either way</b>. Extra copies are with your building secretary.</li>
-      <li>Return the packet to the <b>building principal</b>, who forwards it to Central Office Payroll. Keep the physician portion if you haven&rsquo;t been seen yet.</li>
-      <li>Keep administration updated on your status until Workers&rsquo; Comp accepts or denies the claim.</li>
-    </ul>
-    <p class="schednote">The <b>Supervisor&rsquo;s Investigation Report</b> is completed by the building administrator, not by you. Questions &rarr; your building secretary.</p>
-  </div>
-  <div class="pol">
-    <h3>Sedgwick Managed Care Ohio</h3>
-    <ul>
-      <li>Phone <b>888.627.7586</b> &middot; <a href="https://resources.sedgwickmco.com" target="_blank" rel="noopener">resources.sedgwickmco.com</a></li>
-    </ul>
-    <p style="margin:10px 0 0;display:flex;gap:8px;flex-wrap:wrap">
-      <a class="doclink" href="docs/incident-report-process-fy27.docx" target="_blank" rel="noopener">Incident Report Process</a>
-      <a class="doclink" href="docs/injury-reporting-packet.pdf" target="_blank" rel="noopener">Injury Reporting Packet</a>
-    </p>
+  <h2><span class="tag">//</span> Daily Systems</h2>
+  <p style="margin:0 0 14px">The tools you sign into most. Reach them through the district staff page above until direct links are added here.</p>
+  <div class="tools">
+    <a class="tool" href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener"><span class="nm">Daily Tracker</span><span class="ds">Absences, coverage, subs &amp; consequences</span></a>
+    <div class="tool wait"><span class="nm">Frontline</span><span class="ds">Report your absence &amp; request a sub &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">PublicSchoolWORKS</span><span class="ds">Code of conduct entries &amp; referrals &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">Progress Book</span><span class="ds">Gradebook &mdash; 1 grade/week by Thursday &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">Clever</span><span class="ds">Single sign-on to classroom apps &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">School Connect</span><span class="ds">District messaging &amp; notifications &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">FinalForms</span><span class="ds">Student back-to-school forms &mdash; <i>link coming</i></span></div>
+    <div class="tool wait"><span class="nm">Naviance 360</span><span class="ds">Emergency attendance &mdash; log students during drills &mdash; <i>link coming</i></span></div>
   </div>
 </div>
 
 <div class="card">
-  <h2><span class="tag">//</span> Leave &amp; Employee Support</h2>
-  <div class="pol">
-    <h3>Employee Assistance Program</h3>
-    <p style="margin:0 0 8px"><b>Free, confidential, 24/7</b> &mdash; for you <b>and your household members</b>. Counselling, plus legal, financial, and child/elder care support.</p>
-    <ul>
-      <li><b>Call 855.435.4333</b> &middot; TRS: dial <b>711</b></li>
-      <li><a href="https://www.guidanceresources.com" target="_blank" rel="noopener">guidanceresources.com</a> or the <b>GuidanceNow</b> app &mdash; Web ID <b>GCICEAP</b></li>
-    </ul>
-    <p style="margin:10px 0 0"><a class="doclink" href="docs/eap-guidance-resources.pdf" target="_blank" rel="noopener">EAP Overview</a></p>
+  <h2><span class="tag">//</span> Staff Drive</h2>
+  <div class="tools">
+    <a class="tool" href="https://docs.google.com/spreadsheets/d/1BXYEW-c9R13g_w2_NhdfnzoGY0j_K8BeG2PbVGXcfbw/edit" target="_blank" rel="noopener"><span class="nm">Master Schedule</span><span class="ds">Building master schedule</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/15N-Hx8poj8f4ZK86oZ9-PewngS82uG68" target="_blank" rel="noopener"><span class="nm">Lesson Plans &amp; Scope</span><span class="ds">Drop lesson plans &amp; scope here</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1-IFCBu17Sdlf7KtkdHck-ewADVhnpItW" target="_blank" rel="noopener"><span class="nm">Syllabi</span><span class="ds">One per course</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1HVFe-b_zZW0zJJ89tF4MJ-5L2-ipWigo" target="_blank" rel="noopener"><span class="nm">Management Plans</span><span class="ds">Classroom management plans</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1lvV8WSfc9uIgu9nbgUhTW4NnkYhwvvWR" target="_blank" rel="noopener"><span class="nm">Staff Coverage</span><span class="ds">Rosters &amp; emergency sub plans</span></a>
+    <a class="tool" href="https://drive.google.com/drive/folders/1T5qBlDtI5FXrKL_AwllvL6uOYCOxj8-_" target="_blank" rel="noopener"><span class="nm">School Data</span><span class="ds">EOC, attendance &amp; discipline</span></a>
+    <a class="tool" href="https://docs.google.com/document/d/1IW-1dp3kyNAl1TVcGNTqi45ZC5OlShxSv5sbsTAWcn8/edit" target="_blank" rel="noopener"><span class="nm">Student Handbook</span><span class="ds">2026&ndash;27 digital handbook</span></a>
   </div>
-  <div class="pol">
-    <h3>FMLA</h3>
-    <p style="margin:0 0 8px">Unpaid, <b>job-protected</b> leave for your own serious health condition or to care for a parent, spouse or child. Leave can be taken all at once or intermittently.</p>
-    <ul>
-      <li><b>Schools are covered regardless of size</b> &mdash; the 50-employee threshold doesn&rsquo;t apply here.</li>
-      <li>You must have worked for the district <b>12 months</b> (not necessarily consecutive) and <b>1,250 hours</b> in the past year.</li>
-    </ul>
-    <p style="margin:10px 0 0"><a class="doclink" href="docs/fmla-employee-guide.pdf" target="_blank" rel="noopener">FMLA Employee Guide (US DOL)</a></p>
+  <p class="schednote">Sign in with your <b>@nchcityschools.org</b> account.</p>
+</div>
+
+<div class="card">
+  <h2><span class="tag">//</span> Weekly Forms</h2>
+  <p style="margin:0 0 14px">Both are due every week &mdash; this is how the hours get paid.</p>
+  <div class="tools">
+    <a class="tool" href="https://docs.google.com/forms/d/e/1FAIpQLSf10EdeWF2fPr_ez5IR6gSpnEyf-7Ohe68vk1nqCsZy46bKrw/viewform" target="_blank" rel="noopener"><span class="nm">Internal Sub Form</span><span class="ds">Paid for covering a period</span></a>
+    <a class="tool" href="https://docs.google.com/forms/d/e/1FAIpQLScJ08Conv2j9D4b5Y3a4QpzWz0KoJgvERu-6oPFZIzQg9JvuA/viewform" target="_blank" rel="noopener"><span class="nm">Detention Form</span><span class="ds">Paid for detention hours</span></a>
   </div>
 </div>
 
 <div class="card">
-  <h2><span class="tag">//</span> Pay Discrepancies</h2>
-  <p style="margin:0">Notice something off with your pay? Contact <a href="mailto:payroll@nchcityschools.org">payroll@nchcityschools.org</a> right away so it can be resolved before the next cycle.</p>
+  <h2><span class="tag">//</span> Documents</h2>
+  <div class="tools">
+    <a class="tool" href="docs/district-calendar-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">District Calendar</span><span class="ds">2026&ndash;27 board-approved</span></a>
+    <a class="tool" href="docs/dress-code-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">Dress Code</span><span class="ds">2026&ndash;27 infographic</span></a>
+    <a class="tool" href="docs/lockdown-levels-and-procedures-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">Lockdown Levels</span><span class="ds">All three levels</span></a>
+    <a class="tool" href="docs/tornado-drill-procedures-2026-27.pdf" target="_blank" rel="noopener"><span class="nm">Tornado Procedures</span><span class="ds">Room-by-room routes</span></a>
+    <a class="tool" href="docs/injury-reporting-packet.pdf" target="_blank" rel="noopener"><span class="nm">Injury Packet</span><span class="ds">FROI &amp; Sedgwick card</span></a>
+    <a class="tool" href="docs/fmla-employee-guide.pdf" target="_blank" rel="noopener"><span class="nm">FMLA Guide</span><span class="ds">US Dept. of Labor</span></a>
+    <a class="tool" href="docs/eap-guidance-resources.pdf" target="_blank" rel="noopener"><span class="nm">EAP</span><span class="ds">855.435.4333 &middot; ID GCICEAP</span></a>
+    <a class="tool" href="docs/timesheet-template-classified.xlsx"><span class="nm">Timesheet Template</span><span class="ds">Classified staff</span></a>
+  </div>
 </div>
 
 <div class="card">
-  <h2><span class="tag">//</span> Back to School Forms</h2>
-  <p style="margin:0"><b>FinalForms</b> is now the single portal for all student back-to-school forms &mdash; enrollment, athletics, tech &amp; handbook. <b>One portal for everything.</b></p>
-  <div class="alert">
-    <b>Cut-off for students: September&nbsp;11</b> &mdash; all Back to School Forms must be completed.<br>
-    Students are <b>excluded from school starting September&nbsp;15</b> if their forms aren&rsquo;t complete.
-  </div>
+  <h2><span class="tag">//</span> Help me finish this page</h2>
+  <p style="margin:0">Anything marked <i>link coming</i> just needs its URL. Grab it from the district staff page, paste it in, and it goes live.</p>
 </div>
 
 </main>
-<footer>
-  NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
-</footer>
-
 <script>
 (function(){
   var t=document.getElementById('navtoggle'), n=document.getElementById('sitenav');
   if(!t||!n) return;
-  t.addEventListener('click',function(){
-    var open=n.classList.toggle('open');
-    t.setAttribute('aria-expanded', open?'true':'false');
-  });
-  n.addEventListener('click',function(e){
-    if(e.target.tagName==='A'){ n.classList.remove('open');
-      t.setAttribute('aria-expanded','false'); }
-  });
+  t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});
+  n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');t.setAttribute('aria-expanded','false');}});
 })();
 </script>
+<footer>
+  NCH Trojan Staff Hub &middot; An unofficial staff resource &middot; Dates from the 2026&ndash;27 building calendar &amp; athletic schedules
+</footer>
+
 </body>
 </html>
