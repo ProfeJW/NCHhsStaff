@@ -125,6 +125,14 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td{background:var(--gold-soft);font-weight:700}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+.sched .sec{display:inline-block;margin-top:2px;font-weight:400;font-size:12.5px;color:var(--gray);white-space:nowrap}
+.sched a{overflow-wrap:anywhere}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:620px){
+  .sched th,.sched td{padding:6px 5px;font-size:13.5px}
+  .tscroll{margin:0 -8px;padding:0 8px}
+  .tscroll>.sched{min-width:430px}
+}
 
 /* duty table */
 .duty{width:100%;border-collapse:collapse}
@@ -489,18 +497,18 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 
   <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 8px;color:var(--red-deep)">The Current Forecast</h3>
   <table class="sched">
-    <thead><tr><th>Fiscal year</th><th style="text-align:right">Revenue</th><th style="text-align:right">Spending</th><th style="text-align:right">Surplus / (deficit)</th><th style="text-align:right">Ending cash</th></tr></thead>
+    <thead><tr><th>Fiscal year</th><th style="text-align:right">Revenue</th><th style="text-align:right">Spending</th><th style="text-align:right">Ending cash</th></tr></thead>
     <tbody>
-      <tr><td class="p">FY2023 <i>actual</i></td><td class="tm">$17.58M</td><td class="tm">$17.46M</td><td class="tm">($432K)</td><td class="tm">$3.41M</td></tr>
-      <tr><td class="p">FY2024 <i>actual</i></td><td class="tm">$19.35M</td><td class="tm">$16.63M</td><td class="tm">$3.65M</td><td class="tm">$7.06M</td></tr>
-      <tr><td class="p">FY2025 <i>actual</i></td><td class="tm">$19.79M</td><td class="tm">$20.67M</td><td class="tm">($927K)</td><td class="tm">$6.14M</td></tr>
-      <tr><td class="p">FY2026 <i>budget</i></td><td class="tm">$19.84M</td><td class="tm">$22.30M</td><td class="tm">($2.51M)</td><td class="tm">$3.62M</td></tr>
-      <tr><td class="p">FY2027 <i>forecast</i></td><td class="tm">$19.89M</td><td class="tm">$21.03M</td><td class="tm">($1.20M)</td><td class="tm">$2.42M</td></tr>
-      <tr><td class="p">FY2028 <i>forecast</i></td><td class="tm">$19.93M</td><td class="tm">$21.79M</td><td class="tm">($1.92M)</td><td class="tm">$502K</td></tr>
-      <tr><td class="p">FY2029 <i>forecast</i></td><td class="tm">$19.82M</td><td class="tm">$23.05M</td><td class="tm">($3.29M)</td><td class="tm"><b>($2.79M)</b></td></tr>
+      <tr><td class="p">FY2023 <i>actual</i></td><td class="tm">$17.58M</td><td class="tm">$17.46M</td><td class="tm">$3.41M</td></tr>
+      <tr><td class="p">FY2024 <i>actual</i></td><td class="tm">$19.35M</td><td class="tm">$16.63M</td><td class="tm">$7.06M</td></tr>
+      <tr><td class="p">FY2025 <i>actual</i></td><td class="tm">$19.79M</td><td class="tm">$20.67M</td><td class="tm">$6.14M</td></tr>
+      <tr><td class="p">FY2026 <i>budget</i></td><td class="tm">$19.84M</td><td class="tm">$22.30M</td><td class="tm">$3.62M</td></tr>
+      <tr><td class="p">FY2027 <i>forecast</i></td><td class="tm">$19.89M</td><td class="tm">$21.03M</td><td class="tm">$2.42M</td></tr>
+      <tr><td class="p">FY2028 <i>forecast</i></td><td class="tm">$19.93M</td><td class="tm">$21.79M</td><td class="tm">$502K</td></tr>
+      <tr><td class="p">FY2029 <i>forecast</i></td><td class="tm">$19.82M</td><td class="tm">$23.05M</td><td class="tm"><b>($2.79M)</b></td></tr>
     </tbody>
   </table>
-  <p class="src" style="margin-bottom:22px">Revenue is line 1.070, spending is line 4.500, surplus/deficit is line 6.010 (which also counts transfers), and ending cash is line 7.020 &mdash; which <b>excludes</b> any new levy money. FY2026 is a budget, not an actual; the year is not closed.</p>
+  <p class="src" style="margin-bottom:22px">Revenue is line 1.070, spending is line 4.500, and ending cash is line 7.020 &mdash; which <b>excludes</b> any new levy money. FY2026 is a budget, not an actual; the year is not closed.</p>
 
   <div class="alert" style="margin:0 0 22px">
     <b>Two things drive this.</b> Revenue is flat &mdash; total income barely moves from $19.8M to $19.8M across four years, and <b>unrestricted state aid actually falls</b>, from $12.60M in FY2025 to $11.71M in FY2029, a loss of about <b>$896,000</b>. Spending is not flat. The gap between the two is the whole story.
@@ -509,14 +517,14 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 8px;color:var(--red-deep)">How the Outlook Has Changed</h3>
   <p style="margin:0 0 10px">Each filing projects cash on hand in its final year. Every filing from late 2023 through late 2025 was worse than the one before it.</p>
   <table class="sched">
-    <thead><tr><th>Filed</th><th>Final year shown</th><th style="text-align:right">Projected cash that year</th></tr></thead>
+    <thead><tr><th>Filed</th><th style="text-align:right">Projected cash in its final year</th></tr></thead>
     <tbody>
-      <tr><td class="p">Nov 2023</td><td>FY2027</td><td class="tm">$6.21M</td></tr>
-      <tr><td class="p">May 2024</td><td>FY2027</td><td class="tm">$4.79M</td></tr>
-      <tr><td class="p">Nov 2024</td><td>FY2028</td><td class="tm">$1.37M</td></tr>
-      <tr><td class="p">May 2025</td><td>FY2028</td><td class="tm">($618K)</td></tr>
-      <tr><td class="p">Oct 2025</td><td>FY2029</td><td class="tm">($8.36M)</td></tr>
-      <tr><td class="p"><b>Feb 2026</b> <i>current</i></td><td>FY2029</td><td class="tm"><b>($2.79M)</b></td></tr>
+      <tr><td class="p">Nov 2023<br><span class="sec">through FY2027</span></td><td class="tm">$6.21M</td></tr>
+      <tr><td class="p">May 2024<br><span class="sec">through FY2027</span></td><td class="tm">$4.79M</td></tr>
+      <tr><td class="p">Nov 2024<br><span class="sec">through FY2028</span></td><td class="tm">$1.37M</td></tr>
+      <tr><td class="p">May 2025<br><span class="sec">through FY2028</span></td><td class="tm">($618K)</td></tr>
+      <tr><td class="p">Oct 2025<br><span class="sec">through FY2029</span></td><td class="tm">($8.36M)</td></tr>
+      <tr><td class="p"><b>Feb 2026</b> <i>current</i><br><span class="sec">through FY2029</span></td><td class="tm"><b>($2.79M)</b></td></tr>
     </tbody>
   </table>
   <p class="src" style="margin-bottom:22px">The February 2026 filing is about <b>$5.6M better</b> than the October 2025 one for the same year. Most of that improvement is lower projected spending, not new revenue.</p>
@@ -524,12 +532,12 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 8px;color:var(--red-deep)">What Changed Between Those Two Filings</h3>
   <p style="margin:0 0 10px">Projected <b>salaries and wages</b> (line 3.010) were revised down in every year:</p>
   <table class="sched">
-    <thead><tr><th>Year</th><th style="text-align:right">Oct 2025 filing</th><th style="text-align:right">Feb 2026 filing</th><th style="text-align:right">Change</th></tr></thead>
+    <thead><tr><th>Year &amp; change</th><th style="text-align:right">Oct 2025 filing</th><th style="text-align:right">Feb 2026 filing</th></tr></thead>
     <tbody>
-      <tr><td class="p">FY2026</td><td class="tm">$14.41M</td><td class="tm">$13.79M</td><td class="tm">&minus;$624K</td></tr>
-      <tr><td class="p">FY2027</td><td class="tm">$14.35M</td><td class="tm">$12.63M</td><td class="tm">&minus;$1.72M</td></tr>
-      <tr><td class="p">FY2028</td><td class="tm">$14.94M</td><td class="tm">$12.94M</td><td class="tm">&minus;$2.01M</td></tr>
-      <tr><td class="p">FY2029</td><td class="tm">$15.65M</td><td class="tm">$13.56M</td><td class="tm">&minus;$2.09M</td></tr>
+      <tr><td class="p">FY2026<br><span class="sec">&minus;$624K</span></td><td class="tm">$14.41M</td><td class="tm">$13.79M</td></tr>
+      <tr><td class="p">FY2027<br><span class="sec">&minus;$1.72M</span></td><td class="tm">$14.35M</td><td class="tm">$12.63M</td></tr>
+      <tr><td class="p">FY2028<br><span class="sec">&minus;$2.01M</span></td><td class="tm">$14.94M</td><td class="tm">$12.94M</td></tr>
+      <tr><td class="p">FY2029<br><span class="sec">&minus;$2.09M</span></td><td class="tm">$15.65M</td><td class="tm">$13.56M</td></tr>
     </tbody>
   </table>
   <p class="src" style="margin-bottom:22px">A forecast is an assumption, not a decision &mdash; and it does not say <i>how</i> a reduction of that size would be reached. That is a fair question for the Treasurer&rsquo;s office or the Board, and the meetings are open. Note that the same filing still funds the negotiated <b>2% base increase</b> in both years of the Master Contract.</p>

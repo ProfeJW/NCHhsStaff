@@ -125,6 +125,14 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td{background:var(--gold-soft);font-weight:700}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+.sched .sec{display:inline-block;margin-top:2px;font-weight:400;font-size:12.5px;color:var(--gray);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sched a{overflow-wrap:anywhere}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:620px){
+  .sched th,.sched td{padding:7px 6px;font-size:14px}
+  .tscroll{margin:0 -8px;padding:0 8px}
+  .tscroll>.sched{min-width:520px}
+}
 
 /* duty table */
 .duty{width:100%;border-collapse:collapse}
@@ -256,23 +264,23 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <p style="margin:0 0 14px">The negotiated agreement between the <b>North College Hill Education Association</b> and the <b>Board of Education</b>, effective <b>August 1, 2025 through July 31, 2027</b>. This is the document that governs your workday, your leave and your pay &mdash; when a question comes up about any of them, this is the answer.</p>
   <p style="margin:0 0 16px"><a class="doclink" href="docs/master-contract-2025-27.pdf" target="_blank" rel="noopener">Read the Master Contract (PDF)</a></p>
   <table class="sched">
-    <thead><tr><th>Provision</th><th>What the contract says</th><th style="text-align:right">Section</th></tr></thead>
+    <thead><tr><th>Provision</th><th>What the contract says</th></tr></thead>
     <tbody>
-      <tr><td class="p">Contract year</td><td>Maximum <b>187 work days</b>, no more than <b>180 student days</b>. Teachers are not required to report for the first five calamity days.</td><td class="tm">6.0201</td></tr>
-      <tr><td class="p">Length of the workday (5&ndash;12)</td><td><b>460 consecutive minutes</b>, including a <b>30-minute duty-free lunch</b>.</td><td class="tm">6.0302</td></tr>
-      <tr><td class="p">Planning period</td><td>Every full-time secondary teacher gets a <b>daily planning period</b> of no less than one regularly scheduled class period. Non-classroom members get at least 150 minutes.</td><td class="tm">6.0302</td></tr>
-      <tr><td class="p">Sick leave</td><td><b>15 days per year</b> (1&frac14; days per completed month). Five days may be advanced and repaid from future accrual.</td><td class="tm">7.06</td></tr>
-      <tr><td class="p">Personal leave</td><td><b>4 unrestricted days</b> per year, requested electronically. <b>Not</b> on the first or last day of school, a PD day, the day before or after a holiday or vacation, or during state testing &mdash; unless the Superintendent approves. No more than 10% of a building out on the same day.</td><td class="tm">7.03</td></tr>
-      <tr><td class="p">Unused personal days</td><td>Roll into your <b>sick leave</b> accumulation at the end of the contract year.</td><td class="tm">7.0301</td></tr>
-      <tr><td class="p">Parental leave</td><td>Up to <b>10 days of sick leave</b> immediately following birth, adoption or foster placement; more available with documentation.</td><td class="tm">7.07</td></tr>
-      <tr><td class="p">Professional leave</td><td>Conferences, conventions and observing work in another district &mdash; request in advance through the district&rsquo;s online system, with Board or designee approval.</td><td class="tm">7.04</td></tr>
-      <tr><td class="p">Salary schedule</td><td><b>2% base increase</b> in 2025&ndash;26 and again in 2026&ndash;27. All horizontal steps honored.</td><td class="tm">9.01</td></tr>
-      <tr><td class="p">Pay dates</td><td><b>24 equal installments</b> on the 15th and 30th, by direct deposit. First check of the year is issued <b>August 30</b>.</td><td class="tm">9.0201</td></tr>
-      <tr><td class="p">Tuition reimbursement</td><td><b>$150 per semester hour</b> for graduate work earning a <b>B or better</b>, up to <b>9 semester hours</b> a year, with Superintendent approval and a return to teach the following fall.</td><td class="tm">9.07</td></tr>
-      <tr><td class="p">Severance at retirement</td><td><b>One-third of accumulated unused sick leave</b>, capped at <b>75 days</b>, paid once STRS confirms eligibility.</td><td class="tm">9.09</td></tr>
-      <tr><td class="p">Field trips</td><td>Students go in Board vehicles when available. <b>No one can be required</b> to transport students in a personal vehicle.</td><td class="tm">6.06</td></tr>
-      <tr><td class="p">Grievances</td><td>A prompt, impartial hearing is guaranteed, and <b>no reprisals</b> may be taken against anyone who files or takes part in one.</td><td class="tm">4.01</td></tr>
-      <tr><td class="p">Evaluation</td><td>Post-observation conference and written report within <b>5 school days</b> of the observation. OTES-evaluated teachers follow Board policy and the attached MOU.</td><td class="tm">5.02</td></tr>
+      <tr><td class="p">Contract year<br><span class="sec">&sect;&nbsp;6.0201</span></td><td>Maximum <b>187 work days</b>, no more than <b>180 student days</b>. Teachers are not required to report for the first five calamity days.</td></tr>
+      <tr><td class="p">Length of the workday (5&ndash;12)<br><span class="sec">&sect;&nbsp;6.0302</span></td><td><b>460 consecutive minutes</b>, including a <b>30-minute duty-free lunch</b>.</td></tr>
+      <tr><td class="p">Planning period<br><span class="sec">&sect;&nbsp;6.0302</span></td><td>Every full-time secondary teacher gets a <b>daily planning period</b> of no less than one regularly scheduled class period. Non-classroom members get at least 150 minutes.</td></tr>
+      <tr><td class="p">Sick leave<br><span class="sec">&sect;&nbsp;7.06</span></td><td><b>15 days per year</b> (1&frac14; days per completed month). Five days may be advanced and repaid from future accrual.</td></tr>
+      <tr><td class="p">Personal leave<br><span class="sec">&sect;&nbsp;7.03</span></td><td><b>4 unrestricted days</b> per year, requested electronically. <b>Not</b> on the first or last day of school, a PD day, the day before or after a holiday or vacation, or during state testing &mdash; unless the Superintendent approves. No more than 10% of a building out on the same day.</td></tr>
+      <tr><td class="p">Unused personal days<br><span class="sec">&sect;&nbsp;7.0301</span></td><td>Roll into your <b>sick leave</b> accumulation at the end of the contract year.</td></tr>
+      <tr><td class="p">Parental leave<br><span class="sec">&sect;&nbsp;7.07</span></td><td>Up to <b>10 days of sick leave</b> immediately following birth, adoption or foster placement; more available with documentation.</td></tr>
+      <tr><td class="p">Professional leave<br><span class="sec">&sect;&nbsp;7.04</span></td><td>Conferences, conventions and observing work in another district &mdash; request in advance through the district&rsquo;s online system, with Board or designee approval.</td></tr>
+      <tr><td class="p">Salary schedule<br><span class="sec">&sect;&nbsp;9.01</span></td><td><b>2% base increase</b> in 2025&ndash;26 and again in 2026&ndash;27. All horizontal steps honored.</td></tr>
+      <tr><td class="p">Pay dates<br><span class="sec">&sect;&nbsp;9.0201</span></td><td><b>24 equal installments</b> on the 15th and 30th, by direct deposit. First check of the year is issued <b>August 30</b>.</td></tr>
+      <tr><td class="p">Tuition reimbursement<br><span class="sec">&sect;&nbsp;9.07</span></td><td><b>$150 per semester hour</b> for graduate work earning a <b>B or better</b>, up to <b>9 semester hours</b> a year, with Superintendent approval and a return to teach the following fall.</td></tr>
+      <tr><td class="p">Severance at retirement<br><span class="sec">&sect;&nbsp;9.09</span></td><td><b>One-third of accumulated unused sick leave</b>, capped at <b>75 days</b>, paid once STRS confirms eligibility.</td></tr>
+      <tr><td class="p">Field trips<br><span class="sec">&sect;&nbsp;6.06</span></td><td>Students go in Board vehicles when available. <b>No one can be required</b> to transport students in a personal vehicle.</td></tr>
+      <tr><td class="p">Grievances<br><span class="sec">&sect;&nbsp;4.01</span></td><td>A prompt, impartial hearing is guaranteed, and <b>no reprisals</b> may be taken against anyone who files or takes part in one.</td></tr>
+      <tr><td class="p">Evaluation<br><span class="sec">&sect;&nbsp;5.02</span></td><td>Post-observation conference and written report within <b>5 school days</b> of the observation. OTES-evaluated teachers follow Board policy and the attached MOU.</td></tr>
     </tbody>
   </table>
   <p class="schednote">A plain-language summary for quick reference &mdash; it is not the contract. <b>The PDF governs.</b> For anything contested, read the section itself and talk to your NCHEA representative.</p>

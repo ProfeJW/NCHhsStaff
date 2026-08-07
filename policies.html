@@ -125,6 +125,14 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td{background:var(--gold-soft);font-weight:700}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
+.sched .sec{display:inline-block;margin-top:2px;font-weight:400;font-size:12.5px;color:var(--gray);white-space:nowrap}
+.sched a{overflow-wrap:anywhere}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:620px){
+  .sched th,.sched td{padding:7px 6px;font-size:14px}
+  .tscroll{margin:0 -8px;padding:0 8px}
+  .tscroll>.sched{min-width:520px}
+}
 
 /* duty table */
 .duty{width:100%;border-collapse:collapse}
@@ -396,11 +404,11 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="pol">
     <h3>The Three Tiers</h3>
     <table class="sched">
-      <thead><tr><th>Tier</th><th>What it is</th><th style="text-align:right">Target</th></tr></thead>
+      <thead><tr><th>Tier</th><th>What it is</th></tr></thead>
       <tbody>
-        <tr><td class="p"><b>Tier 1</b><br>Core</td><td>High-quality, evidence-based core instruction for <b>all</b> students, differentiated and aligned to Ohio&rsquo;s Learning Standards. Small-group remediation in every classroom based on the 3D form.</td><td class="tm">~80% should meet targets here</td></tr>
-        <tr><td class="p"><b>Tier 2</b><br>Targeted</td><td>Focused intervention <b>in addition to</b> core &mdash; smaller groups, higher intensity, still tied to Tier 1 standards. Identified by assessment and progress monitoring.</td><td class="tm">~10&ndash;15% of students</td></tr>
-        <tr><td class="p"><b>Tier 3</b><br>Intensive</td><td>Small-group or 1:1 with the most highly trained specialist in that area of need. <b>At least 5&times;/week, 30&ndash;45 minutes</b>, focused on prerequisite skills.</td><td class="tm">~1&ndash;5% of students</td></tr>
+        <tr><td class="p"><b>Tier 1</b><br>Core<br><span class="sec">~80% should meet targets here</span></td><td>High-quality, evidence-based core instruction for <b>all</b> students, differentiated and aligned to Ohio&rsquo;s Learning Standards. Small-group remediation in every classroom based on the 3D form.</td></tr>
+        <tr><td class="p"><b>Tier 2</b><br>Targeted<br><span class="sec">~10&ndash;15% of students</span></td><td>Focused intervention <b>in addition to</b> core &mdash; smaller groups, higher intensity, still tied to Tier 1 standards. Identified by assessment and progress monitoring.</td></tr>
+        <tr><td class="p"><b>Tier 3</b><br>Intensive<br><span class="sec">~1&ndash;5% of students</span></td><td>Small-group or 1:1 with the most highly trained specialist in that area of need. <b>At least 5&times;/week, 30&ndash;45 minutes</b>, focused on prerequisite skills.</td></tr>
       </tbody>
     </table>
     <p class="schednote">If far more than 20% of your students need Tier 2 or 3, the handbook says that&rsquo;s a signal to revisit <b>core instruction</b> &mdash; not to keep adding intervention.</p>
@@ -426,15 +434,15 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="pol">
     <h3>Which Team Does What</h3>
     <table class="sched">
-      <thead><tr><th>Team</th><th>What it monitors</th><th>Reports to</th></tr></thead>
+      <thead><tr><th>Team</th><th>What it monitors</th></tr></thead>
       <tbody>
-        <tr><td class="p"><b>DLT</b><br>District Leadership</td><td>Implementation of the District&rsquo;s One Plan &mdash; district attendance, behavior and academics, all students and SWD.</td><td>District level</td></tr>
-        <tr><td class="p"><b>BLT</b><br>Building Leadership</td><td>One Plan action steps at building level. Runs the 5-step process on key data each month per the district data calendar, and evaluates whether Tier 1 is working.</td><td>DLT</td></tr>
-        <tr><td class="p"><b>GLTs</b><br>Grade Level / Content</td><td>Tier 1 delivery in your content area &mdash; where the 3D data actually gets used.</td><td>BLT</td></tr>
-        <tr><td class="p"><b>Building MTSS &mdash; Academics</b></td><td>Tier 2 and 3 fidelity and effect on academic progress. Plans the intervention bells (e.g. WIN). Acts on the prior year&rsquo;s SAM results.</td><td>BLT</td></tr>
-        <tr><td class="p"><b>Building MTSS &mdash; Behavior</b></td><td>Tier 2 and 3 fidelity for behavior and attendance, plus the building behavior and attendance plan. Acts on the prior year&rsquo;s TFI results.</td><td>BLT</td></tr>
-        <tr><td class="p"><b>Building Literacy / Math</b></td><td>District improvement plan action steps for the literacy and math goals; walkthrough data and RAP implementation.</td><td>BLT</td></tr>
-        <tr><td class="p"><b>Internal Monitoring</b></td><td>District self-assessment of IDEA systems &mdash; SPED profile indicators and SWD performance.</td><td>DLT</td></tr>
+        <tr><td class="p"><b>DLT</b><br>District Leadership<br><span class="sec">&rarr; District level</span></td><td>Implementation of the District&rsquo;s One Plan &mdash; district attendance, behavior and academics, all students and SWD.</td></tr>
+        <tr><td class="p"><b>BLT</b><br>Building Leadership<br><span class="sec">&rarr; DLT</span></td><td>One Plan action steps at building level. Runs the 5-step process on key data each month per the district data calendar, and evaluates whether Tier 1 is working.</td></tr>
+        <tr><td class="p"><b>GLTs</b><br>Grade Level / Content<br><span class="sec">&rarr; BLT</span></td><td>Tier 1 delivery in your content area &mdash; where the 3D data actually gets used.</td></tr>
+        <tr><td class="p"><b>Building MTSS &mdash; Academics</b><br><span class="sec">&rarr; BLT</span></td><td>Tier 2 and 3 fidelity and effect on academic progress. Plans the intervention bells (e.g. WIN). Acts on the prior year&rsquo;s SAM results.</td></tr>
+        <tr><td class="p"><b>Building MTSS &mdash; Behavior</b><br><span class="sec">&rarr; BLT</span></td><td>Tier 2 and 3 fidelity for behavior and attendance, plus the building behavior and attendance plan. Acts on the prior year&rsquo;s TFI results.</td></tr>
+        <tr><td class="p"><b>Building Literacy / Math</b><br><span class="sec">&rarr; BLT</span></td><td>District improvement plan action steps for the literacy and math goals; walkthrough data and RAP implementation.</td></tr>
+        <tr><td class="p"><b>Internal Monitoring</b><br><span class="sec">&rarr; DLT</span></td><td>District self-assessment of IDEA systems &mdash; SPED profile indicators and SWD performance.</td></tr>
       </tbody>
     </table>
     <p class="schednote">Every team runs the same roles: <b>facilitator, note taker, Comm Hub reporter, communicator, data gatherer, timekeeper.</b> Notes go on the Communication Hub.</p>
