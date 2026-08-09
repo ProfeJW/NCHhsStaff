@@ -47,6 +47,16 @@ DOC_TITLES = {
     'boe-2026-07-13-agenda.pdf': 'Board Agenda - 13 July 2026',
     'boe-2026-08-05-special-agenda.pdf': 'Board Agenda - 5 Aug 2026',
     'boe-2026-08-05-special-notice.pdf': 'Board Notice - 5 Aug 2026',
+    'boe-2026-08-10-agenda.pdf': 'Board Agenda - 10 Aug 2026',
+    'boe-2026-02-09-agenda.pdf': 'Board Agenda - 9 Feb 2026',
+    'boe-2025-10-13-agenda.pdf': 'Board Agenda - 13 Oct 2025',
+    'boe-2025-05-12-agenda.pdf': 'Board Agenda - 12 May 2025',
+    'boe-2025-02-10-agenda.pdf': 'Board Agenda - 10 Feb 2025',
+    'district-calendar-2025-26.pdf': 'District Calendar 2025-26',
+    'district-calendar-2027-28.pdf': 'District Calendar 2027-28',
+    'champs-poster.pdf': 'CHAMPS Poster',
+    'classroom-expectations-posters.pdf': 'Classroom Expectations Posters',
+    'transportation-request-form.pdf': 'Transportation Request Form',
 }
 
 SKIP_IDS = {'navtoggle', 'sitenav', 'countdown', 'expandall'}
