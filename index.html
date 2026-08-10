@@ -171,6 +171,11 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.22);
   color:#fff;border-radius:20px;padding:3px 9px;margin-left:8px;vertical-align:middle}
 .due.past .dlist .opt{background:var(--line);color:var(--gray)}
+.due .dlist .onpaper{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:#FFD9DE;
+  border:1.5px dashed rgba(255,255,255,.5);border-radius:8px;padding:8px 14px;white-space:nowrap}
+.due.past .dlist .onpaper{color:var(--gray);border-color:var(--line)}
+@media (max-width:620px){.due .dlist .onpaper{width:100%;text-align:center}}
 @media (max-width:620px){
   .due .dlist li{gap:8px}
   .due .dlist .what{font-size:18px;width:100%}
@@ -289,9 +294,19 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <a href="https://drive.google.com/drive/folders/1HVFe-b_zZW0zJJ89tF4MJ-5L2-ipWigo" target="_blank" rel="noopener">Open folder &rarr;</a>
     </li>
     <li>
+      <span class="what">Getting to Know You Survey</span>
+      <span class="how">Handed out on paper &mdash; fill it in and return it</span>
+      <span class="onpaper">On paper</span>
+    </li>
+    <li>
       <span class="what">Committee Sign-Up</span>
       <span class="how">Pick your committee for the year</span>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScOEB_59KAnwChd7hyqh3ygM9BOTK92d89IzEyJ9Y2aZMy60w/viewform" target="_blank" rel="noopener">Open form &rarr;</a>
+    </li>
+    <li>
+      <span class="what">Team Lead Sign-Up<span class="opt">Optional</span></span>
+      <span class="how">If you want to lead a grade-level or content team</span>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfH54fi8-QTiKcSTycqGe5Vl1J8b52_R8o0WbJmGLClRvpD-g/viewform" target="_blank" rel="noopener">Open form &rarr;</a>
     </li>
   </ul>
   <small>Sign in with your <b>@nchcityschools.org</b> account &mdash; each folder opens ready to drop files into. Nothing to email.</small>
