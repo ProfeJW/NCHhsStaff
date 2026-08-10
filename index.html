@@ -153,6 +153,25 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .due.past .go a{background:var(--gold-soft);color:var(--red-deep);border:1.5px solid var(--gold)}
 .due.past small{color:var(--gray)}
 @media (max-width:620px){.due{padding:18px 18px}.due h2{font-size:26px}.due p{font-size:17.5px}}
+.due .dlist{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:10px}
+.due .dlist li{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  background:rgba(255,255,255,.10);border-radius:9px;padding:12px 14px}
+.due .dlist .what{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;
+  letter-spacing:.02em;text-transform:uppercase;color:#fff;line-height:1.05}
+.due .dlist .how{flex:1;min-width:150px;font-size:14.5px;color:#FFD9DE}
+.due .dlist a{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:16px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+  background:#fff;color:var(--red-deep);border-radius:8px;padding:9px 15px;white-space:nowrap}
+.due .dlist a:hover{background:var(--gold-soft)}
+.due.past .dlist li{background:var(--paper)}
+.due.past .dlist .what{color:var(--ink)}
+.due.past .dlist .how{color:var(--gray)}
+.due.past .dlist a{background:var(--gold-soft);border:1.5px solid var(--gold)}
+@media (max-width:620px){
+  .due .dlist li{gap:8px}
+  .due .dlist .what{font-size:18px;width:100%}
+  .due .dlist a{width:100%;text-align:center}
+}
 
 footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   text-align:center;padding:18px 20px 30px}
@@ -251,14 +270,22 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="sres" id="sres" role="listbox" aria-label="Search results"></div>
 </div>
 <div class="due" id="duebanner" data-due="2026-08-10">
-  <span class="lbl" id="duelbl">Deadline</span>
-  <h2>Syllabi &amp; Classroom Management Plans</h2>
-  <p id="duetext">Due to <b>Ms.&nbsp;Craig-Roach</b> by <b>Monday 10 August</b> &mdash; the staff day before students return. Drop each one straight into its folder on the staff Google Drive; there is nothing to email.</p>
-  <span class="go">
-    <a href="https://drive.google.com/drive/folders/1-IFCBu17Sdlf7KtkdHck-ewADVhnpItW" target="_blank" rel="noopener">Upload Syllabus &rarr;</a>
-    <a href="https://drive.google.com/drive/folders/1HVFe-b_zZW0zJJ89tF4MJ-5L2-ipWigo" target="_blank" rel="noopener">Upload Management Plan &rarr;</a>
-  </span>
-  <small>One syllabus per course. Sign in with your <b>@nchcityschools.org</b> account &mdash; the folder opens ready to drop files into.</small>
+  <span class="lbl" id="duelbl">Due Monday</span>
+  <h2>Deliverables</h2>
+  <p id="duetext">Due to <b>Ms.&nbsp;Craig-Roach</b> by <b>Monday 10 August</b> &mdash; the staff day before students return.</p>
+  <ul class="dlist">
+    <li>
+      <span class="what">Syllabus</span>
+      <span class="how">One per course, into its Drive folder</span>
+      <a href="https://drive.google.com/drive/folders/1-IFCBu17Sdlf7KtkdHck-ewADVhnpItW" target="_blank" rel="noopener">Open folder &rarr;</a>
+    </li>
+    <li>
+      <span class="what">Classroom Management Plan</span>
+      <span class="how">Into its Drive folder</span>
+      <a href="https://drive.google.com/drive/folders/1HVFe-b_zZW0zJJ89tF4MJ-5L2-ipWigo" target="_blank" rel="noopener">Open folder &rarr;</a>
+    </li>
+  </ul>
+  <small>Sign in with your <b>@nchcityschools.org</b> account &mdash; each folder opens ready to drop files into. Nothing to email.</small>
 </div>
 
 <section class="hero">
@@ -465,7 +492,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   if(now>due){
     el.classList.add('past');
     if(lbl) lbl.textContent='Past due';
-    if(txt) txt.innerHTML='These were due to <b>Ms.&nbsp;Craig-Roach</b> on <b>10 August</b>. If yours is not in its folder yet, add it now.';
+    if(txt) txt.innerHTML='These were due on <b>10 August</b>. If yours are not in yet, add them now.';
   } else if(now>=startOfDue){
     if(lbl) lbl.textContent='Due today';
   }
