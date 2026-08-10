@@ -131,6 +131,28 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .linklist a:hover{text-decoration:underline}
 .linklist .note{color:var(--gray);font-size:14px;display:block}
 .soon{color:var(--gray);font-size:13px;font-style:italic}
+/* deadline banner */
+.due{background:var(--red);color:#fff;border-radius:12px;padding:22px 26px;margin:0 0 22px;
+  border:2px solid var(--red-deep)}
+.due .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--gold);
+  color:var(--ink);border-radius:20px;padding:4px 13px;margin-bottom:10px}
+.due h2{font-size:30px;font-weight:800;color:#fff;margin:0 0 8px;line-height:1.05}
+.due p{margin:0 0 14px;font-size:18px;line-height:1.45;color:#FFF1F3;max-width:62ch}
+.due p b{color:#fff}
+.due .go{display:flex;gap:10px;flex-wrap:wrap}
+.due .go a{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:17px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+  background:#fff;color:var(--red-deep);border-radius:8px;padding:11px 18px}
+.due .go a:hover{background:var(--gold-soft)}
+.due small{display:block;margin-top:12px;font-size:14px;color:#FFD9DE}
+.due.past{background:#fff;color:var(--ink);border-color:var(--line)}
+.due.past h2{color:var(--ink);font-size:24px}
+.due.past p{color:var(--gray);font-size:16px}
+.due.past .lbl{background:var(--line);color:var(--gray)}
+.due.past .go a{background:var(--gold-soft);color:var(--red-deep);border:1.5px solid var(--gold)}
+.due.past small{color:var(--gray)}
+@media (max-width:620px){.due{padding:18px 18px}.due h2{font-size:26px}.due p{font-size:17.5px}}
 
 footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   text-align:center;padding:18px 20px 30px}
@@ -228,6 +250,17 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </form>
   <div class="sres" id="sres" role="listbox" aria-label="Search results"></div>
 </div>
+<div class="due" id="duebanner" data-due="2026-08-10">
+  <span class="lbl" id="duelbl">Deadline</span>
+  <h2>Syllabi &amp; Classroom Management Plans</h2>
+  <p id="duetext">Due to <b>Ms.&nbsp;Craig-Roach</b> by <b>Monday 10 August</b> &mdash; the staff day before students return. Drop each one straight into its folder on the staff Google Drive; there is nothing to email.</p>
+  <span class="go">
+    <a href="https://drive.google.com/drive/folders/1-IFCBu17Sdlf7KtkdHck-ewADVhnpItW" target="_blank" rel="noopener">Upload Syllabus &rarr;</a>
+    <a href="https://drive.google.com/drive/folders/1HVFe-b_zZW0zJJ89tF4MJ-5L2-ipWigo" target="_blank" rel="noopener">Upload Management Plan &rarr;</a>
+  </span>
+  <small>One syllabus per course. Sign in with your <b>@nchcityschools.org</b> account &mdash; the folder opens ready to drop files into.</small>
+</div>
+
 <section class="hero">
   <div class="herotext">
     <h1>Welcome back,<br><span>Trojans</span></h1>
@@ -291,7 +324,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 </main>
 <footer>
   NCH Trojan Staff Hub · An unofficial staff resource · Dates from the 2026&ndash;27 building calendar &amp; athletic schedules<br>
-  <span style="color:#9A959E">Site updated 8 August 2026</span>
+  <span style="color:#9A959E">Site updated 9 August 2026</span>
 </footer>
 <script>
 (function(){
@@ -421,6 +454,21 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       e.preventDefault(); q.focus();
     }
   });
+})();
+
+/* deadline banner: absolute date in the markup, softened once it passes */
+(function(){
+  var el=document.getElementById('duebanner'); if(!el) return;
+  var due=new Date(el.getAttribute('data-due')+'T23:59:59');
+  var now=new Date(), lbl=document.getElementById('duelbl'), txt=document.getElementById('duetext');
+  var startOfDue=new Date(el.getAttribute('data-due')+'T00:00:00');
+  if(now>due){
+    el.classList.add('past');
+    if(lbl) lbl.textContent='Past due';
+    if(txt) txt.innerHTML='These were due to <b>Ms.&nbsp;Craig-Roach</b> on <b>10 August</b>. If yours is not in its folder yet, add it now.';
+  } else if(now>=startOfDue){
+    if(lbl) lbl.textContent='Due today';
+  }
 })();
 </script>
 </body>
