@@ -132,6 +132,23 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .linklist .note{color:var(--gray);font-size:14px;display:block}
 .soon{color:var(--gray);font-size:13px;font-style:italic}
 /* deadline banner */
+.cdown{background:var(--card);border:1.5px solid var(--line);border-top:5px solid var(--red);
+  border-radius:12px;padding:18px 22px 16px;margin:0 0 18px;text-align:center}
+.cdown .big{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap}
+.cdown .n{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:68px;
+  line-height:.9;color:var(--red-deep);letter-spacing:-.01em}
+.cdown .u{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.cdown .split{margin:8px 0 0;font-size:14.5px;color:var(--gray)}
+.cdown .split b{color:var(--ink)}
+.cdown .tick{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.cdown .tick span{background:var(--paper);border:1px solid var(--line);border-radius:7px;
+  padding:6px 11px;font-size:13px;color:var(--gray);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em}
+.cdown .tick b{font-size:19px;color:var(--ink);letter-spacing:0;margin-right:2px;
+  font-variant-numeric:tabular-nums}
+.cdown .foot{margin:12px 0 0;font-size:13px;color:var(--gray)}
+@media (max-width:620px){.cdown{padding:16px 14px 14px}.cdown .n{font-size:54px}.cdown .u{font-size:18px}}
 .today{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--gold);
   border-radius:12px;padding:20px 24px;margin:0 0 22px}
 .today .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
@@ -342,6 +359,18 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </div>
 </div>
 
+<div class="cdown" id="cdown" hidden>
+  <div class="big">
+    <span class="n" id="cdN">&mdash;</span>
+    <span class="u" id="cdU">days with students left</span>
+  </div>
+  <p class="split" id="cdSplit"></p>
+  <div class="tick" id="cdTick" hidden>
+    <span><b id="cdD">0</b>d</span><span><b id="cdH">0</b>h</span><span><b id="cdM">0</b>m</span><span><b id="cdS">0</b>s</span>
+  </div>
+  <p class="foot" id="cdFoot"></p>
+</div>
+
 <div class="qgrid">
   <div class="q"><span class="lbl">Q1 Ends</span><span class="val">Oct 9</span></div>
   <div class="q"><span class="lbl">Q2 Ends</span><span class="val">Dec 18</span></div>
@@ -546,6 +575,133 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       if(lbl) lbl.textContent='Due today';
     }
   }
+})();
+
+/* how much of the year is left, counted in days with students
+   ------------------------------------------------------------------
+   Straight off the district calendar (docs/district-calendar-2026-27.pdf,
+   rev 2.10.26). Weekdays between the first and last student day, less the
+   closures below, come to 176; take out the 29 blended Mondays and you get
+   147, which is the S-147 printed on the calendar itself. That match is the
+   check that this data is right - if you edit anything here, redo it. */
+(function(){
+  var FIRST='2026-08-11';                 // first day for students
+  var LAST ='2027-05-20';                 // last day / senior graduation
+  var BELL =[15,5];                       // 3:05 dismissal, every day
+
+  // No school for students. Teacher-only days count as closed here.
+  var CLOSED=[
+    ['2026-09-07','2026-09-07'],          // Labor Day
+    ['2026-10-12','2026-10-12'],          // Records / Teacher Trade Off
+    ['2026-10-19','2026-10-19'],          // PD + parent-teacher conferences
+    ['2026-11-23','2026-11-24'],          // PD
+    ['2026-11-25','2026-11-27'],          // Fall Break
+    ['2026-12-21','2027-01-01'],          // Trade Off, then Winter Break
+    ['2027-01-18','2027-01-18'],          // Dr Martin Luther King Day
+    ['2027-02-01','2027-02-01'],          // PD + parent-teacher conferences
+    ['2027-02-15','2027-02-15'],          // Presidents Day
+    ['2027-03-22','2027-03-26'],          // Spring Break
+    ['2027-03-29','2027-03-29']           // Off Day
+  ];
+  // Blended Learning Days - students learn, just not in the building.
+  var BLENDED={};
+  ('2026-08-17 2026-08-24 2026-08-31 2026-09-14 2026-09-21 2026-09-28 '+
+   '2026-10-05 2026-10-26 2026-11-02 2026-11-09 2026-11-16 2026-11-30 '+
+   '2026-12-07 2026-12-14 2027-01-04 2027-01-11 2027-01-25 2027-02-08 '+
+   '2027-02-22 2027-03-01 2027-03-08 2027-03-15 2027-04-05 2027-04-12 '+
+   '2027-04-19 2027-04-26 2027-05-03 2027-05-10 2027-05-17')
+    .split(' ').forEach(function(d){ BLENDED[d]=1; });
+
+  var box=document.getElementById('cdown');
+  if(!box) return;
+
+  // Read the clock in Cincinnati, not on the device. A Chromebook left on UTC
+  // would otherwise tip the count over a day early every afternoon.
+  function nowEastern(){
+    var f;
+    try{
+      f=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',hour12:false,
+        year:'numeric',month:'2-digit',day:'2-digit',
+        hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date());
+    }catch(e){ return null; }        // no tz data - fall back to the device below
+    var p={}; f.forEach(function(x){ p[x.type]=x.value; });
+    return { date:p.year+'-'+p.month+'-'+p.day,
+             secs:(+p.hour===24?0:+p.hour)*3600 + (+p.minute)*60 + (+p.second) };
+  }
+  function localNow(){
+    var d=new Date();
+    var s=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    return { date:s, secs:d.getHours()*3600+d.getMinutes()*60+d.getSeconds() };
+  }
+  var now=nowEastern()||localNow();
+
+  function closed(d){
+    for(var i=0;i<CLOSED.length;i++) if(d>=CLOSED[i][0]&&d<=CLOSED[i][1]) return true;
+    return false;
+  }
+  function dow(d){ var p=d.split('-'); return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay(); }
+  function isStudentDay(d){
+    if(d<FIRST||d>LAST) return false;
+    var w=dow(d);
+    return w!==0 && w!==6 && !closed(d);
+  }
+  function next(d){
+    var p=d.split('-'), t=new Date(Date.UTC(+p[0],+p[1]-1,+p[2]));
+    t.setUTCDate(t.getUTCDate()+1);
+    return t.toISOString().slice(0,10);
+  }
+
+  // Today only counts while it is still running. Once the last bell has gone
+  // the day is spent, and a teacher walking to their car should see it drop.
+  var todayDone = isStudentDay(now.date) && now.secs >= (BELL[0]*3600+BELL[1]*60);
+  var from = todayDone ? next(now.date) : now.date;
+
+  var building=0, blended=0;
+  for(var d = (from<FIRST?FIRST:from); d<=LAST; d=next(d)){
+    if(!isStudentDay(d)) continue;
+    if(BLENDED[d]) blended++; else building++;
+  }
+  var total=building+blended;
+
+  var N=document.getElementById('cdN'), U=document.getElementById('cdU'),
+      SP=document.getElementById('cdSplit'), FT=document.getElementById('cdFoot'),
+      TK=document.getElementById('cdTick');
+
+  if(now.date>LAST || (now.date===LAST && todayDone)){
+    N.textContent='0';
+    U.textContent='days left — that’s the year';
+    SP.textContent='';
+    FT.textContent='Have a good summer.';
+    box.hidden=false;
+    return;
+  }
+
+  N.textContent=String(total);
+  U.textContent = total===1 ? 'day with students left' : 'days with students left';
+  SP.innerHTML = '<b>'+building+'</b> in the building &middot; <b>'+blended+
+                 '</b> blended Monday'+(blended===1?'':'s');
+
+  if(now.date<FIRST){
+    FT.textContent='School year starts Tuesday 11 August. 147 days in the building, the way the district counts it.';
+  }else{
+    FT.innerHTML='Last bell of the year: <b>3:05 PM, Thursday 20 May 2027</b>. Teacher-only days are not counted.';
+  }
+
+  // Live run-down to the final bell. new Date(y,m,d,h,m) builds it in the
+  // device's own zone, which is the right zone for anyone actually in the
+  // building; the day count above is the number that must not drift.
+  var end=new Date(2027,4,20,BELL[0],BELL[1],0,0);
+  function tickOnce(){
+    var ms=end-new Date();
+    if(ms<0) ms=0;
+    var s=Math.floor(ms/1000);
+    document.getElementById('cdD').textContent=Math.floor(s/86400);
+    document.getElementById('cdH').textContent=Math.floor(s%86400/3600);
+    document.getElementById('cdM').textContent=Math.floor(s%3600/60);
+    document.getElementById('cdS').textContent=s%60;
+  }
+  tickOnce(); TK.hidden=false; setInterval(tickOnce,1000);
+  box.hidden=false;
 })();
 
 /* what staff are wearing today - out-of-uniform themes, by date */
