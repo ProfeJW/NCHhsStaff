@@ -132,6 +132,22 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .linklist .note{color:var(--gray);font-size:14px;display:block}
 .soon{color:var(--gray);font-size:13px;font-style:italic}
 /* deadline banner */
+.today{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--gold);
+  border-radius:12px;padding:20px 24px;margin:0 0 22px}
+.today .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--gold-soft);
+  color:var(--red-deep);border:1px solid var(--gold);border-radius:20px;padding:4px 13px;
+  margin-bottom:10px}
+.today h2{font-size:29px;font-weight:800;margin:0 0 6px;line-height:1.05;color:var(--ink)}
+.today .wear{margin:0;font-size:18px;line-height:1.45;max-width:62ch}
+.today .nx{margin:12px 0 0;font-size:14.5px;color:var(--gray)}
+.today .nx b{color:var(--ink)}
+.today .more{display:inline-block;margin-top:12px;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase;
+  text-decoration:none;background:var(--gold-soft);color:var(--red-deep);
+  border:1.5px solid var(--gold);border-radius:8px;padding:9px 16px}
+.today .more:hover{background:#F0DDB8}
+@media (max-width:620px){.today{padding:17px 17px}.today h2{font-size:25px}.today .wear{font-size:17px}}
 .due{background:var(--red);color:#fff;border-radius:12px;padding:22px 26px;margin:0 0 22px;
   border:2px solid var(--red-deep)}
 .due .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
@@ -266,6 +282,13 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </form>
   <div class="sres" id="sres" role="listbox" aria-label="Search results"></div>
 </div>
+<div class="today" id="todaystrip" hidden>
+  <span class="lbl" id="todaylbl">Today</span>
+  <h2 id="todaytheme"></h2>
+  <p class="wear" id="todaywear"></p>
+  <p class="nx" id="todaynext" hidden></p>
+  <a class="more" href="calendar.html#kickoff">All the themes &rarr;</a>
+</div>
 <div class="due" id="duebanner" data-due="2026-08-10" data-until="2026-08-10">
   <span class="lbl" id="duelbl">Due Monday</span>
   <h2>Deliverables</h2>
@@ -330,7 +353,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="card">
     <h2><span class="tag">//</span> Opening Week</h2>
     <div class="rows">
-<div class="row" data-until="2026-08-05"><div class="datechip"><span class="dow">Wed</span><span class="num">5</span></div><div class="ev"><div class="t">Opening Day: Staff — District &amp; Building PD</div><span class="meta">8:00&ndash;10:00 AM · PAC</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-06"><div class="datechip"><span class="dow">Thu</span><span class="num">6</span></div><div class="ev"><div class="t">Staff PD + Back to School Picnic</div><span class="meta">4:30&ndash;6:30 PM · HS Building · Required</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-07"><div class="datechip"><span class="dow">Fri</span><span class="num">7</span></div><div class="ev"><div class="t">Staff PD &amp; Staff Social</div></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-10"><div class="datechip"><span class="dow">Mon</span><span class="num">10</span></div><div class="ev"><div class="t">Kickoff Week: Warm-Up for the Win</div><span class="meta">Sweatpants, athletic pants, t-shirts or warm-up gear &middot; staff day</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-11"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">First Day of School: Students</div><span class="meta">Grade-level presentations Aug 11&ndash;12 in the PAC</span></div><div class="badges"><span class="badge b-key">Key Date</span></div></div><div class="row" data-until="2026-08-11"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">Kickoff Week: Team Jersey Day</div><span class="meta">A jersey or tee for your favourite team</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-12"><div class="datechip"><span class="dow">Wed</span><span class="num">12</span></div><div class="ev"><div class="t">Kickoff Week: All-Star Day</div><span class="meta">Gear inspired by your favourite sport</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-13"><div class="datechip"><span class="dow">Thu</span><span class="num">13</span></div><div class="ev"><div class="t">Kickoff Week: School Spirit Day</div><span class="meta">School colours, NCH spirit wear or Trojan gear</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-14"><div class="datechip"><span class="dow">Fri</span><span class="num">14</span></div><div class="ev"><div class="t">Kickoff Week: Championship Game Day</div><span class="meta">Jerseys, hats, face paint &mdash; full game day</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div>
+<div class="row" data-until="2026-08-05"><div class="datechip"><span class="dow">Wed</span><span class="num">5</span></div><div class="ev"><div class="t">Opening Day: Staff — District &amp; Building PD</div><span class="meta">8:00&ndash;10:00 AM · PAC</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-06"><div class="datechip"><span class="dow">Thu</span><span class="num">6</span></div><div class="ev"><div class="t">Staff PD + Back to School Picnic</div><span class="meta">4:30&ndash;6:30 PM · HS Building · Required</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-07"><div class="datechip"><span class="dow">Fri</span><span class="num">7</span></div><div class="ev"><div class="t">Staff PD &amp; Staff Social</div></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-10"><div class="datechip"><span class="dow">Mon</span><span class="num">10</span></div><div class="ev"><div class="t">Kickoff Week: Warm-Up for the Win</div><span class="meta">Sweatpants, athletic pants, t-shirts or warm-up gear &middot; staff day</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-11"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">First Day of School: Students</div><span class="meta">Grade-level presentations Aug 11&ndash;12 in the PAC</span></div><div class="badges"><span class="badge b-key">Key Date</span></div></div><div class="row" data-until="2026-08-11"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">Kickoff Week: Team Jersey Day</div><span class="meta">A jersey or tee for your favourite team</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-12"><div class="datechip"><span class="dow">Wed</span><span class="num">12</span></div><div class="ev"><div class="t">11th &amp; 12th Grade Level Presentations</div><span class="meta">PAC</span></div><div class="badges"></div></div><div class="row" data-until="2026-08-12"><div class="datechip"><span class="dow">Wed</span><span class="num">12</span></div><div class="ev"><div class="t">Kickoff Week: All-Star Day</div><span class="meta">Sports apparel, athletic gear or an outfit inspired by your favourite sport</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-13"><div class="datechip"><span class="dow">Thu</span><span class="num">13</span></div><div class="ev"><div class="t">Kickoff Week: School Spirit Day</div><span class="meta">School colours, NCH spirit wear or Trojan gear</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-14"><div class="datechip"><span class="dow">Fri</span><span class="num">14</span></div><div class="ev"><div class="t">Kickoff Week: Championship Game Day</div><span class="meta">Jerseys, hats, face paint &mdash; full game day</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div>
     </div>
   </div>
   <div class="card">
@@ -364,7 +387,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 </main>
 <footer>
   NCH Trojan Staff Hub · An unofficial staff resource · Dates from the 2026&ndash;27 building calendar &amp; athletic schedules<br>
-  <span style="color:#9A959E">Site updated 9 August 2026</span>
+  <span style="color:#9A959E">Site updated 12 August 2026</span>
 </footer>
 <script>
 (function(){
@@ -523,6 +546,61 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       if(lbl) lbl.textContent='Due today';
     }
   }
+})();
+
+/* what staff are wearing today - out-of-uniform themes, by date */
+(function(){
+  /* Kickoff Championship Week, from Ms. Craig-Roach. Themes as published on the
+     Calendar - keep the two in step if either changes. */
+  var THEMES={
+    '2026-08-10':['Warm-Up for the Win','Sweatpants, athletic pants, t-shirts, sweatshirts or warm-up gear.'],
+    '2026-08-11':['Team Jersey Day','A jersey or t-shirt representing your favourite team.'],
+    '2026-08-12':['All-Star Day','Sports apparel, athletic gear or an outfit inspired by your favourite sport.'],
+    '2026-08-13':['School Spirit Day','School colours, NCH spirit wear or Trojan gear.'],
+    '2026-08-14':['Championship Game Day','Best game-day gear — school colours, spirit wear, jerseys, hats, face paint.']
+  };
+  /* Spirit weeks that are on the calendar but whose daily themes have not been
+     published. Named, never invented - staff should ask rather than guess. */
+  var WEEKS=[
+    {from:'2026-10-05',to:'2026-10-10',name:'Homecoming Spirit Week'},
+    {from:'2026-11-02',to:'2026-11-06',name:'HBCU Spirit Week'}
+  ];
+  var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MON=['January','February','March','April','May','June','July','August',
+           'September','October','November','December'];
+  function key(d){
+    return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  }
+  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var tomorrow=new Date(today.getTime()); tomorrow.setDate(tomorrow.getDate()+1);
+  var k=key(today), strip=document.getElementById('todaystrip');
+  if(!strip) return;
+
+  var theme=THEMES[k], week=null;
+  if(!theme){
+    for(var i=0;i<WEEKS.length;i++){
+      if(k>=WEEKS[i].from && k<=WEEKS[i].to){ week=WEEKS[i]; break; }
+    }
+  }
+  if(!theme && !week){ strip.remove(); return; }
+
+  document.getElementById('todaylbl').textContent =
+    'Today — ' + DOW[today.getDay()] + ' ' + today.getDate() + ' ' + MON[today.getMonth()];
+  if(theme){
+    document.getElementById('todaytheme').textContent=theme[0];
+    document.getElementById('todaywear').textContent=theme[1];
+    var nxt=THEMES[key(tomorrow)];
+    if(nxt){
+      var n=document.getElementById('todaynext');
+      n.innerHTML='Tomorrow: <b>'+nxt[0]+'</b> — '+nxt[1];
+      n.hidden=false;
+    }
+  }else{
+    document.getElementById('todaytheme').textContent=week.name;
+    document.getElementById('todaywear').textContent=
+      'The daily themes for this week are not posted here yet — check with the office before you dress for it.';
+  }
+  strip.hidden=false;
 })();
 </script>
 </body>
