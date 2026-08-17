@@ -182,8 +182,41 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   font-size:16px;color:var(--red-deep);letter-spacing:.01em}
 .mday .slist .wh{flex:1;min-width:0;font-size:15.5px;line-height:1.4;color:var(--ink)}
 .mday .slist .wh .sub{display:block;font-size:13.5px;color:var(--gray);margin-top:2px}
+.mday .deliv{margin:16px 0 0;padding:14px 16px;background:var(--paper);
+  border:1px solid var(--line);border-radius:9px}
+.mday .deliv h3{margin:0 0 8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--red-deep)}
+.mday .dlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.mday .dlist li{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.mday .dlist .what{font-weight:700;font-size:15px;color:var(--ink)}
+.mday .dlist .what a{color:var(--red-deep)}
+.mday .dlist .how{flex:1;min-width:150px;font-size:13.5px;color:var(--gray)}
 .mday .foot{margin:14px 0 0;font-size:13.5px;color:var(--gray)}
 .mday .foot a{color:var(--red-deep);font-weight:600}
+.aweek{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--red);
+  border-radius:12px;padding:20px 24px;margin:0 0 22px}
+.aweek .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:#FDE7EB;
+  color:var(--red-deep);border:1px solid #F3C7CF;border-radius:20px;padding:4px 13px;margin-bottom:10px}
+.aweek h2{font-size:29px;font-weight:800;margin:0 0 12px;line-height:1.05;color:var(--ink)}
+.aweek .glist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.aweek .glist li{display:flex;align-items:baseline;gap:14px;padding:11px 0;
+  border-top:1px solid var(--line);flex-wrap:wrap}
+.aweek .glist li:first-child{border-top:0}
+.aweek .glist .gday{flex:0 0 92px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:16px;color:var(--red-deep)}
+.aweek .glist .gmain{flex:1;min-width:190px}
+.aweek .glist .gmain .gt{font-weight:700;font-size:15.5px;color:var(--ink)}
+.aweek .glist .gmain .gsub{display:block;font-size:13.5px;color:var(--gray);margin-top:2px}
+.aweek .glist .gtag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:3px 11px;
+  align-self:center}
+.aweek .glist .gtag.home{background:var(--gold-soft);color:var(--red-deep);border:1px solid var(--gold)}
+.aweek .glist .gtag.away{background:var(--paper);color:var(--gray);border:1px solid var(--line)}
+.aweek .foot{margin:14px 0 0;font-size:13.5px;color:var(--gray)}
+.aweek .foot a{color:var(--red-deep);font-weight:600}
+@media (max-width:620px){.aweek{padding:17px 17px}.aweek h2{font-size:25px}
+  .aweek .glist .gday{flex-basis:100%}}
 @media (max-width:620px){.mday{padding:17px 17px}.mday h2{font-size:25px}
   .mday .slist li{flex-direction:column;gap:2px}.mday .slist .tm{flex:none}}
 .due{background:var(--red);color:#fff;border-radius:12px;padding:22px 26px;margin:0 0 22px;
@@ -332,7 +365,17 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <h2 id="mdayh2">Monday Schedule</h2>
   <p class="intro" id="mdayintro"></p>
   <ul class="slist" id="mdaylist"></ul>
+  <div class="deliv" id="mdaydeliv" hidden>
+    <h3>Deliverables this week</h3>
+    <ul class="dlist" id="mdaydlist"></ul>
+  </div>
   <p class="foot" id="mdayfoot"></p>
+</div>
+<div class="aweek" id="aweekcard" hidden>
+  <span class="lbl" id="aweeklbl">This Week</span>
+  <h2>This Week in Athletics</h2>
+  <ul class="glist" id="aweeklist"></ul>
+  <p class="foot" id="aweekfoot"></p>
 </div>
 <div class="due" id="duebanner" data-due="2026-08-10" data-until="2026-08-10">
   <span class="lbl" id="duelbl">Due Monday</span>
@@ -739,21 +782,28 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 
 /* today's Monday schedule - shows on the main page only on the date itself.
    Keyed by date so it appears just for that day and clears on its own the next
-   morning. Times are the Meeting Monday day frame from the Calendar (#teams);
-   Aug 17 is Team Leads & Admin only - the full team cycle starts Aug 31. Add a
-   new dated entry here to surface a future Monday. */
+   morning. Each entry carries the meeting blocks and that week's staff
+   deliverables. Add a new dated entry here to surface a future Monday. */
 (function(){
   var SCHED={
     '2026-08-17':{
       lbl:'Today · Monday 17 August',
-      intro:'It’s a <b>Blended Learning Day</b> — students are working remotely, which is what frees the day up. Staff day <b>7:35 AM–3:15 PM</b>.',
+      intro:'<b>Blended Learning Day</b> — students are working remotely, which frees the day for staff meetings.',
       rows:[
-        ['7:35 AM','Staff day begins','Blended Learning Day — students remote'],
-        ['Morning','Team Leads &amp; Admin Meeting','Team leads meet with administration before the meeting cycle starts'],
+        ['7:45 AM','Staff Huddle','PAC'],
+        ['8:00–8:30 AM','Admin &amp; Front Office Meeting','Conference Room'],
+        ['8:30–9:15 AM','Admin &amp; Counselors Meeting','Conference Room'],
+        ['9:00–11:00 AM','Protected Plan Time',''],
         ['11:00–11:30 AM','Lunch',''],
-        ['3:15 PM','Staff day ends','']
+        ['11:30 AM–12:00 PM','Admin &amp; Safety Coaches Meeting','Conference Room'],
+        ['1:00–2:00 PM','Staff Meeting','PAC'],
+        ['2:30 PM','Staff Emergency Procedures Practice','']
       ],
-      foot:'The full Monday meeting cycle — Huddle, GLT/Content, Building Literacy, MTSS — begins <b>Mon 31 August</b>. See the <a href="calendar.html#teams">meeting blocks</a> on the Calendar.'
+      deliv:[
+        {what:'Weekly Lesson Plans',how:'Place in your folder in the Staff Google Drive',href:'https://drive.google.com/drive/folders/15N-Hx8poj8f4ZK86oZ9-PewngS82uG68'},
+        {what:'Weekly Grade',how:'One grade per week in Progress Book',href:''}
+      ],
+      foot:'Meeting blocks are also on the <a href="calendar.html#teams">Calendar</a>.'
     }
   };
 
@@ -785,8 +835,75 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     return '<li><span class="tm">'+r[0]+'</span><span class="wh">'+r[1]+
            (r[2]?'<span class="sub">'+r[2]+'</span>':'')+'</span></li>';
   }).join('');
+
+  var deliv=s.deliv||[], dwrap=document.getElementById('mdaydeliv'),
+      dlist=document.getElementById('mdaydlist');
+  if(deliv.length){
+    dlist.innerHTML=deliv.map(function(x){
+      var name=x.href
+        ? '<a href="'+x.href+'" target="_blank" rel="noopener">'+x.what+'</a>'
+        : x.what;
+      return '<li><span class="what">'+name+'</span>'+
+             (x.how?'<span class="how">'+x.how+'</span>':'')+'</li>';
+    }).join('');
+    dwrap.hidden=false;
+  }
+
   var foot=document.getElementById('mdayfoot');
   if(s.foot){ foot.innerHTML=s.foot; } else { foot.hidden=true; }
+  card.hidden=false;
+})();
+
+/* this week in athletics - a snapshot of the week's games on the main page.
+   Each block covers a date range and shows only while that week is current, so
+   it clears itself once the week is over. Gold badge = home, from the weekly
+   sheet in docs/. Add next week's block to keep it live. */
+(function(){
+  var WEEKS=[
+    {
+      from:'2026-08-17', to:'2026-08-22',
+      label:'Aug 17–22',
+      sheet:'docs/athletics-week-2026-08-17.pdf',
+      games:[
+        {day:'Mon 8/17',home:false,title:'Volleyball at Finneytown',
+         sub:'JV / Varsity · 5:30 / 6:30 PM · Finneytown HS · bus 4:15 PM'},
+        {day:'Wed 8/19',home:false,title:'Volleyball at DePaul Cristo Rey',
+         sub:'JV / Varsity · 5:30 / 6:30 PM · DePaul Cristo Rey HS · bus 4:15 PM'},
+        {day:'Thu 8/20',home:true,title:'Football vs Clark Montessori',
+         sub:'Middle School · 5:00 PM · Bruce Baarendse Memorial Stadium'}
+      ]
+    }
+  ];
+
+  var card=document.getElementById('aweekcard');
+  if(!card) return;
+
+  function eastDate(){
+    try{
+      var f=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',
+        year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+      var p={}; f.forEach(function(x){ p[x.type]=x.value; });
+      return p.year+'-'+p.month+'-'+p.day;
+    }catch(e){
+      var d=new Date();
+      return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    }
+  }
+
+  var td=eastDate(), w=null;
+  for(var i=0;i<WEEKS.length;i++){ if(td>=WEEKS[i].from && td<=WEEKS[i].to){ w=WEEKS[i]; break; } }
+  if(!w) return;                        // no current week - stay hidden
+
+  if(w.label) document.getElementById('aweeklbl').textContent='This Week · '+w.label;
+  document.getElementById('aweeklist').innerHTML=w.games.map(function(g){
+    return '<li><span class="gday">'+g.day+'</span>'+
+           '<span class="gmain"><span class="gt">'+g.title+'</span>'+
+           (g.sub?'<span class="gsub">'+g.sub+'</span>':'')+'</span>'+
+           '<span class="gtag '+(g.home?'home':'away')+'">'+(g.home?'Home':'Away')+'</span></li>';
+  }).join('');
+  var foot=document.getElementById('aweekfoot');
+  foot.innerHTML='Full fall schedules are on the <a href="sports.html">Athletics</a> page'+
+    (w.sheet?' · <a href="'+w.sheet+'" target="_blank" rel="noopener">this week’s sheet (PDF)</a>':'')+'.';
   card.hidden=false;
 })();
 
