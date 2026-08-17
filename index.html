@@ -423,6 +423,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       <li><a href="schedules.html">Bell Schedules &amp; Duty Roster</a><span class="note">Daily bell times, 2-hour delay &amp; PM dismissal posts</span></li>
       <li><a href="data.html">Building Data</a><span class="note">EOC, attendance, discipline, pass rates &amp; the <a href="data.html#finances">five-year forecast</a></span></li>
       <li><a href="policies.html">Classroom Policies</a><span class="note">Grading, late work, phones, passes &amp; emergencies</span></li>
+      <li><a href="policies.html#supports">IEP, 504, EL &amp; Gifted Supports</a><span class="note">Where the plans live, your responsibilities &amp; who to ask &mdash; <a href="https://samegoal.com/iep/a/nchcityschools.org" target="_blank" rel="noopener">SameGoal</a></span></li>
       <li><a href="directory.html">Staff Directory</a><span class="note">Phone extensions, counselors &amp; admin duties</span></li>
       <li><a href="staff.html">Timesheets &amp; Payroll</a><span class="note">Weekly and biweekly submission deadlines</span></li>
       <li><a href="calendar.html">First Semester Calendar</a><span class="note">PD days, grade buckets, spirit weeks, breaks &mdash; <a href="docs/district-calendar-2026-27.pdf" target="_blank" rel="noopener">district PDF</a></span></li>
@@ -704,10 +705,14 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     return;
   }
 
-  N.textContent=String(total);
-  U.textContent = total===1 ? 'day with students left' : 'days with students left';
-  SP.innerHTML = '<b>'+building+'</b> in the building &middot; <b>'+blended+
-                 '</b> blended Monday'+(blended===1?'':'s');
+  // Headline is the in-building day count - the number the district prints as
+  // S-147 and the one staff check against. Blended Mondays are shown under it,
+  // not added in, so the big number matches the official count.
+  N.textContent=String(building);
+  U.textContent = building===1 ? 'school day left' : 'school days left';
+  SP.innerHTML = blended>0
+    ? '<b>'+blended+'</b> blended Monday'+(blended===1?'':'s')+' remote on top'
+    : '';
 
   if(now.date<FIRST){
     FT.textContent='School year starts Tuesday 11 August. 147 days in the building, the way the district counts it.';
