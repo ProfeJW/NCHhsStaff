@@ -165,6 +165,27 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   border:1.5px solid var(--gold);border-radius:8px;padding:9px 16px}
 .today .more:hover{background:#F0DDB8}
 @media (max-width:620px){.today{padding:17px 17px}.today h2{font-size:25px}.today .wear{font-size:17px}}
+.mday{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--gold);
+  border-radius:12px;padding:20px 24px;margin:0 0 22px}
+.mday .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--gold-soft);
+  color:var(--red-deep);border:1px solid var(--gold);border-radius:20px;padding:4px 13px;
+  margin-bottom:10px}
+.mday h2{font-size:29px;font-weight:800;margin:0 0 6px;line-height:1.05;color:var(--ink)}
+.mday .intro{margin:0 0 14px;font-size:16px;line-height:1.45;color:var(--gray);max-width:64ch}
+.mday .intro b{color:var(--ink)}
+.mday .slist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.mday .slist li{display:flex;align-items:baseline;gap:14px;padding:9px 0;
+  border-top:1px solid var(--line)}
+.mday .slist li:first-child{border-top:0}
+.mday .slist .tm{flex:0 0 148px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:16px;color:var(--red-deep);letter-spacing:.01em}
+.mday .slist .wh{flex:1;min-width:0;font-size:15.5px;line-height:1.4;color:var(--ink)}
+.mday .slist .wh .sub{display:block;font-size:13.5px;color:var(--gray);margin-top:2px}
+.mday .foot{margin:14px 0 0;font-size:13.5px;color:var(--gray)}
+.mday .foot a{color:var(--red-deep);font-weight:600}
+@media (max-width:620px){.mday{padding:17px 17px}.mday h2{font-size:25px}
+  .mday .slist li{flex-direction:column;gap:2px}.mday .slist .tm{flex:none}}
 .due{background:var(--red);color:#fff;border-radius:12px;padding:22px 26px;margin:0 0 22px;
   border:2px solid var(--red-deep)}
 .due .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
@@ -305,6 +326,13 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <p class="wear" id="todaywear"></p>
   <p class="nx" id="todaynext" hidden></p>
   <a class="more" href="calendar.html#kickoff">All the themes &rarr;</a>
+</div>
+<div class="mday" id="mdaycard" hidden>
+  <span class="lbl" id="mdaylbl">Today</span>
+  <h2 id="mdayh2">Monday Schedule</h2>
+  <p class="intro" id="mdayintro"></p>
+  <ul class="slist" id="mdaylist"></ul>
+  <p class="foot" id="mdayfoot"></p>
 </div>
 <div class="due" id="duebanner" data-due="2026-08-10" data-until="2026-08-10">
   <span class="lbl" id="duelbl">Due Monday</span>
@@ -702,6 +730,59 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   }
   tickOnce(); TK.hidden=false; setInterval(tickOnce,1000);
   box.hidden=false;
+})();
+
+/* today's Monday schedule - shows on the main page only on the date itself.
+   Keyed by date so it appears just for that day and clears on its own the next
+   morning. Times are the Meeting Monday day frame from the Calendar (#teams);
+   Aug 17 is Team Leads & Admin only - the full team cycle starts Aug 31. Add a
+   new dated entry here to surface a future Monday. */
+(function(){
+  var SCHED={
+    '2026-08-17':{
+      lbl:'Today · Monday 17 August',
+      intro:'It’s a <b>Blended Learning Day</b> — students are working remotely, which is what frees the day up. Staff day <b>7:35 AM–3:15 PM</b>.',
+      rows:[
+        ['7:35 AM','Staff day begins','Blended Learning Day — students remote'],
+        ['Morning','Team Leads &amp; Admin Meeting','Team leads meet with administration before the meeting cycle starts'],
+        ['11:00–11:30 AM','Lunch',''],
+        ['3:15 PM','Staff day ends','']
+      ],
+      foot:'The full Monday meeting cycle — Huddle, GLT/Content, Building Literacy, MTSS — begins <b>Mon 31 August</b>. See the <a href="calendar.html#teams">meeting blocks</a> on the Calendar.'
+    }
+  };
+
+  var card=document.getElementById('mdaycard');
+  if(!card) return;
+
+  // Read the date in Cincinnati, not on the device, so a Chromebook left on
+  // another zone can't show it a day early or late.
+  function eastDate(){
+    try{
+      var f=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',
+        year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+      var p={}; f.forEach(function(x){ p[x.type]=x.value; });
+      return p.year+'-'+p.month+'-'+p.day;
+    }catch(e){
+      var d=new Date();
+      return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    }
+  }
+
+  var s=SCHED[eastDate()];
+  if(!s) return;                        // not one of the dated schedules - stay hidden
+
+  if(s.lbl) document.getElementById('mdaylbl').textContent=s.lbl;
+  if(s.title) document.getElementById('mdayh2').textContent=s.title;
+  document.getElementById('mdayintro').innerHTML=s.intro||'';
+  var list=document.getElementById('mdaylist');
+  list.innerHTML=s.rows.map(function(r){
+    return '<li><span class="tm">'+r[0]+'</span><span class="wh">'+r[1]+
+           (r[2]?'<span class="sub">'+r[2]+'</span>':'')+'</span></li>';
+  }).join('');
+  var foot=document.getElementById('mdayfoot');
+  if(s.foot){ foot.innerHTML=s.foot; } else { foot.hidden=true; }
+  card.hidden=false;
 })();
 
 /* what staff are wearing today - out-of-uniform themes, by date */
