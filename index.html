@@ -217,6 +217,25 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .aweek .foot a{color:var(--red-deep);font-weight:600}
 @media (max-width:620px){.aweek{padding:17px 17px}.aweek h2{font-size:25px}
   .aweek .glist .gday{flex-basis:100%}}
+.subcov{background:var(--card);border:1.5px solid var(--line);border-top:5px solid var(--red);
+  border-radius:12px;padding:20px 24px;margin:0 0 22px}
+.subcov .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--red);
+  color:#fff;border-radius:20px;padding:4px 13px;margin-bottom:10px}
+.subcov h2{font-size:27px;font-weight:800;margin:0 0 12px;line-height:1.05;color:var(--ink)}
+.subcov .subtbl{width:100%;border-collapse:collapse;font-size:15px}
+.subcov .subtbl th{text-align:left;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);
+  border-bottom:1.5px solid var(--line);padding:6px 10px 6px 0}
+.subcov .subtbl td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.subcov .subtbl .pd{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--red-deep);
+  white-space:nowrap}
+.subcov .subtbl .who{font-weight:700;color:var(--ink)}
+.subcov .posted{margin:10px 0 0;font-size:13px;color:var(--gray)}
+.subcov .pending{margin:0;font-size:15.5px;color:var(--gray);line-height:1.45}
+.subcov .src{margin:14px 0 0;font-size:13.5px;color:var(--gray)}
+.subcov .src a{color:var(--red-deep);font-weight:600}
+@media (max-width:620px){.subcov{padding:17px 17px}.subcov h2{font-size:24px}}
 @media (max-width:620px){.mday{padding:17px 17px}.mday h2{font-size:25px}
   .mday .slist li{flex-direction:column;gap:2px}.mday .slist .tm{flex:none}}
 .due{background:var(--red);color:#fff;border-radius:12px;padding:22px 26px;margin:0 0 22px;
@@ -352,6 +371,12 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     <button type="button" class="clr" id="sclr" aria-label="Clear search">&times;</button>
   </form>
   <div class="sres" id="sres" role="listbox" aria-label="Search results"></div>
+</div>
+<div class="subcov" id="subcard" hidden>
+  <span class="lbl" id="sublbl">Today &middot; Sub Coverage</span>
+  <h2>Today&rsquo;s Sub Coverage</h2>
+  <div id="subbody"></div>
+  <p class="src" id="subsrc"></p>
 </div>
 <div class="today" id="todaystrip" hidden>
   <span class="lbl" id="todaylbl">Today</span>
@@ -904,6 +929,62 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   var foot=document.getElementById('aweekfoot');
   foot.innerHTML='Full fall schedules are on the <a href="sports.html">Athletics</a> page'+
     (w.sheet?' · <a href="'+w.sheet+'" target="_blank" rel="noopener">this week’s sheet (PDF)</a>':'')+'.';
+  card.hidden=false;
+})();
+
+/* today's sub coverage - the day's internal/sub coverage on the main page.
+   Shows on weekdays. Paste the day's assignments as a dated entry in COVERAGE
+   and they render on that date; with no entry it still shows and points staff
+   at the live Daily Tracker. Clears itself when the date passes. */
+(function(){
+  // Where the full, always-current coverage lives (Daily Tracker sheets).
+  var SOURCE={
+    hs:'https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit',
+    ms:'https://docs.google.com/spreadsheets/d/1NCm8rumpqSOX9o0niyvLugbZMEiuZGgBWuhx-KprnHA/edit'
+  };
+  // Add one entry per day the coverage is posted. Example shape:
+  //   '2026-08-19':{posted:'7:20 AM', rows:[
+  //     {period:'1st', cls:'Algebra I · Rm 214', who:'Ms. Smith'},
+  //     {period:'3rd', cls:'Biology · Rm 108',   who:'Mr. Jones'}
+  //   ]},
+  var COVERAGE={
+  };
+
+  var card=document.getElementById('subcard');
+  if(!card) return;
+
+  function eastDate(){
+    try{
+      var f=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',
+        year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+      var p={}; f.forEach(function(x){ p[x.type]=x.value; });
+      return p.year+'-'+p.month+'-'+p.day;
+    }catch(e){
+      var d=new Date();
+      return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    }
+  }
+
+  var today=eastDate(), pt=today.split('-');
+  var dow=new Date(Date.UTC(+pt[0],+pt[1]-1,+pt[2])).getUTCDay();
+  if(dow===0 || dow===6) return;        // weekend - no coverage, stay hidden
+
+  var e=COVERAGE[today], body=document.getElementById('subbody');
+  if(e && e.rows && e.rows.length){
+    var rows=e.rows.map(function(r){
+      return '<tr><td class="pd">'+r.period+'</td><td>'+(r.cls||'')+
+             '</td><td class="who">'+(r.who||'')+'</td></tr>';
+    }).join('');
+    body.innerHTML='<table class="subtbl"><thead><tr><th>Period</th><th>Class</th>'+
+      '<th>Covered by</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      (e.posted?'<p class="posted">Posted '+e.posted+'</p>':'');
+  }else{
+    body.innerHTML='<p class="pending">Today’s assignments aren’t posted here yet — '+
+      'they’ll appear here once added. In the meantime, the live sheet has coverage and absences.</p>';
+  }
+  document.getElementById('subsrc').innerHTML='Full coverage, absences &amp; consequences: '+
+    '<a href="'+SOURCE.hs+'" target="_blank" rel="noopener">Daily Tracker — HS</a> &middot; '+
+    '<a href="'+SOURCE.ms+'" target="_blank" rel="noopener">MS</a>.';
   card.hidden=false;
 })();
 
