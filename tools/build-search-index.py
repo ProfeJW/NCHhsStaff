@@ -57,6 +57,7 @@ DOC_TITLES = {
     'champs-poster.pdf': 'CHAMPS Poster',
     'classroom-expectations-posters.pdf': 'Classroom Expectations Posters',
     'transportation-request-form.pdf': 'Transportation Request Form',
+    'ms-extension-list-2026-27.pdf': 'MS Phone List 2026-27',
 }
 
 SKIP_IDS = {'navtoggle', 'sitenav', 'countdown', 'expandall'}
