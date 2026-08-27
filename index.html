@@ -164,6 +164,10 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   text-decoration:none;background:var(--gold-soft);color:var(--red-deep);
   border:1.5px solid var(--gold);border-radius:8px;padding:9px 16px}
 .today .more:hover{background:#F0DDB8}
+.today .acts{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.today .acts .more{margin-top:12px}
+.today .more.ghost{background:transparent}
+.today .more.ghost:hover{background:var(--gold-soft)}
 @media (max-width:620px){.today{padding:17px 17px}.today h2{font-size:25px}.today .wear{font-size:17px}}
 .grade{border-left-color:var(--red)}
 .grade .lbl{background:#FBE9EC;color:var(--red-deep);border-color:var(--red)}
@@ -351,7 +355,10 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <h2 id="gradehead"></h2>
   <p class="wear" id="gradesub"></p>
   <p class="nx" id="gradethen" hidden></p>
-  <a class="more" href="calendar.html">All grading dates &rarr;</a>
+  <p class="acts">
+    <a class="more" href="https://central.hccanet.org/" target="_blank" rel="noopener">Open Progress Book &rarr;</a>
+    <a class="more ghost" href="calendar.html">All grading dates</a>
+  </p>
 </div>
 
 <section class="hero">
