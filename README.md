@@ -33,7 +33,8 @@ page. It is idempotent — re-run it after adding a new page.
 
 - **Scanned PDFs are not searchable.** A PDF with no text layer has nothing to
   index. The script prints a warning naming any it finds. `district-calendar-2024-25.pdf`
-  is currently the only one.
+  and `ms-extension-list-2026-27.pdf` are currently the two. The middle school list is
+  transcribed into `directory.html`, so its names and extensions are still searchable.
 - **Deep links into PDFs** use `#page=N`. Desktop browsers and most mobile ones
   honour it; a few third-party mobile PDF viewers ignore it and open page 1.
 

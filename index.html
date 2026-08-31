@@ -213,6 +213,12 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   border:1.5px solid var(--gold);border-radius:8px;padding:9px 16px}
 .today .more:hover{background:#F0DDB8}
 @media (max-width:620px){.today{padding:17px 17px}.today h2{font-size:25px}.today .wear{font-size:17px}}
+.grade{border-left-color:var(--red)}
+.grade .lbl{background:#FBE9EC;color:var(--red-deep);border-color:var(--red)}
+.grade .when{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--red-deep)}
+.q.next{border-top-color:var(--gold);background:var(--gold-soft)}
+.q .soon{display:block;font-size:12.5px;color:var(--gray);font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .due{background:var(--red);color:#fff;border-radius:12px;padding:22px 26px;margin:0 0 22px;
   border:2px solid var(--red-deep)}
 .due .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
@@ -437,6 +443,14 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <p class="note"><b>Individual student meetings are listed by time only.</b> The memo names the student for each IEP, 504, placement and RIEP meeting. This site is public, and a name against one of those discloses that student&rsquo;s status to anyone who opens the page &mdash; so the times are here and the names are not. If you are in one, it is on your own calendar and in the memo Ms.&nbsp;Craig-Roach sends out.</p>
 </div>
 
+<div class="today grade" id="gradestrip" hidden>
+  <span class="lbl" id="gradelbl">Next up</span>
+  <h2 id="gradehead"></h2>
+  <p class="wear" id="gradesub"></p>
+  <p class="nx" id="gradethen" hidden></p>
+  <a class="more" href="calendar.html">All grading dates &rarr;</a>
+</div>
+
 <section class="hero">
   <div class="herotext">
     <h1>Welcome back,<br><span>Trojans</span></h1>
@@ -469,10 +483,10 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 </div>
 
 <div class="qgrid">
-  <div class="q"><span class="lbl">Q1 Ends</span><span class="val">Oct 9</span></div>
-  <div class="q"><span class="lbl">Q2 Ends</span><span class="val">Dec 18</span></div>
-  <div class="q"><span class="lbl">Q3 Ends</span><span class="val">Mar 5</span></div>
-  <div class="q"><span class="lbl">Q4 Ends</span><span class="val">May 20</span></div>
+  <div class="q" data-qend="2026-10-09"><span class="lbl">Q1 Ends</span><span class="val">Oct 9</span></div>
+  <div class="q" data-qend="2026-12-18"><span class="lbl">Q2 Ends</span><span class="val">Dec 18</span></div>
+  <div class="q" data-qend="2027-03-05"><span class="lbl">Q3 Ends</span><span class="val">Mar 5</span></div>
+  <div class="q" data-qend="2027-05-20"><span class="lbl">Q4 Ends</span><span class="val">May 20</span></div>
 </div>
 
 <div class="two">
@@ -643,6 +657,74 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       e.preventDefault(); q.focus();
     }
   });
+})();
+
+/* the next grading deadline, and which quarter is closing
+   ------------------------------------------------------------------
+   Dates are the building's, straight off docs/nch-hs-calendar-2026-27.pdf.
+   Second-semester interim and report-card windows are not in that PDF, so
+   only the two quarter ends are listed for the spring - add the buckets
+   here when the building publishes them. */
+(function(){
+  var DATES=[
+    ['2026-09-08','opens', 'Interim grades open',        'Interim grade bucket opens'],
+    ['2026-09-14','closes','Interim grades due',         'Interim grade bucket closes'],
+    ['2026-10-08','opens', 'Q1 report cards open',       '1st quarter report card bucket opens'],
+    ['2026-10-09','qend',  'First quarter ends',         'End of the first quarter'],
+    ['2026-10-12','closes','Q1 report cards due',        '1st quarter report card bucket closes'],
+    ['2026-11-10','opens', 'Interim grades open',        'Interim grade bucket opens'],
+    ['2026-11-16','closes','Interim grades due',         'Interim grade bucket closes'],
+    ['2026-12-14','opens', 'Q2 report cards open',       '2nd quarter report card bucket opens'],
+    ['2026-12-18','qend',  'Second quarter ends',        'End of the second quarter, and report cards are due the same day'],
+    ['2027-03-05','qend',  'Third quarter ends',         'End of the third quarter'],
+    ['2027-05-20','qend',  'Fourth quarter ends',        'End of the fourth quarter']
+  ];
+  var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      MON=['January','February','March','April','May','June','July',
+           'August','September','October','November','December'];
+
+  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  function asDate(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function pretty(d){return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()];}
+  function daysOff(d){return Math.round((d-today)/86400000);}
+  function inWords(n){return n===0?'today':n===1?'tomorrow':'in '+n+' days';}
+
+  var strip=document.getElementById('gradestrip');
+  if(strip){
+    var next=null, after=null;
+    for(var i=0;i<DATES.length;i++){
+      if(asDate(DATES[i][0])>=today){ next=DATES[i]; after=DATES[i+1]||null; break; }
+    }
+    if(next){
+      var d=asDate(next[0]), n=daysOff(d);
+      document.getElementById('gradelbl').textContent =
+        n===0?'Today':next[1]==='closes'?'Grades due':'Next up';
+      document.getElementById('gradehead').textContent = next[2];
+      document.getElementById('gradesub').innerHTML =
+        next[3]+' &mdash; <span class="when">'+pretty(d)+'</span>, '+inWords(n)+'.';
+      if(after){
+        var ad=asDate(after[0]);
+        var then=document.getElementById('gradethen');
+        then.innerHTML='Then: <b>'+after[2]+'</b> on '+pretty(ad)+'.';
+        then.hidden=false;
+      }
+      strip.hidden=false;
+    }
+  }
+
+  // mark the quarter that closes next
+  var qs=document.querySelectorAll('.q[data-qend]');
+  for(var j=0;j<qs.length;j++){
+    var qd=asDate(qs[j].getAttribute('data-qend'));
+    if(qd>=today){
+      qs[j].classList.add('next');
+      var tag=document.createElement('span');
+      tag.className='soon';
+      tag.textContent=inWords(daysOff(qd));
+      qs[j].appendChild(tag);
+      break;
+    }
+  }
 })();
 
 /* anything carrying data-until disappears once that date has passed */
