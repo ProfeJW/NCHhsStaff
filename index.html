@@ -86,35 +86,6 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   color:var(--red-deep);border:1.5px solid var(--line);border-radius:7px;padding:9px 14px}
 .tools a:hover{background:var(--gold-soft);border-color:var(--gold)}
 
-/* the rest of the week, folded away */
-.rest{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 22px}
-.rest>summary{list-style:none;cursor:pointer;padding:14px 20px;display:flex;
-  align-items:baseline;gap:10px}
-.rest>summary h2{flex:0 0 auto}
-.rest>summary .sub{flex:1;min-width:0}
-.rest>summary::-webkit-details-marker{display:none}
-.rest>summary h2{font-size:21px;font-weight:800}
-.rest>summary .sub{font-size:14px;color:var(--gray);line-height:1.35}
-.rest>summary::after{content:'+';margin-left:auto;color:var(--red);font-size:26px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:1}
-.rest[open]>summary::after{content:'\2013'}
-.rest>summary:hover{background:var(--paper)}
-.rest .inner{padding:4px 20px 20px}
-.rest .lead{margin:0 0 4px;font-size:14.5px;color:var(--gray)}
-.rest .lead b{color:var(--ink)}
-.day{border:1px solid var(--line);border-radius:9px;padding:13px 15px;margin-top:14px}
-.day h3{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
-  font-size:19px;font-weight:800;margin-bottom:6px}
-.day .theme{font-family:'Barlow',sans-serif;font-weight:600;font-size:14px;
-  text-transform:none;letter-spacing:0;color:var(--red-deep)}
-.reqs{background:var(--paper);border:1px solid var(--line);border-radius:9px;
-  padding:14px 16px;margin-top:16px}
-.reqs h3{font-size:18px;font-weight:800;margin:0 0 8px}
-.reqs ul{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
-.reqs b{font-weight:600}
-.rest .note{margin:14px 0 0;font-size:13px;color:var(--gray)}
-.rest .note b{color:var(--ink)}
-
 footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   text-align:center;padding:18px 20px 30px}
 
@@ -123,7 +94,6 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   .now h2{font-size:27px}
   .sched li{flex-direction:column;gap:2px}
   .sched .tm{flex:none}
-  .rest .inner{padding:4px 15px 16px}
 }
 
 /* mobile nav toggle */
@@ -235,58 +205,34 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     <a href="https://drive.google.com/drive/folders/0ABNYRc6VZbI0Uk9PVA" target="_blank" rel="noopener">Staff Google Folder</a>
   </div>
 
-<!-- This week's memo. Everything the page shows is read out of here:
-     .day[data-day="YYYY-MM-DD"]  one block per school day, in date order
-     data-dress="…"               add to a day that is a staff out-of-uniform day
-     li.priv                      individual student meetings - times only, never names
-     Today's block is lifted out and shown on its own above; days already past are
-     dropped. Replacing the memo each week is the only edit this page needs. -->
-<details class="rest" id="week">
-  <summary><h2>The Rest of the Week</h2><span class="sub">31 August &ndash; 4 September</span></summary>
-  <div class="inner">
-    <p class="lead">Formal <b>Monday Meetings and rotations begin</b> this week.</p>
-      <div class="days">
-      <div class="day" data-day="2026-08-31">
-        <h3>Mon 31 Aug<span class="theme">Meeting Monday &middot; Blended Learning Day</span></h3>
-        <ol class="sched"><li><span class="tm">7:45 AM</span><span class="wh"><b>Staff Huddle</b><span class="rm">PAC</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>GLT Meetings</b><span class="rm">9th &mdash; Room 036 &middot; 10th &mdash; Room 131 &middot; 11th/12th &mdash; Room 132</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>Monday Programming Meeting</b><span class="rm">Room 022</span></span></li><li><span class="tm">9:00&ndash;10:00</span><span class="wh"><b>Admin &amp; Scarlet Oaks Meeting</b><span class="rm">Conference Room</span></span></li><li><span class="tm">9:00&ndash;11:00</span><span class="wh"><b>Protected Plan Time</b></span></li><li><span class="tm">10:30&ndash;11:00</span><span class="wh"><b>Cafeteria Team Meeting</b><span class="rm">Cafeteria</span></span></li><li><span class="tm">11:00&ndash;11:30</span><span class="wh"><b>Lunch</b></span></li><li><span class="tm">11:30&ndash;1:00</span><span class="wh"><b>Literacy Vertical Meeting</b><span class="rm">Middle School &mdash; Room 218</span></span></li><li><span class="tm">1:00&ndash;2:00</span><span class="wh"><b>District Attendance Meeting</b><span class="rm">Zoom</span></span></li><li><span class="tm">2:00&ndash;3:00</span><span class="wh"><b>MTSS Academic Meeting</b><span class="rm">Room 033</span></span></li><li class="priv"><span class="tm">11:00 &middot; 11:30 &middot; 12:00 &middot; 12:30</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two IEPs, a placement and one other &mdash; names withheld, see note below</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball vs. Hughes</b><span class="rm">Home</span></span></li></ol>
-      </div>
-      <div class="day" data-day="2026-09-01">
-        <h3>Tue 1 Sep<span class="theme">NCH Community Walk Day</span></h3>
-        <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:30 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">A 504 review and an IEP &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Mt. Healthy</b><span class="rm">Away</span></span></li></ol>
-      </div>
-      <div class="day" data-day="2026-09-02">
-        <h3>Wed 2 Sep</h3>
-        <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:00 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">An Oaks AIEP and an IEP &mdash; names withheld</span></span></li></ol>
-      </div>
-      <div class="day" data-day="2026-09-03" data-dress="Staff College Shirt Day">
-        <h3>Thu 3 Sep<span class="theme">Staff College Shirt Day</span></h3>
-        <ol class="sched"><li><span class="tm">All day</span><span class="wh"><b>Bridge Program</b><span class="rm">6th Bell &mdash; PAC</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">10:00&ndash;11:30</span><span class="wh"><b>Admin at Expulsion Hearings</b></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:25 &middot; 10:15 &middot; 10:55 &middot; 1:40</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two placements, an RIEP and a 504 &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Clark</b><span class="rm">Away</span></span></li></ol>
-      </div>
-      <div class="day" data-day="2026-09-04" data-dress="Staff NCH Gear Day &amp; Jeans">
-        <h3>Fri 4 Sep<span class="theme">Staff NCH Gear Day &amp; Jeans</span></h3>
-        <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="game"><span class="tm">7:00 PM</span><span class="wh"><b>Varsity Football at Bethel Tate</b><span class="rm">Away</span></span></li></ol>
-      </div>
-      </div>
-      <div class="reqs">
-        <h3>Every day this week</h3>
-        <ul>
-          <li><b>Arrival</b> &mdash; 7:35 AM. Running late? Tell admin <b>and</b> Ms.&nbsp;Bratchette. Badge in at the cafe or front office doors.</li>
-          <li><b>Morning</b> &mdash; in the hallways 8:05&ndash;8:15, helping students find where they are going.</li>
-          <li><b>Visibility</b> &mdash; in the hallways between <b>every</b> bell.</li>
-          <li><b>Grades</b> &mdash; one grade per week, required.</li>
-          <li><b>CLD</b> &mdash; student handbook lessons every day this week.</li>
-          <li><b>Passes</b> &mdash; none in the first or last ten minutes of class, and none during CLD.</li>
-          <li><b>Dress code</b> &mdash; everyone enforces. Send to <b>Ms.&nbsp;JJ</b> after 8:30 AM &mdash; call first.</li>
-          <li><b>Technology</b> &mdash; everyone enforces. Violations and daily loaners go through Ms.&nbsp;JJ &mdash; call first.</li>
-          <li><b>Tardies</b> &mdash; everyone enforces. Send to Ms.&nbsp;JJ.</li>
-        </ul>
-      </div>
-    <p class="note"><b>Individual student meetings are listed by time only.</b> The memo names the
-      student for each IEP, 504, placement and RIEP meeting. This site is public, and a name against
-      one of those discloses that student&rsquo;s status to anyone who opens the page &mdash; so the
-      times are here and the names are not.</p>
+<!-- This week's staff memo, held as data - none of it renders. The page shows
+     today's block and nothing else; the rest is here so the page is still right
+     tomorrow without anyone touching it. Paste the new memo each week and stop.
+       .day[data-day="YYYY-MM-DD"]  one block per school day, in date order
+       data-dress="..."             on a day that is a staff out-of-uniform day
+       li.priv                      student meetings - times only, never names -->
+<template class="weekdata">
+  <div class="day" data-day="2026-08-31">
+    <h3>Mon 31 Aug<span class="theme">Meeting Monday &middot; Blended Learning Day</span></h3>
+    <ol class="sched"><li><span class="tm">7:45 AM</span><span class="wh"><b>Staff Huddle</b><span class="rm">PAC</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>GLT Meetings</b><span class="rm">9th &mdash; Room 036 &middot; 10th &mdash; Room 131 &middot; 11th/12th &mdash; Room 132</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>Monday Programming Meeting</b><span class="rm">Room 022</span></span></li><li><span class="tm">9:00&ndash;10:00</span><span class="wh"><b>Admin &amp; Scarlet Oaks Meeting</b><span class="rm">Conference Room</span></span></li><li><span class="tm">9:00&ndash;11:00</span><span class="wh"><b>Protected Plan Time</b></span></li><li><span class="tm">10:30&ndash;11:00</span><span class="wh"><b>Cafeteria Team Meeting</b><span class="rm">Cafeteria</span></span></li><li><span class="tm">11:00&ndash;11:30</span><span class="wh"><b>Lunch</b></span></li><li><span class="tm">11:30&ndash;1:00</span><span class="wh"><b>Literacy Vertical Meeting</b><span class="rm">Middle School &mdash; Room 218</span></span></li><li><span class="tm">1:00&ndash;2:00</span><span class="wh"><b>District Attendance Meeting</b><span class="rm">Zoom</span></span></li><li><span class="tm">2:00&ndash;3:00</span><span class="wh"><b>MTSS Academic Meeting</b><span class="rm">Room 033</span></span></li><li class="priv"><span class="tm">11:00 &middot; 11:30 &middot; 12:00 &middot; 12:30</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two IEPs, a placement and one other &mdash; names withheld, see note below</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball vs. Hughes</b><span class="rm">Home</span></span></li></ol>
   </div>
-</details>
+  <div class="day" data-day="2026-09-01">
+    <h3>Tue 1 Sep<span class="theme">NCH Community Walk Day</span></h3>
+    <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:30 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">A 504 review and an IEP &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Mt. Healthy</b><span class="rm">Away</span></span></li></ol>
+  </div>
+  <div class="day" data-day="2026-09-02">
+    <h3>Wed 2 Sep</h3>
+    <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:00 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">An Oaks AIEP and an IEP &mdash; names withheld</span></span></li></ol>
+  </div>
+  <div class="day" data-day="2026-09-03" data-dress="Staff College Shirt Day">
+    <h3>Thu 3 Sep<span class="theme">Staff College Shirt Day</span></h3>
+    <ol class="sched"><li><span class="tm">All day</span><span class="wh"><b>Bridge Program</b><span class="rm">6th Bell &mdash; PAC</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">10:00&ndash;11:30</span><span class="wh"><b>Admin at Expulsion Hearings</b></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:25 &middot; 10:15 &middot; 10:55 &middot; 1:40</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two placements, an RIEP and a 504 &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Clark</b><span class="rm">Away</span></span></li></ol>
+  </div>
+  <div class="day" data-day="2026-09-04" data-dress="Staff NCH Gear Day &amp; Jeans">
+    <h3>Fri 4 Sep<span class="theme">Staff NCH Gear Day &amp; Jeans</span></h3>
+    <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="game"><span class="tm">7:00 PM</span><span class="wh"><b>Varsity Football at Bethel Tate</b><span class="rm">Away</span></span></li></ol>
+  </div>
+</template>
 
 </main>
 <footer>
@@ -437,7 +383,8 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 
   var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate()),
       k=key(today);
-  var days=[].slice.call(document.querySelectorAll('.day[data-day]'));
+  var tpl=document.querySelector('template.weekdata');
+  var days=tpl?[].slice.call(tpl.content.querySelectorAll('.day[data-day]')):[];
 
   // read the dress days before any of the day blocks get moved or dropped
   var dress=days.filter(function(el){return el.getAttribute('data-dress');})
@@ -457,10 +404,8 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     var theme=mine.querySelector('.theme');
     if(theme){ sub.textContent=theme.textContent; sub.hidden=false; }
     var ol=mine.querySelector('.sched');
-    if(ol) body.appendChild(ol);
+    if(ol) body.appendChild(document.importNode(ol,true));
     if(body.querySelector('li.priv')) note.hidden=false;
-    mine.parentNode.removeChild(mine);
-    days.splice(days.indexOf(mine),1);
   }else{
     var p=document.createElement('p'); p.className='none';
     var w=today.getDay(), first=days.length?days[0].getAttribute('data-day'):null,
@@ -471,7 +416,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     }
     if(first && k<first){
       p.innerHTML='Nothing scheduled yet. This week&rsquo;s memo starts <b>'+
-        pretty(fromKey(first))+'</b> \u2014 it is in the fold-away below.';
+        pretty(fromKey(first))+'</b>.';
     }else if(last && k>last){
       p.innerHTML='No memo posted for this week yet. The last one ran to <b>'+
         pretty(fromKey(last))+'</b> \u2014 check the <a href="https://drive.google.com/drive/folders/0ABNYRc6VZbI0Uk9PVA" target="_blank" rel="noopener">staff folder</a>.';
@@ -482,25 +427,6 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       p.textContent='Nothing on the memo for today.';
     }
     body.appendChild(p);
-  }
-
-  /* --- the rest of the week: only the days still to come ----------- */
-  var left=[];
-  days.forEach(function(el){
-    if(el.getAttribute('data-day') < k){ el.parentNode.removeChild(el); return; }
-    left.push(el);
-  });
-  var det=document.getElementById('week'),
-      dsub=det.querySelector('summary .sub'),
-      dhead=det.querySelector('summary h2');
-  if(left.length){
-    var a=fromKey(left[0].getAttribute('data-day')),
-        b=fromKey(left[left.length-1].getAttribute('data-day'));
-    dsub.textContent = left.length===1 ? pretty(a)
-      : pretty(a)+' \u2013 '+pretty(b);
-  }else{
-    dhead.textContent='This Week';
-    dsub.textContent='Standing expectations';
   }
 
   /* --- the next staff out-of-uniform day --------------------------- */
