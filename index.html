@@ -165,6 +165,57 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   border:1.5px solid var(--gold);border-radius:8px;padding:9px 16px}
 .today .more:hover{background:#F0DDB8}
 @media (max-width:620px){.today{padding:17px 17px}.today h2{font-size:25px}.today .wear{font-size:17px}}
+/* TODAY'S SCHEDULE — the standing weekly routine plus whatever the reader
+   pastes from the weekly memo. Pasted items live in this browser only; see the
+   privacy note in the markup and in README.md. */
+.sched{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--red);
+  border-radius:12px;padding:20px 24px;margin:0 0 22px}
+.sched .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:#FBE9EC;
+  color:var(--red-deep);border:1px solid var(--red);border-radius:20px;padding:4px 13px;
+  margin-bottom:10px}
+.sched .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.sched .dt{font-family:'Barlow Condensed','Arial Narrow',sans-serif;text-transform:uppercase;
+  letter-spacing:.02em;font-size:29px;font-weight:800;margin:0 0 10px;line-height:1.05}
+.sched .dress[hidden]{display:none}
+.sched .dress{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold-soft);
+  color:var(--red-deep);border:1px solid var(--gold);border-radius:20px;padding:5px 13px}
+.sched ol{list-style:none;margin:0;padding:0}
+.sched li{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:9px 0;
+  border-top:1px solid var(--line)}
+.sched li:first-child{border-top:0}
+.sched .t{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;
+  letter-spacing:.05em;color:var(--gray);padding-top:2px}
+.sched li.mine .t{color:var(--red-deep)}
+.sched li.mine .w{font-weight:700}
+.sched .w{font-size:17px;line-height:1.35}
+.sched .n{display:block;font-size:14.5px;color:var(--gray);line-height:1.4;margin-top:2px;font-weight:400}
+.sched .none{margin:0;color:var(--gray);font-size:17px}
+.sched .btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;background:var(--gold-soft);color:var(--red-deep);
+  border:1.5px solid var(--gold);border-radius:8px;padding:8px 15px;cursor:pointer}
+.sched .btn:hover{background:#F0DDB8}
+.sched .btn.quiet{background:transparent;border-color:var(--line);color:var(--gray)}
+.sched details{margin-top:14px}
+.sched summary{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--gray);cursor:pointer}
+.sched details ul{margin:10px 0 0 18px;padding:0}
+.sched details li{display:list-item;grid-template-columns:none;border:0;padding:0;margin-bottom:5px;
+  font-size:15px;line-height:1.45}
+.sched .edit{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.sched .priv{background:var(--gold-soft);border-left:4px solid var(--gold);border-radius:6px;
+  padding:11px 13px;margin:0 0 12px;font-size:14.5px;line-height:1.5}
+.sched .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.sched select{font-family:inherit;font-size:15px;padding:6px 9px;border:1.5px solid var(--line);
+  border-radius:7px;background:var(--card);color:var(--ink)}
+.sched textarea{width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;
+  line-height:1.6;padding:11px;border:1.5px solid var(--line);border-radius:8px;
+  background:var(--card);color:var(--ink);resize:vertical}
+.sched .saved{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--gray)}
+@media (max-width:620px){.sched{padding:17px 17px}.sched .dt{font-size:25px}
+  .sched li{grid-template-columns:80px 1fr;gap:10px}}
 .grade{border-left-color:var(--red)}
 .grade .lbl{background:#FBE9EC;color:var(--red-deep);border-color:var(--red)}
 .grade .when{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--red-deep)}
@@ -312,6 +363,44 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <p class="nx" id="todaynext" hidden></p>
   <a class="more" href="calendar.html#kickoff">All the themes &rarr;</a>
 </div>
+<section class="sched" id="sched" aria-labelledby="schedlbl">
+  <div class="hd">
+    <div>
+      <h2 class="lbl" id="schedlbl">Today&rsquo;s schedule</h2>
+      <p class="dt" id="scheddate"></p>
+    </div>
+    <div class="row" style="margin:0">
+      <span class="dress" id="scheddress" hidden></span>
+      <button type="button" class="btn" id="schededit">Paste the memo</button>
+    </div>
+  </div>
+  <ol id="schedlist"></ol>
+  <details>
+    <summary>Weekly requirements</summary>
+    <ul id="schedreqs"></ul>
+  </details>
+  <div class="edit" id="schedbox" hidden>
+    <p class="priv">
+      Paste a day&rsquo;s lines straight from the weekly memo email. They are read
+      in your browser and saved <b>on this device only</b> &mdash; never uploaded,
+      never committed to this repository, never visible to anyone else.
+      <b>This is the only safe place on this site for a meeting that names a
+      student</b> &mdash; IEP, 504, AIEP, RIEP, placement or expulsion. Those must
+      never go into the repository&rsquo;s files.
+    </p>
+    <div class="row">
+      <label for="schedday" class="saved">Day</label>
+      <select id="schedday"></select>
+    </div>
+    <textarea id="schedtext" rows="9" spellcheck="false"
+      placeholder="7:45 AM: Staff Huddle (PAC)&#10;8:00 AM-9:00 AM: GLT Meetings (Room 036)&#10;11:00 AM: IEP meeting"></textarea>
+    <div class="row" style="margin:10px 0 0">
+      <button type="button" class="btn" id="schedsave">Save</button>
+      <button type="button" class="btn quiet" id="schedclear">Clear this day</button>
+      <span class="saved" id="schedsaved"></span>
+    </div>
+  </div>
+</section>
 <div class="due" id="duebanner" data-due="2026-08-10" data-until="2026-08-10">
   <span class="lbl" id="duelbl">Due Monday</span>
   <h2>Deliverables</h2>
@@ -839,6 +928,180 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       'The daily themes for this week are not posted here yet — check with the office before you dress for it.';
   }
   strip.hidden=false;
+})();
+</script>
+<script>
+/* ============================================================================
+   TODAY'S SCHEDULE
+   ----------------------------------------------------------------------------
+   Two sources feed the list:
+
+   1. ROUTINE below — the parts of the week that do not change. Committed, and
+      deliberately free of anything that identifies a student.
+   2. Whatever the reader pastes from the weekly memo email, parsed here in the
+      browser and kept in localStorage on their own device.
+
+   PRIVACY — this repository is PUBLIC (see README.md). Nothing student-
+   identifying goes in this file: no names, no initials, no IEP / 504 / AIEP /
+   RIEP / placement / expulsion meeting tied to a person. A name committed once
+   stays in git history, where deleting the line later does not remove it.
+   Those meetings belong in the paste-in box, which never leaves the device.
+   ============================================================================ */
+(function(){
+  var ROUTINE={
+    every:[
+      ['07:35','Staff arrival','Badge in at the cafe or front office'],
+      ['08:05','Hallway duty','Until 8:15 \u2014 greeting and helping students'],
+      ['11:40','CLD lesson','Until 12:00 \u2014 required, handbook lesson every day'],
+      ['15:05','Assigned duty coverage','Until 3:15']
+    ],
+    byDay:{ 1:[['07:45','Staff Huddle','PAC'],
+               ['08:00','Monday meetings','Formal Monday meetings and rotations']] },
+    dress:{ 4:'College shirt day', 5:'NCH gear + jeans' }
+  };
+  var REQS=[
+    'ONE grade per week is required',
+    'Dress code: enforce and send to JJ after 8:30 AM \u2014 call first',
+    'Technology: daily loaners through JJ \u2014 call first',
+    'Tardies and violations: send to JJ',
+    'Be in the hallways between EVERY bell',
+    'NO passes in the first or last ten minutes of class, and none during CLD'
+  ];
+  var KEY='nch.sched.v1';
+  var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MON=['January','February','March','April','May','June','July','August',
+           'September','October','November','December'];
+
+  var root=document.getElementById('sched');
+  if(!root) return;
+
+  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||'null')||{}; }catch(e){ return {}; } }
+  function save(d){ try{ localStorage.setItem(KEY,JSON.stringify(d)); }catch(e){} }
+
+  function fmt(t){
+    if(!t) return '';
+    var p=t.split(':'), h=+p[0], m=p[1];
+    var mer=h>=12?'PM':'AM', h12=(h%12===0)?12:h%12;
+    return h12+':'+m+' '+mer;
+  }
+
+  /* The memo writes times several ways: "7:45 AM:", "8:00 AM-9:00 AM:",
+     "1:00 PM: 2:00 PM:" (a range punctuated with a colon) and "5:30/6:30 PM:".
+     Anything that matches none of them is kept as a plain line rather than
+     dropped, so a paste never loses content silently. */
+  function parseLine(raw){
+    var line=raw.replace(/^\s*[\u2022\u00b7\-*]\s*/,'').trim();
+    if(!line) return null;
+    var m=line.match(/^(\d{1,2})(?::(\d{2}))?\s*(?:\/\s*\d{1,2}(?::\d{2})?)?\s*(AM|PM)?\s*(?:[-\u2013\u2014]\s*\d{1,2}(?::\d{2})?\s*(?:AM|PM)?\s*)?[:.]\s*(.+)$/i);
+    if(!m) return {t:'',label:line,note:''};
+    var h=parseInt(m[1],10), min=m[2]||'00', mer=(m[3]||'').toUpperCase();
+    if(mer==='PM'&&h!==12) h+=12;
+    if(mer==='AM'&&h===12) h=0;
+    if(!mer&&h>=1&&h<=7) h+=12;           /* school hours: 1-7 means afternoon */
+    var rest=m[4].trim().replace(/^\d{1,2}(?::\d{2})?\s*(?:AM|PM)?\s*[:.]\s*/i,'');
+    var par=rest.match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+    return { t:('0'+h).slice(-2)+':'+min,
+             label:par?par[1].trim():rest,
+             note:par?par[2].trim():'' };
+  }
+  function parseBlock(txt){
+    var out=[],i,r,ls=txt.split('\n');
+    for(i=0;i<ls.length;i++){ r=parseLine(ls[i]); if(r) out.push(r); }
+    return out;
+  }
+
+  function render(){
+    var now=new Date(), dow=now.getDay(), d=load();
+    var mine=(d.days&&d.days['d'+dow])||[];
+    var norm=function(t){ return t.toLowerCase().replace(/[^a-z0-9]/g,''); };
+    var dupe=function(r){
+      for(var i=0;i<mine.length;i++){
+        if(mine[i].t!==r[0]) continue;
+        var a=norm(mine[i].label), b=norm(r[1]);
+        if(a&&b&&(a.indexOf(b)===0||b.indexOf(a)===0)) return true;
+      }
+      return false;
+    };
+    var items=[],i,base=ROUTINE.every.concat(ROUTINE.byDay[dow]||[]);
+    for(i=0;i<base.length;i++){
+      if(!dupe(base[i])) items.push({t:base[i][0],label:base[i][1],note:base[i][2],mine:false});
+    }
+    for(i=0;i<mine.length;i++){
+      items.push({t:mine[i].t,label:mine[i].label,note:mine[i].note,mine:true});
+    }
+    items.sort(function(a,b){ return (a.t||'99')<(b.t||'99')?-1:((a.t||'99')>(b.t||'99')?1:0); });
+
+    document.getElementById('scheddate').textContent=
+      DOW[dow]+' '+now.getDate()+' '+MON[now.getMonth()];
+
+    var dress=ROUTINE.dress[dow], de=document.getElementById('scheddress');
+    if(dress){ de.textContent=dress; de.hidden=false; } else { de.hidden=true; }
+
+    var list=document.getElementById('schedlist');
+    list.innerHTML='';
+    if(dow===0||dow===6){
+      list.innerHTML='<li style="grid-template-columns:1fr"><p class="none">'+
+        'Weekend \u2014 no school schedule today.</p></li>';
+    }else if(!items.length){
+      list.innerHTML='<li style="grid-template-columns:1fr"><p class="none">'+
+        'Nothing scheduled yet \u2014 paste this week\u2019s memo to fill it in.</p></li>';
+    }else{
+      for(i=0;i<items.length;i++){
+        var li=document.createElement('li');
+        if(items[i].mine) li.className='mine';
+        var t=document.createElement('span'); t.className='t';
+        t.textContent=fmt(items[i].t)||'\u2014';
+        var w=document.createElement('span'); w.className='w';
+        w.textContent=items[i].label;
+        if(items[i].note){
+          var n=document.createElement('span'); n.className='n';
+          n.textContent=items[i].note; w.appendChild(n);
+        }
+        li.appendChild(t); li.appendChild(w); list.appendChild(li);
+      }
+    }
+
+    var reqs=document.getElementById('schedreqs');
+    reqs.innerHTML='';
+    for(i=0;i<REQS.length;i++){
+      var r=document.createElement('li'); r.textContent=REQS[i]; reqs.appendChild(r);
+    }
+    document.getElementById('schedsaved').textContent=d.savedOn?('Saved '+d.savedOn):'';
+  }
+
+  var sel=document.getElementById('schedday');
+  for(var dd=1;dd<=5;dd++){
+    var o=document.createElement('option'); o.value=dd; o.textContent=DOW[dd];
+    sel.appendChild(o);
+  }
+  var td=new Date().getDay();
+  sel.value=(td>=1&&td<=5)?td:1;
+
+  var box=document.getElementById('schedbox'), ta=document.getElementById('schedtext');
+  function fillBox(){
+    var d=load(), l=(d.days&&d.days['d'+sel.value])||[],out=[],i;
+    for(i=0;i<l.length;i++){
+      out.push((l[i].t?fmt(l[i].t)+': ':'')+l[i].label+(l[i].note?' ('+l[i].note+')':''));
+    }
+    ta.value=out.join('\n');
+  }
+  document.getElementById('schededit').addEventListener('click',function(){
+    box.hidden=!box.hidden;
+    if(!box.hidden){ fillBox(); ta.focus(); }
+  });
+  sel.addEventListener('change',fillBox);
+  document.getElementById('schedsave').addEventListener('click',function(){
+    var d=load(); d.days=d.days||{};
+    d.days['d'+sel.value]=parseBlock(ta.value);
+    d.savedOn=new Date().toLocaleDateString();
+    save(d); render();
+  });
+  document.getElementById('schedclear').addEventListener('click',function(){
+    var d=load(); if(d.days) delete d.days['d'+sel.value];
+    save(d); render(); fillBox();
+  });
+
+  render();
 })();
 </script>
 </body>

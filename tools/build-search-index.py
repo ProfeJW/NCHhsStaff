@@ -60,7 +60,8 @@ DOC_TITLES = {
     'ms-extension-list-2026-27.pdf': 'MS Phone List 2026-27',
 }
 
-SKIP_IDS = {'navtoggle', 'sitenav', 'countdown', 'expandall'}
+SKIP_IDS = {'navtoggle', 'sitenav', 'countdown', 'expandall',
+            'schedbox', 'schedlist', 'schedreqs', 'scheddate', 'schedlbl'}
 WS = re.compile(r'\s+')
 
 
