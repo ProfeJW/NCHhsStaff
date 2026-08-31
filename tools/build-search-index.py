@@ -58,6 +58,8 @@ DOC_TITLES = {
     'classroom-expectations-posters.pdf': 'Classroom Expectations Posters',
     'transportation-request-form.pdf': 'Transportation Request Form',
     'ms-extension-list-2026-27.pdf': 'MS Phone List 2026-27',
+    'levy-2026-11-03-flyer.pdf': 'Levy Flyer - 3 Nov 2026',
+    'levy-2026-11-03-facts.pdf': 'Levy Facts Sheet - 3 Nov 2026',
 }
 
 SKIP_IDS = {'navtoggle', 'sitenav', 'countdown', 'expandall'}
