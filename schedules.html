@@ -126,6 +126,15 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched tr.lunch td.p{color:var(--red-deep)}
 .schednote{color:var(--gray);font-size:13px;margin:12px 0 0}
 .sched a{overflow-wrap:anywhere}
+.cchip{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12.5px;
+  letter-spacing:.07em;text-transform:uppercase;border-radius:3px;padding:2px 7px;margin:0 4px 4px 0;white-space:nowrap}
+.cchip.dlt{background:var(--ink);color:#fff}
+.cchip.blt{background:var(--red);color:#fff}
+.cchip.bac{background:var(--red-deep);color:#fff}
+.cchip.mtss{background:var(--gold-soft);color:var(--red-deep);border:1px solid var(--gold)}
+.cchip.crew{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.cnone{color:var(--line)}
+.sched .sec{display:block;font-weight:400;color:var(--gray);font-size:13px;line-height:1.25}
 .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 @media (max-width:620px){
   .sched th,.sched td{padding:7px 6px;font-size:14px}
@@ -453,6 +462,59 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     </div>
   </div>
   <p class="schednote">Only Week 1&rsquo;s detailed agenda has been released; Weeks 2&ndash;4 will be posted when available.</p>
+</div>
+
+<div class="card" id="committees">
+  <h2><span class="tag">//</span> Committee &amp; Team Assignments</h2>
+  <p style="margin:0 0 4px">Who sits on which team for <b>2026&ndash;27</b>, and which room your GLT meets in at <b>8:00 on Meeting Mondays</b>.</p>
+  <p style="margin:0 0 16px;color:var(--gray);font-size:14px">37 staff &middot; 9 on BLT &middot; 3 on DLT &middot; MTSS split 17 Academics / 20 Behavior &middot; 7 on Trojan Crew. Every teacher is on a GLT and an MTSS committee.</p>
+
+  <div class="tscroll">
+  <table class="sched">
+    <thead><tr><th>Staff</th><th>GLT &amp; room</th><th>Content</th><th>Committees</th></tr></thead>
+    <tbody>
+      <tr><td class="p">ABC</td><td><span class="cnone">&mdash;</span></td><td><span class="cnone">&mdash;</span></td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Arvedon</td><td>9th <span class="sec">Room 036</span></td><td>Science</td><td><span class="cchip mtss">MTSS Behavior</span><span class="cchip crew">Trojan Crew</span></td></tr>
+      <tr><td class="p">Bahler</td><td>9th <span class="sec">Room 036</span></td><td>Math</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Barnes</td><td>9th <span class="sec">Room 036</span></td><td>ELA</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Behr</td><td>11th/12th <span class="sec">Room 132</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Brown</td><td>11th/12th <span class="sec">Room 132</span></td><td>ELA</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Carr</td><td>10th <span class="sec">Room 131</span></td><td>ELA</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Chaney</td><td>9th <span class="sec">Room 036</span></td><td>Math</td><td><span class="cchip mtss">MTSS Behavior</span><span class="cchip crew">Trojan Crew</span></td></tr>
+      <tr><td class="p">Choudhury</td><td>11th/12th <span class="sec">Room 132</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Conwell</td><td>11th/12th <span class="sec">Room 132</span></td><td>Social Studies</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Corbitt</td><td>10th <span class="sec">Room 131</span></td><td>ELA</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Danieley</td><td>9th <span class="sec">Room 036</span></td><td>ELA</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Devery</td><td>10th <span class="sec">Room 131</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Ellis</td><td>11th/12th <span class="sec">Room 132</span></td><td>Social Studies</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Elmore</td><td><span class="cnone">&mdash;</span></td><td><span class="cnone">&mdash;</span></td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Ficker</td><td>11th/12th <span class="sec">Room 132</span></td><td>Math</td><td><span class="cchip dlt">DLT</span><span class="cchip mtss">MTSS Behavior</span><span class="cchip crew">Trojan Crew</span></td></tr>
+      <tr><td class="p">Gissendanner</td><td>11th/12th <span class="sec">Room 132</span></td><td>Science</td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Heusmann</td><td>11th/12th <span class="sec">Room 132</span></td><td>ELA</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Hopkins</td><td>10th <span class="sec">Room 131</span></td><td>Science</td><td><span class="cchip dlt">DLT</span><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Johnston</td><td>9th <span class="sec">Room 036</span></td><td>Math</td><td><span class="cchip dlt">DLT</span><span class="cchip mtss">MTSS Academics</span><span class="cchip crew">Trojan Crew</span></td></tr>
+      <tr><td class="p">Kemphaus</td><td>9th <span class="sec">Room 036</span></td><td>ELA</td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Kimberlin</td><td>9th <span class="sec">Room 036</span></td><td>Science</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Marshall</td><td>11th/12th <span class="sec">Room 132</span></td><td>Math</td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Miller</td><td>9th <span class="sec">Room 036</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Minor</td><td>9th <span class="sec">Room 036</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Monk</td><td>9th <span class="sec">Room 036</span></td><td>Science</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Nutter</td><td><span class="cnone">&mdash;</span></td><td><span class="cnone">&mdash;</span></td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Academics</span><span class="cchip crew">Trojan Crew</span></td></tr>
+      <tr><td class="p">Payne</td><td>10th <span class="sec">Room 131</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Behavior</span><span class="cchip crew">Trojan Crew</span></td></tr>
+      <tr><td class="p">Sauers</td><td>9th <span class="sec">Room 036</span></td><td>Social Studies</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Spangler</td><td>11th/12th <span class="sec">Room 132</span></td><td>Social Studies</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Uran</td><td>10th <span class="sec">Room 131</span></td><td>Social Studies</td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Wachowski</td><td>11th/12th <span class="sec">Room 132</span></td><td>ELA</td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Walton</td><td>10th <span class="sec">Room 131</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Wellbaum</td><td>11th/12th <span class="sec">Room 132</span></td><td>Math</td><td><span class="cchip mtss">MTSS Behavior</span></td></tr>
+      <tr><td class="p">Williams</td><td>10th <span class="sec">Room 131</span></td><td>Electives</td><td><span class="cchip mtss">MTSS Academics</span></td></tr>
+      <tr><td class="p">Williamson</td><td>10th <span class="sec">Room 131</span></td><td>Electives</td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Behavior</span><span class="cchip crew">Trojan Crew</span></td></tr>
+      <tr><td class="p">Zhong</td><td><span class="cnone">&mdash;</span></td><td><span class="cnone">&mdash;</span></td><td><span class="cchip blt">BLT</span><span class="cchip mtss">MTSS Behavior</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="schednote">GLT rooms come from the weekly memo: <b>9th &mdash; Room 036</b>, <b>10th &mdash; Room 131</b>, <b>11th/12th &mdash; Room 132</b>. What each team does and reports to is on the <a href="calendar.html#teams">Calendar</a> and <a href="policies.html#mtss">Policies</a> pages.</p>
+  <p style="margin:10px 0 0"><a class="doclink" href="docs/staff-committees-2026-27.xlsx">Committee List 2026&ndash;27 (XLSX)</a></p>
 </div>
 
 <div class="card">
