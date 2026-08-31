@@ -17,10 +17,10 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);
   font-family:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5}
-h1,h2,h3,.disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+h1,h2,h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
   text-transform:uppercase;letter-spacing:.02em;margin:0}
 a{color:var(--red-deep)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 /* header */
 .top{background:var(--ink);color:#fff}
@@ -41,232 +41,89 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
   var(--red) 0 16px, var(--gold) 16px 24px, var(--ink) 24px 32px)}
 
 /* layout */
-.wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
-.page-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 6px}
-.page-h h1{font-size:44px;font-weight:800}
-.page-h .sub{color:var(--gray);font-size:15px}
-.rule{height:3px;background:var(--red);width:64px;margin:10px 0 24px}
+.wrap{max-width:1020px;margin:0 auto;padding:24px 20px 56px}
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
-  padding:20px 22px;margin-bottom:22px}
-.card h2{font-size:26px;font-weight:800;margin-bottom:10px}
-.card h2 .tag{color:var(--red)}
-
-/* badges */
-.badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;
-  padding:2px 8px;white-space:nowrap}
-.b-noschool{background:var(--ink);color:#fff}
-.b-grades{background:var(--red);color:#fff}
-.b-pd{background:var(--gold);color:var(--ink)}
-.b-spirit{background:#fff;color:var(--red-deep);border:1.5px solid var(--red)}
-.b-ath{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
-.b-key{background:var(--red-deep);color:#fff}
-.b-home{background:var(--gold);color:var(--ink)}
-
-/* schedule rows */
-.rows{display:flex;flex-direction:column}
-.row{display:flex;gap:16px;align-items:flex-start;padding:12px 6px;
-  border-bottom:1px solid var(--line)}
-.row:last-child{border-bottom:none}
-.row.home-game{border-left:4px solid var(--gold);padding-left:10px;background:#FDFAF3}
-.datechip{min-width:64px;text-align:center;flex-shrink:0}
-.datechip .dow{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
-.datechip .num{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:30px;line-height:1;color:var(--ink)}
-.ev{flex:1;min-width:200px}
-.ev .t{font-weight:600}
-.ev .meta{color:var(--gray);font-size:14px}
-.row .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:3px}
-
-/* filter + tab buttons */
-.btnbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
-.btnbar button{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;
-  text-transform:uppercase;letter-spacing:.06em;border:1.5px solid var(--ink);
-  background:#fff;color:var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer}
-.btnbar button:hover{background:var(--gold-soft)}
-.btnbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
-.hide{display:none !important}
-
-/* home page bits */
-.hero{background:var(--ink);color:#fff;border-radius:12px;padding:34px 30px;margin-bottom:24px;
-  background-image:linear-gradient(120deg,rgba(179,27,52,.35),rgba(0,0,0,0) 55%)}
-.hero h1{font-size:56px;font-weight:800;line-height:.95}
-.hero h1 span{color:var(--gold)}
-.hero p{margin:10px 0 0;color:#DDD8E0;max-width:56ch}
-.hero{display:flex;align-items:center;gap:26px}
-.herotext{flex:1;min-width:0}
-.hero .mascot{width:150px;height:auto;flex-shrink:0;
-  filter:drop-shadow(0 3px 10px rgba(0,0,0,.45))}
-@media (max-width:620px){
-  .hero{gap:16px}
-  .hero .mascot{width:88px;align-self:flex-start}
-  .hero h1{font-size:40px}
-}
-
-/* school contact strip */
-.contact{display:flex;align-items:center;gap:18px}
-.contact img{width:62px;height:auto;flex-shrink:0}
-.contact .nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
-  text-transform:uppercase;letter-spacing:.02em;display:block;line-height:1.1}
-.contact span{display:block;font-size:15px;color:var(--ink)}
-.contact span.note{color:var(--gray);font-size:13.5px;margin-top:5px}
-.contact span.note b{font-weight:600;color:var(--ink)}
-@media (max-width:520px){.contact{gap:14px}.contact img{width:48px}.contact .nm{font-size:19px}}
-.count{display:inline-block;margin-top:18px;background:var(--red);color:#fff;border-radius:6px;
-  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
-  text-transform:uppercase;letter-spacing:.05em}
-.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
-.q{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);
-  border-radius:8px;padding:12px 14px;text-align:center}
-.q .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
-.q .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.linklist{list-style:none;margin:0;padding:0}
-.linklist li{padding:9px 0;border-bottom:1px solid var(--line)}
-.linklist li:last-child{border-bottom:none}
-.linklist a{font-weight:600;text-decoration:none}
-.linklist a:hover{text-decoration:underline}
-.linklist .note{color:var(--gray);font-size:14px;display:block}
-.soon{color:var(--gray);font-size:13px;font-style:italic}
-/* deadline banner */
-.week{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--red);
-  border-radius:12px;padding:20px 24px 18px;margin:0 0 22px}
-.week .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+/* today - the whole point of this page */
+.now{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--red);
+  border-radius:12px;padding:20px 24px 18px;margin:0 0 16px}
+.now .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
   font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--red);
-  color:#fff;border-radius:20px;padding:4px 13px;margin-bottom:10px}
-.week h2{font-size:29px;font-weight:800;margin:0 0 2px;line-height:1.05}
-.week .hrs{margin:0 0 16px;font-size:14.5px;color:var(--gray)}
-.week .hrs b{color:var(--ink)}
-.week h3{font-size:19px;font-weight:800;margin:0 0 8px}
-.week .reqs{background:var(--paper);border:1px solid var(--line);border-radius:9px;
-  padding:14px 16px;margin:0 0 18px}
-.week .reqs ul{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
-.week .reqs b{font-weight:600}
-.week .days{display:flex;flex-direction:column;gap:14px}
-.week .day{border:1px solid var(--line);border-radius:9px;padding:13px 15px}
-.week .day.now{border-color:var(--red);box-shadow:0 0 0 3px var(--gold-soft)}
-.week .day h3{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:6px}
-.week .day .today-chip{display:none;font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:11.5px;letter-spacing:.14em;background:var(--red);color:#fff;border-radius:20px;
-  padding:3px 9px}
-.week .day.now .today-chip{display:inline-block}
-.week .day .theme{font-family:'Barlow',sans-serif;font-weight:600;font-size:14px;
-  text-transform:none;letter-spacing:0;color:var(--red-deep)}
-.week ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.week ol li{display:flex;gap:14px;align-items:baseline;padding:7px 0;
-  border-bottom:1px solid var(--line);font-size:15px}
-.week ol li:last-child{border-bottom:none}
-.week .tm{flex:0 0 122px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  color:#fff;border-radius:20px;padding:4px 13px;margin-bottom:9px}
+.now h2{font-size:33px;font-weight:800;margin:0;line-height:1.03}
+.now .sub{margin:2px 0 0;font-size:15px;font-weight:600;color:var(--red-deep)}
+.now .sched{margin-top:14px}
+.now .none{margin:14px 0 0;font-size:16px;color:var(--gray)}
+.now .none b{color:var(--ink)}
+.now .note{margin:14px 0 0;font-size:13px;color:var(--gray)}
+.now .note b{color:var(--ink)}
+
+/* a day's timetable */
+.sched{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.sched li{display:flex;gap:14px;align-items:baseline;padding:8px 0;
+  border-bottom:1px solid var(--line);font-size:15.5px}
+.sched li:last-child{border-bottom:none}
+.sched .tm{flex:0 0 122px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
   font-size:15.5px;letter-spacing:.03em;color:var(--red-deep);white-space:nowrap}
-.week .wh{flex:1;min-width:0}
-.week .wh b{font-weight:600}
-.week .rm{display:block;color:var(--gray);font-size:13.5px}
-.week li.priv .wh b{font-weight:600;color:var(--gray);font-style:italic}
-.week li.game .wh b{color:var(--ink)}
-.week li.game .tm{color:var(--ink)}
-.week .note{margin:14px 0 0;font-size:13px;color:var(--gray)}
-.week .note b{color:var(--ink)}
-.week .memolinks{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
-.week .memolinks a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14.5px;
-  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;background:var(--gold-soft);
-  color:var(--red-deep);border:1.5px solid var(--gold);border-radius:7px;padding:7px 13px}
-.week .memolinks a:hover{background:#F0DDB8}
-@media (max-width:620px){
-  .week{padding:17px 15px 15px}
-  .week h2{font-size:25px}
-  .week ol li{flex-direction:column;gap:2px}
-  .week .tm{flex:none}
-}
-.cdown{background:var(--card);border:1.5px solid var(--line);border-top:5px solid var(--red);
-  border-radius:12px;padding:18px 22px 16px;margin:0 0 18px;text-align:center}
-.cdown .big{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap}
-.cdown .n{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:68px;
-  line-height:.9;color:var(--red-deep);letter-spacing:-.01em}
-.cdown .u{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
-.cdown .split{margin:8px 0 0;font-size:14.5px;color:var(--gray)}
-.cdown .split b{color:var(--ink)}
-.cdown .tick{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
-.cdown .tick span{background:var(--paper);border:1px solid var(--line);border-radius:7px;
-  padding:6px 11px;font-size:13px;color:var(--gray);
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em}
-.cdown .tick b{font-size:19px;color:var(--ink);letter-spacing:0;margin-right:2px;
-  font-variant-numeric:tabular-nums}
-.cdown .foot{margin:12px 0 0;font-size:13px;color:var(--gray)}
-@media (max-width:620px){.cdown{padding:16px 14px 14px}.cdown .n{font-size:54px}.cdown .u{font-size:18px}}
-.today{background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--gold);
-  border-radius:12px;padding:20px 24px;margin:0 0 22px}
-.today .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--gold-soft);
-  color:var(--red-deep);border:1px solid var(--gold);border-radius:20px;padding:4px 13px;
-  margin-bottom:10px}
-.today h2{font-size:29px;font-weight:800;margin:0 0 6px;line-height:1.05;color:var(--ink)}
-.today .wear{margin:0;font-size:18px;line-height:1.45;max-width:62ch}
-.today .nx{margin:12px 0 0;font-size:14.5px;color:var(--gray)}
-.today .nx b{color:var(--ink)}
-.today .more{display:inline-block;margin-top:12px;font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase;
-  text-decoration:none;background:var(--gold-soft);color:var(--red-deep);
-  border:1.5px solid var(--gold);border-radius:8px;padding:9px 16px}
-.today .more:hover{background:#F0DDB8}
-@media (max-width:620px){.today{padding:17px 17px}.today h2{font-size:25px}.today .wear{font-size:17px}}
-.grade{border-left-color:var(--red)}
-.grade .lbl{background:#FBE9EC;color:var(--red-deep);border-color:var(--red)}
-.grade .when{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--red-deep)}
-.q.next{border-top-color:var(--gold);background:var(--gold-soft)}
-.q .soon{display:block;font-size:12.5px;color:var(--gray);font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
-.due{background:var(--red);color:#fff;border-radius:12px;padding:22px 26px;margin:0 0 22px;
-  border:2px solid var(--red-deep)}
-.due .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--gold);
-  color:var(--ink);border-radius:20px;padding:4px 13px;margin-bottom:10px}
-.due h2{font-size:30px;font-weight:800;color:#fff;margin:0 0 8px;line-height:1.05}
-.due p{margin:0 0 14px;font-size:18px;line-height:1.45;color:#FFF1F3;max-width:62ch}
-.due p b{color:#fff}
-.due .go{display:flex;gap:10px;flex-wrap:wrap}
-.due .go a{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:17px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
-  background:#fff;color:var(--red-deep);border-radius:8px;padding:11px 18px}
-.due .go a:hover{background:var(--gold-soft)}
-.due small{display:block;margin-top:12px;font-size:14px;color:#FFD9DE}
-@media (max-width:620px){.due{padding:18px 18px}.due h2{font-size:26px}.due p{font-size:17.5px}}
-.due .dlist{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:10px}
-.due .dlist li{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-  background:rgba(255,255,255,.10);border-radius:9px;padding:12px 14px}
-.due .dlist .what{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;
-  letter-spacing:.02em;text-transform:uppercase;color:#fff;line-height:1.05}
-.due .dlist .how{flex:1;min-width:150px;font-size:14.5px;color:#FFD9DE}
-.due .dlist a{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:16px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
-  background:#fff;color:var(--red-deep);border-radius:8px;padding:9px 15px;white-space:nowrap}
-.due .dlist a:hover{background:var(--gold-soft)}
-.due .dlist .opt{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.22);
-  color:#fff;border-radius:20px;padding:3px 9px;margin-left:8px;vertical-align:middle}
-.due .dlist .onpaper{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:#FFD9DE;
-  border:1.5px dashed rgba(255,255,255,.5);border-radius:8px;padding:8px 14px;white-space:nowrap}
-@media (max-width:620px){.due .dlist .onpaper{width:100%;text-align:center}}
-@media (max-width:620px){
-  .due .dlist li{gap:8px}
-  .due .dlist .what{font-size:18px;width:100%}
-  .due .dlist a{width:100%;text-align:center}
-}
+.sched .wh{flex:1;min-width:0}
+.sched .wh b{font-weight:600}
+.sched .rm{display:block;color:var(--gray);font-size:13.5px}
+.sched li.priv .wh b{font-weight:600;color:var(--gray);font-style:italic}
+.sched li.game .wh b,.sched li.game .tm{color:var(--ink)}
+
+/* what staff are wearing */
+.dress{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--gold-soft);
+  border:1.5px solid var(--gold);border-radius:10px;padding:12px 18px;margin:0 0 16px}
+.dress .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--red-deep)}
+.dress .nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:21px;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--ink);line-height:1.1}
+.dress .when{font-size:14.5px;color:var(--gray);flex:1;min-width:140px}
+
+/* the handful of links that are not in the nav */
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.tools a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14.5px;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;background:#fff;
+  color:var(--red-deep);border:1.5px solid var(--line);border-radius:7px;padding:9px 14px}
+.tools a:hover{background:var(--gold-soft);border-color:var(--gold)}
+
+/* the rest of the week, folded away */
+.rest{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 22px}
+.rest>summary{list-style:none;cursor:pointer;padding:14px 20px;display:flex;
+  align-items:baseline;gap:10px}
+.rest>summary h2{flex:0 0 auto}
+.rest>summary .sub{flex:1;min-width:0}
+.rest>summary::-webkit-details-marker{display:none}
+.rest>summary h2{font-size:21px;font-weight:800}
+.rest>summary .sub{font-size:14px;color:var(--gray);line-height:1.35}
+.rest>summary::after{content:'+';margin-left:auto;color:var(--red);font-size:26px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:1}
+.rest[open]>summary::after{content:'\2013'}
+.rest>summary:hover{background:var(--paper)}
+.rest .inner{padding:4px 20px 20px}
+.rest .lead{margin:0 0 4px;font-size:14.5px;color:var(--gray)}
+.rest .lead b{color:var(--ink)}
+.day{border:1px solid var(--line);border-radius:9px;padding:13px 15px;margin-top:14px}
+.day h3{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
+  font-size:19px;font-weight:800;margin-bottom:6px}
+.day .theme{font-family:'Barlow',sans-serif;font-weight:600;font-size:14px;
+  text-transform:none;letter-spacing:0;color:var(--red-deep)}
+.reqs{background:var(--paper);border:1px solid var(--line);border-radius:9px;
+  padding:14px 16px;margin-top:16px}
+.reqs h3{font-size:18px;font-weight:800;margin:0 0 8px}
+.reqs ul{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
+.reqs b{font-weight:600}
+.rest .note{margin:14px 0 0;font-size:13px;color:var(--gray)}
+.rest .note b{color:var(--ink)}
 
 footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   text-align:center;padding:18px 20px 30px}
 
-@media (max-width:720px){
-  .page-h h1{font-size:34px}
-  .hero h1{font-size:38px}
-  .qgrid{grid-template-columns:repeat(2,1fr)}
-  .two{grid-template-columns:1fr}
-  .row{flex-wrap:wrap}
-  .row .badges{width:100%;padding-top:0}
+@media (max-width:620px){
+  .now{padding:17px 16px 15px}
+  .now h2{font-size:27px}
+  .sched li{flex-direction:column;gap:2px}
+  .sched .tm{flex:none}
+  .rest .inner{padding:4px 15px 16px}
 }
 
 /* mobile nav toggle */
@@ -318,8 +175,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 .sres mark{background:var(--gold-soft);color:var(--ink);font-weight:600;padding:0 1px}
 .sres .none{padding:16px;color:var(--gray);font-size:14px}
 @media (max-width:560px){.sres{max-height:60vh}.search input{font-size:16px}}
-</style>
-</head>
+</style></head>
 <body>
 <header class="top">
   <div class="top-inner">
@@ -353,194 +209,90 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   </form>
   <div class="sres" id="sres" role="listbox" aria-label="Search results"></div>
 </div>
-<div class="today" id="todaystrip" hidden>
-  <span class="lbl" id="todaylbl">Today</span>
-  <h2 id="todaytheme"></h2>
-  <p class="wear" id="todaywear"></p>
-  <p class="nx" id="todaynext" hidden></p>
-  <a class="more" href="calendar.html#kickoff">All the themes &rarr;</a>
-</div>
-<div class="due" id="duebanner" data-due="2026-08-10" data-until="2026-08-10">
-  <span class="lbl" id="duelbl">Due Monday</span>
-  <h2>Deliverables</h2>
-  <p id="duetext">Due to <b>Ms.&nbsp;Craig-Roach</b> by <b>Monday 10 August</b> &mdash; the staff day before students return.</p>
-  <ul class="dlist">
-    <li>
-      <span class="what">Syllabus</span>
-      <span class="how">One per course, into its Drive folder</span>
-      <a href="https://drive.google.com/drive/folders/1-IFCBu17Sdlf7KtkdHck-ewADVhnpItW" target="_blank" rel="noopener">Open folder &rarr;</a>
-    </li>
-    <li>
-      <span class="what">Classroom Management Plan</span>
-      <span class="how">Into its Drive folder</span>
-      <a href="https://drive.google.com/drive/folders/1HVFe-b_zZW0zJJ89tF4MJ-5L2-ipWigo" target="_blank" rel="noopener">Open folder &rarr;</a>
-    </li>
-    <li>
-      <span class="what">Getting to Know You Survey</span>
-      <span class="how">Handed out on paper &mdash; fill it in and return it</span>
-      <span class="onpaper">On paper</span>
-    </li>
-    <li>
-      <span class="what">Committee Sign-Up</span>
-      <span class="how">Pick your committee for the year</span>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScOEB_59KAnwChd7hyqh3ygM9BOTK92d89IzEyJ9Y2aZMy60w/viewform" target="_blank" rel="noopener">Open form &rarr;</a>
-    </li>
-    <li>
-      <span class="what">Team Lead Sign-Up<span class="opt">Optional</span></span>
-      <span class="how">If you want to lead a grade-level or content team</span>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfH54fi8-QTiKcSTycqGe5Vl1J8b52_R8o0WbJmGLClRvpD-g/viewform" target="_blank" rel="noopener">Open form &rarr;</a>
-    </li>
-  </ul>
-  <small>Sign in with your <b>@nchcityschools.org</b> account &mdash; each folder opens ready to drop files into. Nothing to email.</small>
+
+<section class="now" id="today">
+  <span class="lbl">Today</span>
+  <h2>Today&rsquo;s Schedule</h2>
+  <p class="sub" hidden></p>
+  <div class="body"></div>
+  <p class="note" hidden><b>Individual student meetings are listed by time only.</b> This site is
+    public, and a name against an IEP, 504 or placement meeting would disclose that student&rsquo;s
+    status to anyone who opens the page. If you are in one, it is on your own calendar and in the
+    memo Ms.&nbsp;Craig-Roach sends out.</p>
+</section>
+
+<div class="dress" hidden>
+  <span class="lbl"></span>
+  <span class="nm"></span>
+  <span class="when"></span>
 </div>
 
-<div class="week" data-until="2026-09-04">
-  <span class="lbl">Weekly Memo</span>
-  <h2>This Week &mdash; 31 August to 4 September</h2>
-  <p class="hrs">Formal <b>Monday Meetings and rotations begin</b> this week.</p>
-  <div class="reqs">
-    <h3>Every day this week</h3>
-    <ul>
-      <li><b>Arrival</b> &mdash; 7:35 AM. Running late? Tell admin <b>and</b> Ms.&nbsp;Bratchette. Badge in at the cafe or front office doors.</li>
-      <li><b>Morning</b> &mdash; in the hallways 8:05&ndash;8:15, helping students find where they are going.</li>
-      <li><b>Visibility</b> &mdash; in the hallways between <b>every</b> bell.</li>
-      <li><b>Grades</b> &mdash; one grade per week, required.</li>
-      <li><b>CLD</b> &mdash; student handbook lessons every day this week.</li>
-      <li><b>Passes</b> &mdash; none in the first or last ten minutes of class, and none during CLD.</li>
-      <li><b>Dress code</b> &mdash; everyone enforces. Send to <b>Ms.&nbsp;JJ</b> after 8:30 AM &mdash; call first.</li>
-      <li><b>Technology</b> &mdash; everyone enforces. Violations and daily loaners go through Ms.&nbsp;JJ &mdash; call first.</li>
-      <li><b>Tardies</b> &mdash; everyone enforces. Send to Ms.&nbsp;JJ.</li>
-    </ul>
-  </div>
-  <div class="days">
-  <div class="day" data-day="2026-08-31">
-    <h3>Mon 31 Aug<span class="today-chip">Today</span><span class="theme">Meeting Monday &middot; Blended Learning Day</span></h3>
-    <ol><li><span class="tm">7:45 AM</span><span class="wh"><b>Staff Huddle</b><span class="rm">PAC</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>GLT Meetings</b><span class="rm">9th &mdash; Room 036 &middot; 10th &mdash; Room 131 &middot; 11th/12th &mdash; Room 132</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>Monday Programming Meeting</b><span class="rm">Room 022</span></span></li><li><span class="tm">9:00&ndash;10:00</span><span class="wh"><b>Admin &amp; Scarlet Oaks Meeting</b><span class="rm">Conference Room</span></span></li><li><span class="tm">9:00&ndash;11:00</span><span class="wh"><b>Protected Plan Time</b></span></li><li><span class="tm">10:30&ndash;11:00</span><span class="wh"><b>Cafeteria Team Meeting</b><span class="rm">Cafeteria</span></span></li><li><span class="tm">11:00&ndash;11:30</span><span class="wh"><b>Lunch</b></span></li><li><span class="tm">11:30&ndash;1:00</span><span class="wh"><b>Literacy Vertical Meeting</b><span class="rm">Middle School &mdash; Room 218</span></span></li><li><span class="tm">1:00&ndash;2:00</span><span class="wh"><b>District Attendance Meeting</b><span class="rm">Zoom</span></span></li><li><span class="tm">2:00&ndash;3:00</span><span class="wh"><b>MTSS Academic Meeting</b><span class="rm">Room 033</span></span></li><li class="priv"><span class="tm">11:00 &middot; 11:30 &middot; 12:00 &middot; 12:30</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two IEPs, a placement and one other &mdash; names withheld, see note below</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball vs. Hughes</b><span class="rm">Home</span></span></li></ol>
-  </div>
-  <div class="day" data-day="2026-09-01">
-    <h3>Tue 1 Sep<span class="today-chip">Today</span><span class="theme">NCH Community Walk Day</span></h3>
-    <ol><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:30 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">A 504 review and an IEP &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Mt. Healthy</b><span class="rm">Away</span></span></li></ol>
-  </div>
-  <div class="day" data-day="2026-09-02">
-    <h3>Wed 2 Sep<span class="today-chip">Today</span></h3>
-    <ol><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:00 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">An Oaks AIEP and an IEP &mdash; names withheld</span></span></li></ol>
-  </div>
-  <div class="day" data-day="2026-09-03">
-    <h3>Thu 3 Sep<span class="today-chip">Today</span><span class="theme">Staff College Shirt Day</span></h3>
-    <ol><li><span class="tm">All day</span><span class="wh"><b>Bridge Program</b><span class="rm">6th Bell &mdash; PAC</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">10:00&ndash;11:30</span><span class="wh"><b>Admin at Expulsion Hearings</b></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:25 &middot; 10:15 &middot; 10:55 &middot; 1:40</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two placements, an RIEP and a 504 &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Clark</b><span class="rm">Away</span></span></li></ol>
-  </div>
-  <div class="day" data-day="2026-09-04">
-    <h3>Fri 4 Sep<span class="today-chip">Today</span><span class="theme">Staff NCH Gear Day &amp; Jeans</span></h3>
-    <ol><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="game"><span class="tm">7:00 PM</span><span class="wh"><b>Varsity Football at Bethel Tate</b><span class="rm">Away</span></span></li></ol>
-  </div>
-  </div>
-  <div class="memolinks">
-    <a href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener">Daily Tracker</a>
+  <div class="tools">
+    <a href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener">Daily Tracker &mdash; HS</a>
+    <a href="https://docs.google.com/spreadsheets/d/1NCm8rumpqSOX9o0niyvLugbZMEiuZGgBWuhx-KprnHA/edit" target="_blank" rel="noopener">Daily Tracker &mdash; MS</a>
     <a href="https://docs.google.com/spreadsheets/d/1IOd3zg_kBynrFHptlyVYwMsbClJh_ApQ3J-A_oCB2pQ/edit" target="_blank" rel="noopener">Important Dates</a>
     <a href="https://docs.google.com/spreadsheets/d/13s6CFXRhnz1X7PP4FPxMJpZnQCznMvQq-ajVaNtNzX8/edit" target="_blank" rel="noopener">CLD Calendar</a>
     <a href="https://drive.google.com/drive/folders/0ABNYRc6VZbI0Uk9PVA" target="_blank" rel="noopener">Staff Google Folder</a>
   </div>
-  <p class="note"><b>Individual student meetings are listed by time only.</b> The memo names the student for each IEP, 504, placement and RIEP meeting. This site is public, and a name against one of those discloses that student&rsquo;s status to anyone who opens the page &mdash; so the times are here and the names are not. If you are in one, it is on your own calendar and in the memo Ms.&nbsp;Craig-Roach sends out.</p>
-</div>
 
-<div class="today grade" id="gradestrip" hidden>
-  <span class="lbl" id="gradelbl">Next up</span>
-  <h2 id="gradehead"></h2>
-  <p class="wear" id="gradesub"></p>
-  <p class="nx" id="gradethen" hidden></p>
-  <a class="more" href="calendar.html">All grading dates &rarr;</a>
-</div>
-
-<section class="hero">
-  <div class="herotext">
-    <h1>Welcome back,<br><span>Trojans</span></h1>
-    <p>One spot for the building calendar, athletic schedules, and the paperwork that keeps everyone paid. Bookmark it and share it in the building only.</p>
-    <span class="count" id="countdown">2026&ndash;27 School Year</span>
+<!-- This week's memo. Everything the page shows is read out of here:
+     .day[data-day="YYYY-MM-DD"]  one block per school day, in date order
+     data-dress="…"               add to a day that is a staff out-of-uniform day
+     li.priv                      individual student meetings - times only, never names
+     Today's block is lifted out and shown on its own above; days already past are
+     dropped. Replacing the memo each week is the only edit this page needs. -->
+<details class="rest" id="week">
+  <summary><h2>The Rest of the Week</h2><span class="sub">31 August &ndash; 4 September</span></summary>
+  <div class="inner">
+    <p class="lead">Formal <b>Monday Meetings and rotations begin</b> this week.</p>
+      <div class="days">
+      <div class="day" data-day="2026-08-31">
+        <h3>Mon 31 Aug<span class="theme">Meeting Monday &middot; Blended Learning Day</span></h3>
+        <ol class="sched"><li><span class="tm">7:45 AM</span><span class="wh"><b>Staff Huddle</b><span class="rm">PAC</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>GLT Meetings</b><span class="rm">9th &mdash; Room 036 &middot; 10th &mdash; Room 131 &middot; 11th/12th &mdash; Room 132</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>Monday Programming Meeting</b><span class="rm">Room 022</span></span></li><li><span class="tm">9:00&ndash;10:00</span><span class="wh"><b>Admin &amp; Scarlet Oaks Meeting</b><span class="rm">Conference Room</span></span></li><li><span class="tm">9:00&ndash;11:00</span><span class="wh"><b>Protected Plan Time</b></span></li><li><span class="tm">10:30&ndash;11:00</span><span class="wh"><b>Cafeteria Team Meeting</b><span class="rm">Cafeteria</span></span></li><li><span class="tm">11:00&ndash;11:30</span><span class="wh"><b>Lunch</b></span></li><li><span class="tm">11:30&ndash;1:00</span><span class="wh"><b>Literacy Vertical Meeting</b><span class="rm">Middle School &mdash; Room 218</span></span></li><li><span class="tm">1:00&ndash;2:00</span><span class="wh"><b>District Attendance Meeting</b><span class="rm">Zoom</span></span></li><li><span class="tm">2:00&ndash;3:00</span><span class="wh"><b>MTSS Academic Meeting</b><span class="rm">Room 033</span></span></li><li class="priv"><span class="tm">11:00 &middot; 11:30 &middot; 12:00 &middot; 12:30</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two IEPs, a placement and one other &mdash; names withheld, see note below</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball vs. Hughes</b><span class="rm">Home</span></span></li></ol>
+      </div>
+      <div class="day" data-day="2026-09-01">
+        <h3>Tue 1 Sep<span class="theme">NCH Community Walk Day</span></h3>
+        <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:30 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">A 504 review and an IEP &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Mt. Healthy</b><span class="rm">Away</span></span></li></ol>
+      </div>
+      <div class="day" data-day="2026-09-02">
+        <h3>Wed 2 Sep</h3>
+        <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:00 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">An Oaks AIEP and an IEP &mdash; names withheld</span></span></li></ol>
+      </div>
+      <div class="day" data-day="2026-09-03" data-dress="Staff College Shirt Day">
+        <h3>Thu 3 Sep<span class="theme">Staff College Shirt Day</span></h3>
+        <ol class="sched"><li><span class="tm">All day</span><span class="wh"><b>Bridge Program</b><span class="rm">6th Bell &mdash; PAC</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">10:00&ndash;11:30</span><span class="wh"><b>Admin at Expulsion Hearings</b></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:25 &middot; 10:15 &middot; 10:55 &middot; 1:40</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two placements, an RIEP and a 504 &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Clark</b><span class="rm">Away</span></span></li></ol>
+      </div>
+      <div class="day" data-day="2026-09-04" data-dress="Staff NCH Gear Day &amp; Jeans">
+        <h3>Fri 4 Sep<span class="theme">Staff NCH Gear Day &amp; Jeans</span></h3>
+        <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="game"><span class="tm">7:00 PM</span><span class="wh"><b>Varsity Football at Bethel Tate</b><span class="rm">Away</span></span></li></ol>
+      </div>
+      </div>
+      <div class="reqs">
+        <h3>Every day this week</h3>
+        <ul>
+          <li><b>Arrival</b> &mdash; 7:35 AM. Running late? Tell admin <b>and</b> Ms.&nbsp;Bratchette. Badge in at the cafe or front office doors.</li>
+          <li><b>Morning</b> &mdash; in the hallways 8:05&ndash;8:15, helping students find where they are going.</li>
+          <li><b>Visibility</b> &mdash; in the hallways between <b>every</b> bell.</li>
+          <li><b>Grades</b> &mdash; one grade per week, required.</li>
+          <li><b>CLD</b> &mdash; student handbook lessons every day this week.</li>
+          <li><b>Passes</b> &mdash; none in the first or last ten minutes of class, and none during CLD.</li>
+          <li><b>Dress code</b> &mdash; everyone enforces. Send to <b>Ms.&nbsp;JJ</b> after 8:30 AM &mdash; call first.</li>
+          <li><b>Technology</b> &mdash; everyone enforces. Violations and daily loaners go through Ms.&nbsp;JJ &mdash; call first.</li>
+          <li><b>Tardies</b> &mdash; everyone enforces. Send to Ms.&nbsp;JJ.</li>
+        </ul>
+      </div>
+    <p class="note"><b>Individual student meetings are listed by time only.</b> The memo names the
+      student for each IEP, 504, placement and RIEP meeting. This site is public, and a name against
+      one of those discloses that student&rsquo;s status to anyone who opens the page &mdash; so the
+      times are here and the names are not.</p>
   </div>
-  <img class="mascot" src="docs/trojan.png" alt="North College Hill Trojans mascot &mdash; a Trojan helmet in profile" width="360" height="360">
-</section>
-
-<div class="card contact">
-  <img src="docs/trojan.png" alt="" width="360" height="360" aria-hidden="true">
-  <div>
-    <span class="nm">North College Hill High School</span>
-    <span>1620 West Galbraith Road, Cincinnati, OH 45239</span>
-    <span><a href="tel:+15137284783">(513)&nbsp;728-4783</a> &middot; fax (513)&nbsp;728-4784</span>
-    <span class="note">Home of the <b>Trojans</b>. Every building&rsquo;s address and number is on the <a href="directory.html#facilities">Directory</a>, along with <a href="directory.html#extensions">extensions</a>.</span>
-  </div>
-</div>
-
-<div class="cdown" id="cdown" hidden>
-  <div class="big">
-    <span class="n" id="cdN">&mdash;</span>
-    <span class="u" id="cdU">days with students left</span>
-  </div>
-  <p class="split" id="cdSplit"></p>
-  <div class="tick" id="cdTick" hidden>
-    <span><b id="cdD">0</b>d</span><span><b id="cdH">0</b>h</span><span><b id="cdM">0</b>m</span><span><b id="cdS">0</b>s</span>
-  </div>
-  <p class="foot" id="cdFoot"></p>
-</div>
-
-<div class="qgrid">
-  <div class="q" data-qend="2026-10-09"><span class="lbl">Q1 Ends</span><span class="val">Oct 9</span></div>
-  <div class="q" data-qend="2026-12-18"><span class="lbl">Q2 Ends</span><span class="val">Dec 18</span></div>
-  <div class="q" data-qend="2027-03-05"><span class="lbl">Q3 Ends</span><span class="val">Mar 5</span></div>
-  <div class="q" data-qend="2027-05-20"><span class="lbl">Q4 Ends</span><span class="val">May 20</span></div>
-</div>
-
-<div class="two">
-  <div class="card">
-    <h2><span class="tag">//</span> Opening Week</h2>
-    <div class="rows">
-<div class="row" data-until="2026-08-05"><div class="datechip"><span class="dow">Wed</span><span class="num">5</span></div><div class="ev"><div class="t">Opening Day: Staff — District &amp; Building PD</div><span class="meta">8:00&ndash;10:00 AM · PAC</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-06"><div class="datechip"><span class="dow">Thu</span><span class="num">6</span></div><div class="ev"><div class="t">Staff PD + Back to School Picnic</div><span class="meta">4:30&ndash;6:30 PM · HS Building · Required</span></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-07"><div class="datechip"><span class="dow">Fri</span><span class="num">7</span></div><div class="ev"><div class="t">Staff PD &amp; Staff Social</div></div><div class="badges"><span class="badge b-pd">Staff PD</span></div></div><div class="row" data-until="2026-08-10"><div class="datechip"><span class="dow">Mon</span><span class="num">10</span></div><div class="ev"><div class="t">Kickoff Week: Warm-Up for the Win</div><span class="meta">Sweatpants, athletic pants, t-shirts or warm-up gear &middot; staff day</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-11"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">First Day of School: Students</div><span class="meta">Grade-level presentations Aug 11&ndash;12 in the PAC</span></div><div class="badges"><span class="badge b-key">Key Date</span></div></div><div class="row" data-until="2026-08-11"><div class="datechip"><span class="dow">Tue</span><span class="num">11</span></div><div class="ev"><div class="t">Kickoff Week: Team Jersey Day</div><span class="meta">A jersey or tee for your favourite team</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-12"><div class="datechip"><span class="dow">Wed</span><span class="num">12</span></div><div class="ev"><div class="t">11th &amp; 12th Grade Level Presentations</div><span class="meta">PAC</span></div><div class="badges"></div></div><div class="row" data-until="2026-08-12"><div class="datechip"><span class="dow">Wed</span><span class="num">12</span></div><div class="ev"><div class="t">Kickoff Week: All-Star Day</div><span class="meta">Sports apparel, athletic gear or an outfit inspired by your favourite sport</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-13"><div class="datechip"><span class="dow">Thu</span><span class="num">13</span></div><div class="ev"><div class="t">Kickoff Week: School Spirit Day</div><span class="meta">School colours, NCH spirit wear or Trojan gear</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div><div class="row" data-until="2026-08-14"><div class="datechip"><span class="dow">Fri</span><span class="num">14</span></div><div class="ev"><div class="t">Kickoff Week: Championship Game Day</div><span class="meta">Jerseys, hats, face paint &mdash; full game day</span></div><div class="badges"><span class="badge b-spirit">Spirit</span></div></div>
-    </div>
-  </div>
-  <div class="card">
-    <h2><span class="tag">//</span> Quick Links</h2>
-    <ul class="linklist">
-      <li><a href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener">Daily Tracker &mdash; High School</a><span class="note">Absences, coverage, subs &amp; student consequences &mdash; updated daily</span></li>
-      <li><a href="https://docs.google.com/spreadsheets/d/1NCm8rumpqSOX9o0niyvLugbZMEiuZGgBWuhx-KprnHA/edit" target="_blank" rel="noopener">Daily Tracker &mdash; Middle School</a><span class="note">The same, for the middle school</span></li>
-      <li><a href="staff.html#contract">Master Contract 2025&ndash;27</a><span class="note">Workday, planning time, sick &amp; personal leave, pay &mdash; <a href="docs/master-contract-2025-27.pdf" target="_blank" rel="noopener">full PDF</a></span></li>
-      <li><a href="links.html">All Staff Links</a><span class="note">Frontline, ProgressBook, Clever, Drive folders &amp; forms</span></li>
-      <li><a href="schedules.html">Bell Schedules &amp; Duty Roster</a><span class="note">Daily bell times, 2-hour delay &amp; PM dismissal posts</span></li>
-      <li><a href="data.html">Building Data</a><span class="note">EOC, attendance, discipline, pass rates &amp; the <a href="data.html#finances">five-year forecast</a></span></li>
-      <li><a href="policies.html">Classroom Policies</a><span class="note">Grading, late work, phones, passes &amp; emergencies</span></li>
-      <li><a href="directory.html">Staff Directory</a><span class="note">Phone extensions, counselors &amp; admin duties</span></li>
-      <li><a href="staff.html">Timesheets &amp; Payroll</a><span class="note">Weekly and biweekly submission deadlines</span></li>
-      <li><a href="calendar.html">First Semester Calendar</a><span class="note">PD days, grade buckets, spirit weeks, breaks &mdash; <a href="docs/district-calendar-2026-27.pdf" target="_blank" rel="noopener">district PDF</a></span></li>
-      <li><a href="sports.html">Fall Athletics</a><span class="note">Football, volleyball &amp; soccer — home games flagged</span></li>
-    </ul>
-  </div>
-</div>
-
-<div class="card" data-until="2026-08-14">
-  <h2><span class="tag">//</span> Kickoff Championship Week</h2>
-  <p style="margin:0"><b>Aug 10&ndash;14</b> &mdash; a staff spirit week from Ms.&nbsp;Craig-Roach, listed by day in Opening Week above. <b>Warm Up. Team Up. Show Up.</b> <a href="calendar.html#kickoff">Full themes on the Calendar</a>.</p>
-</div>
-
-<div class="card">
-  <h2><span class="tag">//</span> Don&rsquo;t Forget</h2>
-  <p style="margin:0">Internal sub and detention forms are due <b>every week</b>, even for a single covered period. Late forms roll to the next pay period. Details on the <a href="staff.html">Staff Info</a> page.</p>
-</div>
+</details>
 
 </main>
 <footer>
-  NCH Trojan Staff Hub · An unofficial staff resource · Dates from the 2026&ndash;27 building calendar &amp; athletic schedules<br>
-  <span style="color:#9A959E">Site updated 12 August 2026</span>
+  NCH Trojan Staff Hub · An unofficial staff resource · Dates from this week&rsquo;s staff memo &amp; the 2026&ndash;27 building calendar<br>
+  <span style="color:#9A959E">Site updated 31 August 2026</span>
 </footer>
-<script>
-(function(){
-  var el=document.getElementById('countdown');
-  var first=new Date(2026,7,11); var now=new Date();
-  now=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  var d=Math.round((first-now)/86400000);
-  if(d>1){el.textContent=d+' days until students arrive';}
-  else if(d===1){el.textContent='Students arrive tomorrow!';}
-  else if(d===0){el.textContent='First day of school — welcome back!';}
-  else{el.textContent='School year in session · Q1 ends Oct 9';}
-})();
-</script>
 <script>
 (function(){
   var t=document.getElementById('navtoggle'), n=document.getElementById('sitenav');
@@ -659,291 +411,128 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   });
 })();
 
-/* the next grading deadline, and which quarter is closing
+
+/* today's schedule, and the next staff out-of-uniform day
    ------------------------------------------------------------------
-   Dates are the building's, straight off docs/nch-hs-calendar-2026-27.pdf.
-   Second-semester interim and report-card windows are not in that PDF, so
-   only the two quarter ends are listed for the spring - add the buckets
-   here when the building publishes them. */
+   Everything below is read out of the week's memo markup above - the day
+   blocks carry data-day, and the ones that are staff dress days carry
+   data-dress. Today's block is lifted out of the fold-away and shown on its
+   own at the top; the rest of the week keeps only the days still to come. */
 (function(){
-  var DATES=[
-    ['2026-09-08','opens', 'Interim grades open',        'Interim grade bucket opens'],
-    ['2026-09-14','closes','Interim grades due',         'Interim grade bucket closes'],
-    ['2026-10-08','opens', 'Q1 report cards open',       '1st quarter report card bucket opens'],
-    ['2026-10-09','qend',  'First quarter ends',         'End of the first quarter'],
-    ['2026-10-12','closes','Q1 report cards due',        '1st quarter report card bucket closes'],
-    ['2026-11-10','opens', 'Interim grades open',        'Interim grade bucket opens'],
-    ['2026-11-16','closes','Interim grades due',         'Interim grade bucket closes'],
-    ['2026-12-14','opens', 'Q2 report cards open',       '2nd quarter report card bucket opens'],
-    ['2026-12-18','qend',  'Second quarter ends',        'End of the second quarter, and report cards are due the same day'],
-    ['2027-03-05','qend',  'Third quarter ends',         'End of the third quarter'],
-    ['2027-05-20','qend',  'Fourth quarter ends',        'End of the fourth quarter']
-  ];
   var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-      MON=['January','February','March','April','May','June','July',
-           'August','September','October','November','December'];
-
-  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  function asDate(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
-  function pretty(d){return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()];}
-  function daysOff(d){return Math.round((d-today)/86400000);}
-  function inWords(n){return n===0?'today':n===1?'tomorrow':'in '+n+' days';}
-
-  var strip=document.getElementById('gradestrip');
-  if(strip){
-    var next=null, after=null;
-    for(var i=0;i<DATES.length;i++){
-      if(asDate(DATES[i][0])>=today){ next=DATES[i]; after=DATES[i+1]||null; break; }
-    }
-    if(next){
-      var d=asDate(next[0]), n=daysOff(d);
-      document.getElementById('gradelbl').textContent =
-        n===0?'Today':next[1]==='closes'?'Grades due':'Next up';
-      document.getElementById('gradehead').textContent = next[2];
-      document.getElementById('gradesub').innerHTML =
-        next[3]+' &mdash; <span class="when">'+pretty(d)+'</span>, '+inWords(n)+'.';
-      if(after){
-        var ad=asDate(after[0]);
-        var then=document.getElementById('gradethen');
-        then.innerHTML='Then: <b>'+after[2]+'</b> on '+pretty(ad)+'.';
-        then.hidden=false;
-      }
-      strip.hidden=false;
-    }
-  }
-
-  // mark the quarter that closes next
-  var qs=document.querySelectorAll('.q[data-qend]');
-  for(var j=0;j<qs.length;j++){
-    var qd=asDate(qs[j].getAttribute('data-qend'));
-    if(qd>=today){
-      qs[j].classList.add('next');
-      var tag=document.createElement('span');
-      tag.className='soon';
-      tag.textContent=inWords(daysOff(qd));
-      qs[j].appendChild(tag);
-      break;
-    }
-  }
-})();
-
-/* anything carrying data-until disappears once that date has passed */
-(function(){
-  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  function expired(el){
-    var d=el.getAttribute('data-until'); if(!d) return false;
-    var p=d.split('-');
-    return today > new Date(+p[0], +p[1]-1, +p[2]);
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-until]'), function(el){
-    if(expired(el)) el.remove();
-  });
-  // a list that has lost every row takes its card with it
-  Array.prototype.forEach.call(document.querySelectorAll('.rows'), function(list){
-    if(!list.querySelector('.row')){
-      var card=list.closest('.card'); if(card) card.remove();
-    }
-  });
-  // still here on the day itself? say so
-  var el=document.getElementById('duebanner');
-  if(el){
-    var p=el.getAttribute('data-due').split('-');
-    var due=new Date(+p[0], +p[1]-1, +p[2]);
-    if(today.getTime()===due.getTime()){
-      var lbl=document.getElementById('duelbl');
-      if(lbl) lbl.textContent='Due today';
-    }
-  }
-})();
-
-/* mark today inside the weekly memo */
-(function(){
-  var d=new Date();
-  var k=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
-  var el=document.querySelector('.week .day[data-day="'+k+'"]');
-  if(el) el.classList.add('now');
-})();
-
-/* how much of the year is left, counted in days with students
-   ------------------------------------------------------------------
-   Straight off the district calendar (docs/district-calendar-2026-27.pdf,
-   rev 2.10.26). Weekdays between the first and last student day, less the
-   closures below, come to 176; take out the 29 blended Mondays and you get
-   147, which is the S-147 printed on the calendar itself. That match is the
-   check that this data is right - if you edit anything here, redo it. */
-(function(){
-  var FIRST='2026-08-11';                 // first day for students
-  var LAST ='2027-05-20';                 // last day / senior graduation
-  var BELL =[15,5];                       // 3:05 dismissal, every day
-
-  // No school for students. Teacher-only days count as closed here.
-  var CLOSED=[
-    ['2026-09-07','2026-09-07'],          // Labor Day
-    ['2026-10-12','2026-10-12'],          // Records / Teacher Trade Off
-    ['2026-10-19','2026-10-19'],          // PD + parent-teacher conferences
-    ['2026-11-23','2026-11-24'],          // PD
-    ['2026-11-25','2026-11-27'],          // Fall Break
-    ['2026-12-21','2027-01-01'],          // Trade Off, then Winter Break
-    ['2027-01-18','2027-01-18'],          // Dr Martin Luther King Day
-    ['2027-02-01','2027-02-01'],          // PD + parent-teacher conferences
-    ['2027-02-15','2027-02-15'],          // Presidents Day
-    ['2027-03-22','2027-03-26'],          // Spring Break
-    ['2027-03-29','2027-03-29']           // Off Day
-  ];
-  // Blended Learning Days - students learn, just not in the building.
-  var BLENDED={};
-  ('2026-08-17 2026-08-24 2026-08-31 2026-09-14 2026-09-21 2026-09-28 '+
-   '2026-10-05 2026-10-26 2026-11-02 2026-11-09 2026-11-16 2026-11-30 '+
-   '2026-12-07 2026-12-14 2027-01-04 2027-01-11 2027-01-25 2027-02-08 '+
-   '2027-02-22 2027-03-01 2027-03-08 2027-03-15 2027-04-05 2027-04-12 '+
-   '2027-04-19 2027-04-26 2027-05-03 2027-05-10 2027-05-17')
-    .split(' ').forEach(function(d){ BLENDED[d]=1; });
-
-  var box=document.getElementById('cdown');
-  if(!box) return;
-
-  // Read the clock in Cincinnati, not on the device. A Chromebook left on UTC
-  // would otherwise tip the count over a day early every afternoon.
-  function nowEastern(){
-    var f;
-    try{
-      f=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',hour12:false,
-        year:'numeric',month:'2-digit',day:'2-digit',
-        hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date());
-    }catch(e){ return null; }        // no tz data - fall back to the device below
-    var p={}; f.forEach(function(x){ p[x.type]=x.value; });
-    return { date:p.year+'-'+p.month+'-'+p.day,
-             secs:(+p.hour===24?0:+p.hour)*3600 + (+p.minute)*60 + (+p.second) };
-  }
-  function localNow(){
-    var d=new Date();
-    var s=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
-    return { date:s, secs:d.getHours()*3600+d.getMinutes()*60+d.getSeconds() };
-  }
-  var now=nowEastern()||localNow();
-
-  function closed(d){
-    for(var i=0;i<CLOSED.length;i++) if(d>=CLOSED[i][0]&&d<=CLOSED[i][1]) return true;
-    return false;
-  }
-  function dow(d){ var p=d.split('-'); return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay(); }
-  function isStudentDay(d){
-    if(d<FIRST||d>LAST) return false;
-    var w=dow(d);
-    return w!==0 && w!==6 && !closed(d);
-  }
-  function next(d){
-    var p=d.split('-'), t=new Date(Date.UTC(+p[0],+p[1]-1,+p[2]));
-    t.setUTCDate(t.getUTCDate()+1);
-    return t.toISOString().slice(0,10);
-  }
-
-  // Today only counts while it is still running. Once the last bell has gone
-  // the day is spent, and a teacher walking to their car should see it drop.
-  var todayDone = isStudentDay(now.date) && now.secs >= (BELL[0]*3600+BELL[1]*60);
-  var from = todayDone ? next(now.date) : now.date;
-
-  var building=0, blended=0;
-  for(var d = (from<FIRST?FIRST:from); d<=LAST; d=next(d)){
-    if(!isStudentDay(d)) continue;
-    if(BLENDED[d]) blended++; else building++;
-  }
-  var total=building+blended;
-
-  var N=document.getElementById('cdN'), U=document.getElementById('cdU'),
-      SP=document.getElementById('cdSplit'), FT=document.getElementById('cdFoot'),
-      TK=document.getElementById('cdTick');
-
-  if(now.date>LAST || (now.date===LAST && todayDone)){
-    N.textContent='0';
-    U.textContent='days left — that’s the year';
-    SP.textContent='';
-    FT.textContent='Have a good summer.';
-    box.hidden=false;
-    return;
-  }
-
-  N.textContent=String(total);
-  U.textContent = total===1 ? 'day with students left' : 'days with students left';
-  SP.innerHTML = '<b>'+building+'</b> in the building &middot; <b>'+blended+
-                 '</b> blended Monday'+(blended===1?'':'s');
-
-  if(now.date<FIRST){
-    FT.textContent='School year starts Tuesday 11 August. 147 days in the building, the way the district counts it.';
-  }else{
-    FT.innerHTML='Last bell of the year: <b>3:05 PM, Thursday 20 May 2027</b>. Teacher-only days are not counted.';
-  }
-
-  // Live run-down to the final bell. new Date(y,m,d,h,m) builds it in the
-  // device's own zone, which is the right zone for anyone actually in the
-  // building; the day count above is the number that must not drift.
-  var end=new Date(2027,4,20,BELL[0],BELL[1],0,0);
-  function tickOnce(){
-    var ms=end-new Date();
-    if(ms<0) ms=0;
-    var s=Math.floor(ms/1000);
-    document.getElementById('cdD').textContent=Math.floor(s/86400);
-    document.getElementById('cdH').textContent=Math.floor(s%86400/3600);
-    document.getElementById('cdM').textContent=Math.floor(s%3600/60);
-    document.getElementById('cdS').textContent=s%60;
-  }
-  tickOnce(); TK.hidden=false; setInterval(tickOnce,1000);
-  box.hidden=false;
-})();
-
-/* what staff are wearing today - out-of-uniform themes, by date */
-(function(){
-  /* Kickoff Championship Week, from Ms. Craig-Roach. Themes as published on the
-     Calendar - keep the two in step if either changes. */
-  var THEMES={
-    '2026-08-10':['Warm-Up for the Win','Sweatpants, athletic pants, t-shirts, sweatshirts or warm-up gear.'],
-    '2026-08-11':['Team Jersey Day','A jersey or t-shirt representing your favourite team.'],
-    '2026-08-12':['All-Star Day','Sports apparel, athletic gear or an outfit inspired by your favourite sport.'],
-    '2026-08-13':['School Spirit Day','School colours, NCH spirit wear or Trojan gear.'],
-    '2026-08-14':['Championship Game Day','Best game-day gear — school colours, spirit wear, jerseys, hats, face paint.']
-  };
+      MON=['January','February','March','April','May','June','July','August',
+           'September','October','November','December'];
   /* Spirit weeks that are on the calendar but whose daily themes have not been
      published. Named, never invented - staff should ask rather than guess. */
   var WEEKS=[
     {from:'2026-10-05',to:'2026-10-10',name:'Homecoming Spirit Week'},
     {from:'2026-11-02',to:'2026-11-06',name:'HBCU Spirit Week'}
   ];
-  var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  var MON=['January','February','March','April','May','June','July','August',
-           'September','October','November','December'];
+
   function key(d){
     return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
   }
-  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  var tomorrow=new Date(today.getTime()); tomorrow.setDate(tomorrow.getDate()+1);
-  var k=key(today), strip=document.getElementById('todaystrip');
-  if(!strip) return;
+  function fromKey(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function pretty(d){return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()];}
 
-  var theme=THEMES[k], week=null;
-  if(!theme){
-    for(var i=0;i<WEEKS.length;i++){
-      if(k>=WEEKS[i].from && k<=WEEKS[i].to){ week=WEEKS[i]; break; }
-    }
+  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate()),
+      k=key(today);
+  var days=[].slice.call(document.querySelectorAll('.day[data-day]'));
+
+  // read the dress days before any of the day blocks get moved or dropped
+  var dress=days.filter(function(el){return el.getAttribute('data-dress');})
+                .map(function(el){return {d:el.getAttribute('data-day'),
+                                          n:el.getAttribute('data-dress')};});
+
+  /* --- today ------------------------------------------------------ */
+  var box=document.getElementById('today');
+  var head=box.querySelector('h2'), sub=box.querySelector('.sub'),
+      body=box.querySelector('.body'), note=box.querySelector('.note');
+  var mine=null;
+  for(var i=0;i<days.length;i++){
+    if(days[i].getAttribute('data-day')===k){ mine=days[i]; break; }
   }
-  if(!theme && !week){ strip.remove(); return; }
-
-  document.getElementById('todaylbl').textContent =
-    'Today — ' + DOW[today.getDay()] + ' ' + today.getDate() + ' ' + MON[today.getMonth()];
-  if(theme){
-    document.getElementById('todaytheme').textContent=theme[0];
-    document.getElementById('todaywear').textContent=theme[1];
-    var nxt=THEMES[key(tomorrow)];
-    if(nxt){
-      var n=document.getElementById('todaynext');
-      n.innerHTML='Tomorrow: <b>'+nxt[0]+'</b> — '+nxt[1];
-      n.hidden=false;
-    }
+  head.textContent=pretty(today);
+  if(mine){
+    var theme=mine.querySelector('.theme');
+    if(theme){ sub.textContent=theme.textContent; sub.hidden=false; }
+    var ol=mine.querySelector('.sched');
+    if(ol) body.appendChild(ol);
+    if(body.querySelector('li.priv')) note.hidden=false;
+    mine.parentNode.removeChild(mine);
+    days.splice(days.indexOf(mine),1);
   }else{
-    document.getElementById('todaytheme').textContent=week.name;
-    document.getElementById('todaywear').textContent=
-      'The daily themes for this week are not posted here yet — check with the office before you dress for it.';
+    var p=document.createElement('p'); p.className='none';
+    var w=today.getDay(), first=days.length?days[0].getAttribute('data-day'):null,
+        last=days.length?days[days.length-1].getAttribute('data-day'):null;
+    var soon=null;
+    for(var s=0;s<days.length;s++){
+      if(days[s].getAttribute('data-day') > k){ soon=days[s]; break; }
+    }
+    if(first && k<first){
+      p.innerHTML='Nothing scheduled yet. This week&rsquo;s memo starts <b>'+
+        pretty(fromKey(first))+'</b> \u2014 it is in the fold-away below.';
+    }else if(last && k>last){
+      p.innerHTML='No memo posted for this week yet. The last one ran to <b>'+
+        pretty(fromKey(last))+'</b> \u2014 check the <a href="https://drive.google.com/drive/folders/0ABNYRc6VZbI0Uk9PVA" target="_blank" rel="noopener">staff folder</a>.';
+    }else if(w===0||w===6){
+      p.innerHTML=soon ? 'No school today. Next up is <b>'+
+        pretty(fromKey(soon.getAttribute('data-day')))+'</b>.' : 'No school today.';
+    }else{
+      p.textContent='Nothing on the memo for today.';
+    }
+    body.appendChild(p);
   }
-  strip.hidden=false;
+
+  /* --- the rest of the week: only the days still to come ----------- */
+  var left=[];
+  days.forEach(function(el){
+    if(el.getAttribute('data-day') < k){ el.parentNode.removeChild(el); return; }
+    left.push(el);
+  });
+  var det=document.getElementById('week'),
+      dsub=det.querySelector('summary .sub'),
+      dhead=det.querySelector('summary h2');
+  if(left.length){
+    var a=fromKey(left[0].getAttribute('data-day')),
+        b=fromKey(left[left.length-1].getAttribute('data-day'));
+    dsub.textContent = left.length===1 ? pretty(a)
+      : pretty(a)+' \u2013 '+pretty(b);
+  }else{
+    dhead.textContent='This Week';
+    dsub.textContent='Standing expectations';
+  }
+
+  /* --- the next staff out-of-uniform day --------------------------- */
+  var strip=document.querySelector('.dress');
+  var mineD=null, nextD=null;
+  for(var j=0;j<dress.length;j++){
+    if(dress[j].d===k){ mineD=dress[j]; break; }
+    if(dress[j].d>k && !nextD) nextD=dress[j];
+  }
+  var week=null;
+  if(!mineD && !nextD){
+    for(var m=0;m<WEEKS.length;m++){
+      if(k>=WEEKS[m].from && k<=WEEKS[m].to){ week=WEEKS[m]; break; }
+    }
+  }
+  if(mineD||nextD||week){
+    var lbl=strip.querySelector('.lbl'), nm=strip.querySelector('.nm'),
+        when=strip.querySelector('.when');
+    if(mineD){
+      lbl.textContent='Dress day \u2014 today'; nm.textContent=mineD.n;
+      when.textContent='Out of uniform for staff.';
+    }else if(nextD){
+      lbl.textContent='Next dress day'; nm.textContent=nextD.n;
+      when.textContent=pretty(fromKey(nextD.d))+'.';
+    }else{
+      lbl.textContent='Spirit week'; nm.textContent=week.name;
+      when.textContent='The daily themes are not posted here \u2014 check with the office before you dress for it.';
+    }
+    strip.hidden=false;
+  }else{
+    strip.parentNode.removeChild(strip);
+  }
 })();
 </script>
 </body>
