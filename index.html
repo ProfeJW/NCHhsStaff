@@ -69,6 +69,35 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .sched .rm{display:block;color:var(--gray);font-size:13.5px}
 .sched li.priv .wh b{font-weight:600;color:var(--gray);font-style:italic}
 .sched li.game .wh b,.sched li.game .tm{color:var(--ink)}
+/* YOUR OWN NOTES - the private half of today's schedule. Rows the reader typed
+   themselves, held in their browser and never in this repository. */
+.sched li.yours .tm{color:var(--ink)}
+.sched li.yours .wh b{font-weight:700}
+.mine{margin:14px 0 0;border-top:1px solid var(--line);padding-top:12px}
+.mine>summary{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray);cursor:pointer;
+  list-style:none}
+.mine>summary::-webkit-details-marker{display:none}
+.mine>summary::before{content:'+ ';color:var(--red-deep)}
+.mine[open]>summary::before{content:'\2212 '}
+.mine .why{margin:11px 0 10px;font-size:13px;line-height:1.5;color:var(--gray);
+  background:var(--gold-soft);border-left:4px solid var(--gold);border-radius:6px;
+  padding:10px 12px}
+.mine .why b{color:var(--ink)}
+.mine textarea{width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:13.5px;line-height:1.6;padding:10px;border:1.5px solid var(--line);
+  border-radius:8px;background:var(--card);color:var(--ink);resize:vertical}
+.mine .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.mine button{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;background:var(--gold-soft);
+  color:var(--red-deep);border:1.5px solid var(--gold);border-radius:8px;
+  padding:7px 14px;cursor:pointer}
+.mine button:hover{background:#F0DDB8}
+.mine button.quiet{background:transparent;border-color:var(--line);color:var(--gray)}
+.mine .saved{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--gray)}
+.yourslbl{margin:14px 0 0;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
 
 /* what staff are wearing */
 .dress{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--gold-soft);
@@ -189,6 +218,20 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     public, and a name against an IEP, 504 or placement meeting would disclose that student&rsquo;s
     status to anyone who opens the page. If you are in one, it is on your own calendar and in the
     memo Ms.&nbsp;Craig-Roach sends out.</p>
+  <details class="mine" id="privbox">
+    <summary>Your own notes for today</summary>
+    <p class="why">Held in this browser, on this device, and nowhere else &mdash; never
+      uploaded, never committed, never visible to anyone else who opens the page.
+      <b>This is the safe place for the names behind the meetings above.</b> Write one
+      per line; start a line with a time and it lines up with the schedule.</p>
+    <textarea id="privtext" rows="5" spellcheck="false"
+      placeholder="11:00 K. Kelly IEP&#10;12:00 T. Frazier placement&#10;Call home re: 3rd bell"></textarea>
+    <div class="row">
+      <button type="button" id="privsave">Save</button>
+      <button type="button" class="quiet" id="privclear">Clear</button>
+      <span class="saved" id="privsaved"></span>
+    </div>
+  </details>
 </section>
 
 <div class="dress" hidden>
@@ -459,6 +502,91 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   }else{
     strip.parentNode.removeChild(strip);
   }
+})();
+</script>
+<script>
+/* your own notes for today
+   ------------------------------------------------------------------
+   The schedule above lists individual student meetings by time only, because
+   this repository is public and a name against an IEP, 504 or placement would
+   disclose that student's status to anyone who opens the page. This is the
+   other half of that: the reader can write the names down here, and what they
+   write stays in their own browser. It is never uploaded, never committed, and
+   never rendered for anyone else.
+
+   Keyed by date, so yesterday's notes do not follow you into today. */
+(function(){
+  var KEY='nch.priv.v1';
+  var box=document.getElementById('privbox');
+  if(!box) return;
+  var ta=document.getElementById('privtext'),
+      saved=document.getElementById('privsaved'),
+      today=document.getElementById('today'),
+      body=today?today.querySelector('.body'):null;
+  if(!ta||!body) return;
+
+  function key(){
+    var d=new Date();
+    return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  }
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)||'null')||{}; }catch(e){ return {}; }
+  }
+  function store(o){
+    try{ localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){ /* storage blocked */ }
+  }
+
+  /* A leading time is pulled into the .tm column so the row lines up with the
+     schedule above; a line without one is still kept, just untimed. */
+  function split(line){
+    var m=line.match(/^\s*(\d{1,2}(?::\d{2})?\s*(?:[AaPp]\.?[Mm]\.?)?)\s*[-\u2013\u2014:.]?\s+(.+)$/);
+    if(m && /\d/.test(m[1])) return {t:m[1].trim(), w:m[2].trim()};
+    return {t:'', w:line.trim()};
+  }
+
+  function render(){
+    var prev=body.parentNode.querySelectorAll('.yourslbl, ol.sched.yourlist');
+    for(var i=0;i<prev.length;i++) prev[i].parentNode.removeChild(prev[i]);
+
+    var lines=(load()[key()]||'').split('\n').filter(function(l){return l.trim();});
+    if(!lines.length) return;
+
+    var lbl=document.createElement('p');
+    lbl.className='yourslbl';
+    lbl.textContent='Yours \u2014 this device only';
+
+    var ol=document.createElement('ol');
+    ol.className='sched yourlist';
+    lines.forEach(function(line){
+      var p=split(line), li=document.createElement('li');
+      li.className='yours';
+      var t=document.createElement('span'); t.className='tm'; t.textContent=p.t||'\u2014';
+      var w=document.createElement('span'); w.className='wh';
+      var b=document.createElement('b'); b.textContent=p.w;
+      w.appendChild(b);
+      li.appendChild(t); li.appendChild(w); ol.appendChild(li);
+    });
+    body.parentNode.insertBefore(lbl, box);
+    body.parentNode.insertBefore(ol, box);
+  }
+
+  function fill(){
+    ta.value=load()[key()]||'';
+    saved.textContent=ta.value.trim()?'Saved on this device':'';
+  }
+
+  document.getElementById('privsave').addEventListener('click',function(){
+    var all=load();
+    if(ta.value.trim()) all[key()]=ta.value; else delete all[key()];
+    store(all); fill(); render();
+  });
+  document.getElementById('privclear').addEventListener('click',function(){
+    var all=load(); delete all[key()]; store(all);
+    ta.value=''; fill(); render();
+  });
+
+  fill();
+  render();   /* saved notes already show in the list above, so the editor stays shut */
 })();
 </script>
 </body>

@@ -62,7 +62,9 @@ DOC_TITLES = {
     'levy-2026-11-03-facts.pdf': 'Levy Facts Sheet - 3 Nov 2026',
 }
 
-SKIP_IDS = {'navtoggle', 'sitenav', 'countdown', 'expandall'}
+SKIP_IDS = {'navtoggle', 'sitenav', 'countdown', 'expandall',
+            # the private-notes editor: plumbing, and its text belongs to #today
+            'privbox', 'privtext', 'privsaved'}
 WS = re.compile(r'\s+')
 
 
