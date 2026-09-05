@@ -99,6 +99,29 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .yourslbl{margin:14px 0 0;font-family:'Barlow Condensed',sans-serif;font-weight:800;
   font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
 
+/* grades due - a red strip that shows up in the last stretch before a
+   Progress Book bucket closes, and takes itself off the page afterwards */
+.due{background:var(--red);color:#fff;border-radius:12px;padding:18px 24px 18px;margin:0 0 16px}
+.due .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:#fff;
+  color:var(--red-deep);border-radius:20px;padding:4px 13px;margin-bottom:9px}
+.due h2{font-size:28px;font-weight:800;color:#fff;margin:0;line-height:1.05}
+.due p{margin:6px 0 0;font-size:17px;line-height:1.45;color:#FFF1F3;max-width:64ch}
+.due p b{color:#fff;font-weight:700}
+.due small{display:block;margin-top:6px;font-size:13px;line-height:1.4;color:#FFD9DE;max-width:70ch}
+.due .go{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.due .go a{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:15px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+  background:#fff;color:var(--red-deep);border-radius:7px;padding:8px 14px;white-space:nowrap}
+.due .go a:hover{background:var(--gold-soft)}
+.due.today{background:var(--red-deep);outline:3px solid var(--gold)}
+@media (max-width:620px){
+  .due{padding:16px 16px 15px}
+  .due h2{font-size:24px}
+  .due p{font-size:16px}
+  .due .go a{flex:1;text-align:center}
+}
+
 /* what staff are wearing */
 .dress{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--gold-soft);
   border:1.5px solid var(--gold);border-radius:10px;padding:12px 18px;margin:0 0 16px}
@@ -209,6 +232,19 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="sres" id="sres" role="listbox" aria-label="Search results"></div>
 </div>
 
+<div class="due" id="gradesdue" hidden>
+  <span class="lbl"></span>
+  <div class="what">
+    <h2></h2>
+    <p></p>
+    <small></small>
+  </div>
+  <div class="go">
+    <a href="https://central.hccanet.org/" target="_blank" rel="noopener">Open Progress Book</a>
+    <a href="calendar.html">All grading dates</a>
+  </div>
+</div>
+
 <section class="now" id="today">
   <span class="lbl">Today</span>
   <h2>Today&rsquo;s Schedule</h2>
@@ -280,7 +316,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 </main>
 <footer>
   NCH Trojan Staff Hub · An unofficial staff resource · Dates from this week&rsquo;s staff memo &amp; the 2026&ndash;27 building calendar<br>
-  <span style="color:#9A959E">Site updated 31 August 2026</span>
+  <span style="color:#9A959E">Site updated 5 September 2026</span>
 </footer>
 <script>
 (function(){
@@ -400,6 +436,52 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   });
 })();
 
+
+/* interim grades due
+   ------------------------------------------------------------------
+   The dates are the building's, straight off docs/nch-hs-calendar-2026-27.pdf
+   ("Interim Grade Bucket Closes"). The strip appears LEAD days before a
+   bucket closes, counts down, says "due today" on the day, and is gone the
+   morning after - nothing to take down by hand.
+
+   The calendar gives the day the bucket closes but not the hour. TIME is
+   the end of the school day, which is the safe target whatever the actual
+   cut-off turns out to be; if a memo names a later time, put it here. */
+(function(){
+  var CLOSES=[
+    ['2026-09-14','Interim grades'],        // Q1 interims - bucket opens 8 Sep
+    ['2026-11-16','Interim grades']         // Q2 interims - bucket opens 10 Nov
+  ];
+  var TIME='3:05 PM', TIMEWHY='the end of the school day', LEAD=10;
+
+  var strip=document.getElementById('gradesdue');
+  if(!strip) return;
+  var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      MON=['January','February','March','April','May','June','July','August',
+           'September','October','November','December'];
+  function fromKey(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function pretty(d){return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()];}
+
+  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var hit=null, days=0;
+  for(var i=0;i<CLOSES.length;i++){
+    var d=fromKey(CLOSES[i][0]), n=Math.round((d-today)/86400000);
+    if(n>=0 && n<=LEAD){ hit=CLOSES[i]; days=n; break; }
+  }
+  if(!hit){ strip.parentNode.removeChild(strip); return; }
+
+  var lbl=strip.querySelector('.lbl'), h=strip.querySelector('h2'),
+      p=strip.querySelector('p'), sm=strip.querySelector('small');
+  var when=pretty(fromKey(hit[0]));
+  lbl.textContent = days===0?'Due today':days===1?'Due tomorrow':'Grades due';
+  h.textContent = hit[1]+' — '+(days===0?'today':days===1?'tomorrow':'in '+days+' days');
+  p.innerHTML = 'The Progress Book interim bucket closes <b>'+when+'</b>. '+
+    'Have every grade entered by <b>'+TIME+'</b> that day, '+TIMEWHY+'.';
+  sm.textContent = 'The building calendar gives the day, not the hour — '+TIME+
+    ' is the safe target. If the memo names a later cut-off, the memo wins.';
+  if(days===0) strip.classList.add('today');
+  strip.hidden=false;
+})();
 
 /* today's schedule, and the next staff out-of-uniform day
    ------------------------------------------------------------------
