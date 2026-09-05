@@ -108,7 +108,6 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .due h2{font-size:28px;font-weight:800;color:#fff;margin:0;line-height:1.05}
 .due p{margin:6px 0 0;font-size:17px;line-height:1.45;color:#FFF1F3;max-width:64ch}
 .due p b{color:#fff;font-weight:700}
-.due small{display:block;margin-top:6px;font-size:13px;line-height:1.4;color:#FFD9DE;max-width:70ch}
 .due .go{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .due .go a{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
   font-size:15px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
@@ -237,7 +236,6 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <div class="what">
     <h2></h2>
     <p></p>
-    <small></small>
   </div>
   <div class="go">
     <a href="https://central.hccanet.org/" target="_blank" rel="noopener">Open Progress Book</a>
@@ -444,15 +442,14 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
    bucket closes, counts down, says "due today" on the day, and is gone the
    morning after - nothing to take down by hand.
 
-   The calendar gives the day the bucket closes but not the hour. TIME is
-   the end of the school day, which is the safe target whatever the actual
-   cut-off turns out to be; if a memo names a later time, put it here. */
+   The building calendar gives only the day; the 11:59 PM cut-off is the
+   building's. If it ever changes, TIME is the one place to fix it. */
 (function(){
   var CLOSES=[
     ['2026-09-14','Interim grades'],        // Q1 interims - bucket opens 8 Sep
     ['2026-11-16','Interim grades']         // Q2 interims - bucket opens 10 Nov
   ];
-  var TIME='3:05 PM', TIMEWHY='the end of the school day', LEAD=10;
+  var TIME='11:59 PM', LEAD=10;
 
   var strip=document.getElementById('gradesdue');
   if(!strip) return;
@@ -471,14 +468,12 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   if(!hit){ strip.parentNode.removeChild(strip); return; }
 
   var lbl=strip.querySelector('.lbl'), h=strip.querySelector('h2'),
-      p=strip.querySelector('p'), sm=strip.querySelector('small');
+      p=strip.querySelector('p');
   var when=pretty(fromKey(hit[0]));
   lbl.textContent = days===0?'Due today':days===1?'Due tomorrow':'Grades due';
   h.textContent = hit[1]+' — '+(days===0?'today':days===1?'tomorrow':'in '+days+' days');
-  p.innerHTML = 'The Progress Book interim bucket closes <b>'+when+'</b>. '+
-    'Have every grade entered by <b>'+TIME+'</b> that day, '+TIMEWHY+'.';
-  sm.textContent = 'The building calendar gives the day, not the hour — '+TIME+
-    ' is the safe target. If the memo names a later cut-off, the memo wins.';
+  p.innerHTML = 'The Progress Book interim bucket closes <b>'+when+'</b> at <b>'+
+    TIME+'</b>. Every grade has to be entered before then.';
   if(days===0) strip.classList.add('today');
   strip.hidden=false;
 })();
