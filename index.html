@@ -519,12 +519,13 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
               t=txt(r.querySelector('.t')), meta=txt(r.querySelector('.meta')),
               badge=txt(r.querySelector('.badge'));
           if(/\bnoschool\b/.test(cat)){ off.push(meta?t+' \u2014 '+meta:t); continue; }
-          /* a Meeting Monday row carries its blocks in the meta:
-             "Huddle 7:45 · MTSS Behavior 8:00 · GLTs 9:00 ..." - one line each */
+          /* a Meeting Monday row carries its blocks in the meta, each ending in a
+             start time or a range: "Staff Huddle 7:45–8:00 · BLT 8:00–9:00 · ..."
+             - one line each, sorted by the start */
           if(/\bmeeting\b/.test(cat) && /\d/.test(meta)){
             var parts=meta.split(/\s*[\u00b7\u2022|]\s*/), got=0;
             for(var q=0;q<parts.length;q++){
-              var mm=parts[q].match(/^(.*\S)\s+(\d{1,2}(?::\d{2})?\s*(?:[AaPp]\.?[Mm]\.?)?)$/);
+              var mm=parts[q].match(/^(.*\S)\s+(\d{1,2}(?::\d{2})?(?:\s*[\u2013\u2014-]\s*\d{1,2}(?::\d{2})?)?\s*(?:[AaPp]\.?[Mm]\.?)?)$/);
               if(mm){ items.push({at:mins(mm[2]),tm:mm[2],what:mm[1],rm:'',cls:''}); got++; }
             }
             if(got){ if(!theme) theme=t; continue; }
