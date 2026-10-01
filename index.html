@@ -131,6 +131,23 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .dress .when{font-size:14.5px;color:var(--gray);flex:1;min-width:140px}
 
 /* the handful of links that are not in the nav */
+.cdown{background:var(--card);border:1.5px solid var(--line);border-top:5px solid var(--red);
+  border-radius:12px;padding:18px 22px 16px;margin:0 0 18px;text-align:center}
+.cdown .big{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap}
+.cdown .n{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:68px;
+  line-height:.9;color:var(--red-deep);letter-spacing:-.01em}
+.cdown .u{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.cdown .split{margin:8px 0 0;font-size:14.5px;color:var(--gray)}
+.cdown .split b{color:var(--ink)}
+.cdown .tick{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.cdown .tick span{background:var(--paper);border:1px solid var(--line);border-radius:7px;
+  padding:6px 11px;font-size:13px;color:var(--gray);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em}
+.cdown .tick b{font-size:19px;color:var(--ink);letter-spacing:0;margin-right:2px;
+  font-variant-numeric:tabular-nums}
+.cdown .foot{margin:12px 0 0;font-size:13px;color:var(--gray)}
+@media (max-width:620px){.cdown{padding:16px 14px 14px}.cdown .n{font-size:54px}.cdown .u{font-size:18px}}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
 .tools a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14.5px;
   letter-spacing:.05em;text-transform:uppercase;text-decoration:none;background:#fff;
@@ -274,6 +291,18 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   <span class="when"></span>
 </div>
 
+<div class="cdown" id="cdown" hidden>
+  <div class="big">
+    <span class="n" id="cdN">&mdash;</span>
+    <span class="u" id="cdU">days with students left</span>
+  </div>
+  <p class="split" id="cdSplit"></p>
+  <div class="tick" id="cdTick" hidden>
+    <span><b id="cdD">0</b>d</span><span><b id="cdH">0</b>h</span><span><b id="cdM">0</b>m</span><span><b id="cdS">0</b>s</span>
+  </div>
+  <p class="foot" id="cdFoot"></p>
+</div>
+
   <div class="tools">
     <a href="https://docs.google.com/spreadsheets/d/1mvTbwZoAh8QQDE5sGPx4_ndH2cprm2ITAWpu4g6Oqxk/edit" target="_blank" rel="noopener">Daily Tracker &mdash; HS</a>
     <a href="https://docs.google.com/spreadsheets/d/1NCm8rumpqSOX9o0niyvLugbZMEiuZGgBWuhx-KprnHA/edit" target="_blank" rel="noopener">Daily Tracker &mdash; MS</a>
@@ -289,32 +318,32 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
        data-dress="..."             on a day that is a staff out-of-uniform day
        li.priv                      student meetings - times only, never names -->
 <template class="weekdata">
-  <div class="day" data-day="2026-08-31">
-    <h3>Mon 31 Aug<span class="theme">Meeting Monday &middot; Blended Learning Day</span></h3>
-    <ol class="sched"><li><span class="tm">7:45 AM</span><span class="wh"><b>Staff Huddle</b><span class="rm">PAC</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>GLT Meetings</b><span class="rm">9th &mdash; Room 036 &middot; 10th &mdash; Room 131 &middot; 11th/12th &mdash; Room 132</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>Monday Programming Meeting</b><span class="rm">Room 022</span></span></li><li><span class="tm">9:00&ndash;10:00</span><span class="wh"><b>Admin &amp; Scarlet Oaks Meeting</b><span class="rm">Conference Room</span></span></li><li><span class="tm">9:00&ndash;11:00</span><span class="wh"><b>Protected Plan Time</b></span></li><li><span class="tm">10:30&ndash;11:00</span><span class="wh"><b>Cafeteria Team Meeting</b><span class="rm">Cafeteria</span></span></li><li><span class="tm">11:00&ndash;11:30</span><span class="wh"><b>Lunch</b></span></li><li><span class="tm">11:30&ndash;1:00</span><span class="wh"><b>Literacy Vertical Meeting</b><span class="rm">Middle School &mdash; Room 218</span></span></li><li><span class="tm">1:00&ndash;2:00</span><span class="wh"><b>District Attendance Meeting</b><span class="rm">Zoom</span></span></li><li><span class="tm">2:00&ndash;3:00</span><span class="wh"><b>MTSS Academic Meeting</b><span class="rm">Room 033</span></span></li><li class="priv"><span class="tm">11:00 &middot; 11:30 &middot; 12:00 &middot; 12:30</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two IEPs, a placement and one other &mdash; names withheld, see note below</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball vs. Hughes</b><span class="rm">Home</span></span></li></ol>
+  <div class="day" data-day="2026-09-14">
+    <h3>Mon 14 Sep<span class="theme">Meeting Monday &middot; Interim grades due today</span></h3>
+    <ol class="sched"><li><span class="tm">All day</span><span class="wh"><b>INTERIM GRADES DUE TODAY</b><span class="rm">At least one grade per week in every class; CLD is P or F</span></span></li><li><span class="tm">7:45 AM</span><span class="wh"><b>Staff Huddle</b><span class="rm">PAC</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>Content Meetings</b><span class="rm">ELA &mdash; Room 036 &middot; Math &mdash; Room 137 &middot; Science &mdash; Room 132 &middot; Social Studies &mdash; Room 131 &middot; Electives &mdash; Room 135</span></span></li><li><span class="tm">8:00&ndash;9:00</span><span class="wh"><b>Staff Committees</b></span></li><li><span class="tm">8:30 AM</span><span class="wh"><b>Monday Programming Doors Open</b></span></li><li><span class="tm">9:00&ndash;11:00</span><span class="wh"><b>Monday Credit Recovery &mdash; Session One</b></span></li><li><span class="tm">9:00&ndash;11:00</span><span class="wh"><b>Protected Plan Time</b></span></li><li><span class="tm">11:00&ndash;11:30</span><span class="wh"><b>Lunch</b></span></li><li><span class="tm">11:30 AM</span><span class="wh"><b>Monday Credit Recovery Doors Open</b></span></li><li><span class="tm">11:30&ndash;1:00</span><span class="wh"><b>Math Vertical Meeting</b><span class="rm">Library</span></span></li><li><span class="tm">12:00&ndash;2:00</span><span class="wh"><b>Monday Credit Recovery &mdash; Session Two</b></span></li><li><span class="tm">2:00&ndash;3:00</span><span class="wh"><b>MTSS Behavior Meeting</b><span class="rm">Room 138</span></span></li><li class="priv"><span class="tm">8:30 &middot; 9:00</span><span class="wh"><b>Individual student meetings</b><span class="rm">A parent meeting (HS conference room) and an MDR &mdash; names withheld, see note below</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Woodward</b><span class="rm">Away</span></span></li></ol>
   </div>
-  <div class="day" data-day="2026-09-01">
-    <h3>Tue 1 Sep<span class="theme">NCH Community Walk Day</span></h3>
-    <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:30 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">A 504 review and an IEP &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Mt. Healthy</b><span class="rm">Away</span></span></li></ol>
+  <div class="day" data-day="2026-09-15">
+    <h3>Tue 15 Sep<span class="theme">National Guard Band Performance</span></h3>
+    <ol class="sched"><li><span class="tm">All day</span><span class="wh"><b>National Guard Band Performance</b></span></li><li><span class="tm">All day</span><span class="wh"><b>Possible 11th &amp; 12th Grade Monday Career Navigator programming meeting</b><span class="rm">PAC</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and helping students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b><span class="rm">Student handbook lessons every day this week</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>Student Council Meeting</b><span class="rm">Room 139</span></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li></ol>
   </div>
-  <div class="day" data-day="2026-09-02">
-    <h3>Wed 2 Sep</h3>
-    <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:00 &middot; 2:15</span><span class="wh"><b>Individual student meetings</b><span class="rm">An Oaks AIEP and an IEP &mdash; names withheld</span></span></li></ol>
+  <div class="day" data-day="2026-09-16">
+    <h3>Wed 16 Sep</h3>
+    <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and helping students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b><span class="rm">Student handbook lessons every day this week</span></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:15 &middot; 10:52</span><span class="wh"><b>Individual student meetings</b><span class="rm">An RIEP and an RETR &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at St. Bernard</b><span class="rm">Away</span></span></li></ol>
   </div>
-  <div class="day" data-day="2026-09-03" data-dress="Staff College Shirt Day">
-    <h3>Thu 3 Sep<span class="theme">Staff College Shirt Day</span></h3>
-    <ol class="sched"><li><span class="tm">All day</span><span class="wh"><b>Bridge Program</b><span class="rm">6th Bell &mdash; PAC</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">10:00&ndash;11:30</span><span class="wh"><b>Admin at Expulsion Hearings</b></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">9:25 &middot; 10:15 &middot; 10:55 &middot; 1:40</span><span class="wh"><b>Individual student meetings</b><span class="rm">Two placements, an RIEP and a 504 &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball at Clark</b><span class="rm">Away</span></span></li></ol>
+  <div class="day" data-day="2026-09-17">
+    <h3>Thu 17 Sep<span class="theme">NCH Community Walk Day</span></h3>
+    <ol class="sched"><li><span class="tm">All day</span><span class="wh"><b>Bridge Program</b><span class="rm">6th Bell &mdash; Room 235</span></span></li><li><span class="tm">Lunch</span><span class="wh"><b>Youth at the Booth Lunch and Learn</b><span class="rm">Room 047</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and helping students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b><span class="rm">Student handbook lessons every day this week</span></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">12:00</span><span class="wh"><b>Individual student meeting</b><span class="rm">An RETR &mdash; names withheld</span></span></li><li class="game"><span class="tm">5:30 / 6:30 PM</span><span class="wh"><b>JV / Varsity Volleyball vs. Lockland</b><span class="rm">Home</span></span></li></ol>
   </div>
-  <div class="day" data-day="2026-09-04" data-dress="Staff NCH Gear Day &amp; Jeans">
-    <h3>Fri 4 Sep<span class="theme">Staff NCH Gear Day &amp; Jeans</span></h3>
-    <ol class="sched"><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and directing students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="game"><span class="tm">7:00 PM</span><span class="wh"><b>Varsity Football at Bethel Tate</b><span class="rm">Away</span></span></li></ol>
+  <div class="day" data-day="2026-09-18" data-dress="Staff NCH Gear (Only) Day &amp; Jeans">
+    <h3>Fri 18 Sep<span class="theme">Staff NCH Gear (Only) Day &amp; Jeans</span></h3>
+    <ol class="sched"><li><span class="tm">Lunch</span><span class="wh"><b>Army National Guard Lunch and Learn</b><span class="rm">ASVAB scores &mdash; Room 235</span></span></li><li><span class="tm">8:05&ndash;8:15</span><span class="wh"><b>All staff in hallways</b><span class="rm">Greeting and helping students</span></span></li><li><span class="tm">11:40&ndash;12:00</span><span class="wh"><b>REQUIRED CLD Lessons</b><span class="rm">Student handbook lessons every day this week</span></span></li><li><span class="tm">3:05&ndash;3:15</span><span class="wh"><b>Staff Assigned Duty Coverage</b></span></li><li class="priv"><span class="tm">11:50</span><span class="wh"><b>Individual student meeting</b><span class="rm">An RIEP &mdash; names withheld</span></span></li><li class="game"><span class="tm">7:00 PM</span><span class="wh"><b>Varsity Football vs. Western Hills</b><span class="rm">Home</span></span></li></ol>
   </div>
 </template>
 
 </main>
 <footer>
   NCH Trojan Staff Hub · An unofficial staff resource · Dates from this week&rsquo;s staff memo &amp; the 2026&ndash;27 building calendar<br>
-  <span style="color:#9A959E">Site updated 5 September 2026</span>
+  <span style="color:#9A959E">Site updated 21 September 2026</span>
 </footer>
 <script>
 (function(){
@@ -505,8 +534,12 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   function fromKey(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
   function pretty(d){return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()];}
 
-  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate()),
-      k=key(today);
+  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  /* ?day=YYYY-MM-DD previews another date - for checking the page before the
+     day comes, never something a reader needs */
+  var pv=(location.search.match(/[?&]day=(\d{4}-\d{2}-\d{2})/)||[])[1];
+  if(pv) today=fromKey(pv);
+  var k=key(today);
   var tpl=document.querySelector('template.weekdata');
   var days=tpl?[].slice.call(tpl.content.querySelectorAll('.day[data-day]')):[];
 
@@ -551,6 +584,137 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       p.textContent='Nothing on the memo for today.';
     }
     body.appendChild(p);
+    fromSite(p, w===0||w===6);
+  }
+
+  /* --- no memo block for today: build the day from the rest of the site ----
+     The building calendar (calendar.html) and the athletics schedules
+     (sports.html) already hold every dated thing the site knows about. When
+     the memo has nothing for today, read today's rows out of those two pages
+     and show them here, so the home page is still today's schedule in a week
+     nobody has pasted a memo. The message above stays put if neither page can
+     be fetched (opening the file straight from disk, or offline). */
+  function fromSite(msg, weekend){
+    if(!window.fetch || !window.DOMParser || !window.Promise) return;
+    var MABBR=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function txt(el){ return el?el.textContent.replace(/\s+/g,' ').trim():''; }
+    function page(url){
+      return fetch(url,{cache:'no-cache'})
+        .then(function(r){ if(!r.ok) throw new Error(url); return r.text(); })
+        .then(function(h){ return new DOMParser().parseFromString(h,'text/html'); })
+        .catch(function(){ return null; });
+    }
+    /* "7:45", "8:00 AM", "5:30 PM" -> minutes past midnight, for sorting.
+       Bare 1-6 o'clock is the afternoon; nothing at school starts at 3 AM. */
+    function mins(t){
+      var m=String(t).match(/(\d{1,2})(?::(\d{2}))?\s*([AaPp])?/);
+      if(!m) return 1e9;
+      var h=+m[1], mm=+(m[2]||0), ap=(m[3]||'').toLowerCase();
+      if(ap==='p' && h<12) h+=12;
+      else if(ap==='a' && h===12) h=0;
+      else if(!ap && h<7) h+=12;
+      return h*60+mm;
+    }
+    /* "7:00 PM", "8:00", and a JV/varsity double header "5:30 / 6:30 PM" */
+    var isTime=/^\d{1,2}(?::\d{2})?(?:\s*\/\s*\d{1,2}(?::\d{2})?)?\s*(?:[AaPp]\.?[Mm]\.?)?$/;
+
+    Promise.all([page('calendar.html'), page('sports.html')]).then(function(docs){
+      var cal=docs[0], sp=docs[1], items=[], off=[], theme='';
+
+      /* the building calendar: one .row per dated item, data-date on each */
+      if(cal){
+        var rows=cal.querySelectorAll('.row[data-date="'+k+'"]');
+        for(var i=0;i<rows.length;i++){
+          var r=rows[i], cat=r.getAttribute('data-cat')||'',
+              t=txt(r.querySelector('.t')), meta=txt(r.querySelector('.meta')),
+              badge=txt(r.querySelector('.badge'));
+          if(/\bnoschool\b/.test(cat)){ off.push(meta?t+' \u2014 '+meta:t); continue; }
+          /* a Meeting Monday row carries its blocks in the meta, each ending in a
+             start time or a range: "Staff Huddle 7:45–8:00 · BLT 8:00–9:00 · ..."
+             - one line each, sorted by the start */
+          if(/\bmeeting\b/.test(cat) && /\d/.test(meta)){
+            var parts=meta.split(/\s*[\u00b7\u2022|]\s*/), got=0;
+            for(var q=0;q<parts.length;q++){
+              var mm=parts[q].match(/^(.*\S)\s+(\d{1,2}(?::\d{2})?(?:\s*[\u2013\u2014-]\s*\d{1,2}(?::\d{2})?)?\s*(?:[AaPp]\.?[Mm]\.?)?)$/);
+              if(mm){ items.push({at:mins(mm[2]),tm:mm[2],what:mm[1],rm:'',cls:''}); got++; }
+            }
+            if(got){ if(!theme) theme=t; continue; }
+          }
+          var bits=meta?meta.split(/\s*\u00b7\s*/):[], tm='', rest=[];
+          for(var b=0;b<bits.length;b++){
+            if(!tm && isTime.test(bits[b])) tm=bits[b]; else rest.push(bits[b]);
+          }
+          items.push({at:tm?mins(tm):-1, tm:tm||'All day', what:t,
+                      rm:rest.join(' \u00b7 ')||badge, cls:''});
+        }
+      }
+
+      /* athletics: a card per team, rows titled "Sep — Opponent" with the day
+         number in the date chip. No year on the page: the season runs from
+         August, so Aug-Dec belong to the year the school year started in and
+         Jan onward to the next. */
+      if(sp){
+        var sy=today.getMonth()>=6?today.getFullYear():today.getFullYear()-1;
+        var cards=sp.querySelectorAll('.card');
+        for(var c=0;c<cards.length;c++){
+          var team=txt(cards[c].querySelector('h2')).replace(/^\/\/\s*/,'')
+                     .replace(/\s*[—–].*$/,'');   // "JV Football — Saturdays"
+
+          var games=cards[c].querySelectorAll('.row');
+          for(var g=0;g<games.length;g++){
+            var row=games[g], title=txt(row.querySelector('.t')),
+                m=title.match(/^([A-Z][a-z]{2})\s*[\u2014\u2013-]\s*(.+)$/);
+            if(!m) continue;
+            var mi=MABBR.indexOf(m[1]), day=parseInt(txt(row.querySelector('.num')),10);
+            if(mi<0||!day) continue;
+            if(key(new Date(mi>=7?sy:sy+1, mi, day))!==k) continue;
+            var home=/\bhome-game\b/.test(row.className),
+                gb=txt(row.querySelector('.meta')).split(/\s*\u00b7\s*/), gt='', grest=[];
+            for(var x=0;x<gb.length;x++){
+              if(!gt && (isTime.test(gb[x])||/^TBA$/i.test(gb[x]))) gt=gb[x];
+              else if(gb[x] && !(home && /^North College Hill$/i.test(gb[x]))) grest.push(gb[x]);
+            }
+            items.push({at:gt&&!/TBA/i.test(gt)?mins(gt):1e8, tm:gt||'TBA',
+                        what:team+(home?' vs. ':' at ')+m[2],
+                        rm:(home?'Home':'Away')+(grest.length?' \u2014 '+grest.join(' \u00b7 '):''),
+                        cls:'game'});
+          }
+        }
+      }
+
+      if(!items.length && !off.length) return;   // nothing known - message stands
+      items.sort(function(a,b){ return a.at-b.at; });
+
+      if(off.length){
+        msg.innerHTML='<b>No school today</b> \u2014 '+off.join('; ')+'.';
+      }else if(weekend){
+        msg.textContent='No school today.';
+      }else{
+        msg.parentNode.removeChild(msg);
+      }
+      if(theme && !weekend){ sub.textContent=theme; sub.hidden=false; }
+
+      if(items.length){
+        var ol=document.createElement('ol'); ol.className='sched';
+        for(var n=0;n<items.length;n++){
+          var it=items[n], li=document.createElement('li');
+          if(it.cls) li.className=it.cls;
+          var s1=document.createElement('span'); s1.className='tm'; s1.textContent=it.tm;
+          var s2=document.createElement('span'); s2.className='wh';
+          var bb=document.createElement('b'); bb.textContent=it.what; s2.appendChild(bb);
+          if(it.rm){ var s3=document.createElement('span'); s3.className='rm'; s3.textContent=it.rm; s2.appendChild(s3); }
+          li.appendChild(s1); li.appendChild(s2); ol.appendChild(li);
+        }
+        body.appendChild(ol);
+      }
+      var src=document.createElement('p'); src.className='note';
+      src.innerHTML='<b>From the building calendar and the athletics schedules</b> \u2014 this '+
+        'week\u2019s staff memo is not posted here yet, so anything only the memo carries '+
+        '(duties, hallway coverage, student meetings) is missing. The bell schedule, GLT rooms '+
+        'and the full Monday cycle are on <a href="schedules.html">Schedules</a>; the memo is in the '+
+        '<a href="https://drive.google.com/drive/folders/0ABNYRc6VZbI0Uk9PVA" target="_blank" rel="noopener">staff folder</a>.';
+      body.appendChild(src);
+    });
   }
 
   /* --- the next staff out-of-uniform day --------------------------- */
@@ -668,6 +832,134 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 
   fill();
   render();   /* saved notes already show in the list above, so the editor stays shut */
+})();
+</script>
+<script>
+/* how much of the year is left, counted in days with students
+   ------------------------------------------------------------------
+   Straight off the district calendar (docs/district-calendar-2026-27.pdf,
+   rev 2.10.26). Weekdays between the first and last student day, less the
+   closures below, come to 176; take out the 29 blended Mondays and you get
+   147, which is the S-147 printed on the calendar itself. That match is the
+   check that this data is right - if you edit anything here, redo it. */
+(function(){
+  var FIRST='2026-08-11';                 // first day for students
+  var LAST ='2027-05-20';                 // last day / senior graduation
+  var BELL =[15,5];                       // 3:05 dismissal, every day
+
+  // No school for students. Teacher-only days count as closed here.
+  var CLOSED=[
+    ['2026-09-07','2026-09-07'],          // Labor Day
+    ['2026-10-12','2026-10-12'],          // Records / Teacher Trade Off
+    ['2026-10-19','2026-10-19'],          // PD + parent-teacher conferences
+    ['2026-11-23','2026-11-24'],          // PD
+    ['2026-11-25','2026-11-27'],          // Fall Break
+    ['2026-12-21','2027-01-01'],          // Trade Off, then Winter Break
+    ['2027-01-18','2027-01-18'],          // Dr Martin Luther King Day
+    ['2027-02-01','2027-02-01'],          // PD + parent-teacher conferences
+    ['2027-02-15','2027-02-15'],          // Presidents Day
+    ['2027-03-22','2027-03-26'],          // Spring Break
+    ['2027-03-29','2027-03-29']           // Off Day
+  ];
+  // Blended Learning Days - students learn, just not in the building.
+  var BLENDED={};
+  ('2026-08-17 2026-08-24 2026-08-31 2026-09-14 2026-09-21 2026-09-28 '+
+   '2026-10-05 2026-10-26 2026-11-02 2026-11-09 2026-11-16 2026-11-30 '+
+   '2026-12-07 2026-12-14 2027-01-04 2027-01-11 2027-01-25 2027-02-08 '+
+   '2027-02-22 2027-03-01 2027-03-08 2027-03-15 2027-04-05 2027-04-12 '+
+   '2027-04-19 2027-04-26 2027-05-03 2027-05-10 2027-05-17')
+    .split(' ').forEach(function(d){ BLENDED[d]=1; });
+
+  var box=document.getElementById('cdown');
+  if(!box) return;
+
+  // Read the clock in Cincinnati, not on the device. A Chromebook left on UTC
+  // would otherwise tip the count over a day early every afternoon.
+  function nowEastern(){
+    var f;
+    try{
+      f=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',hour12:false,
+        year:'numeric',month:'2-digit',day:'2-digit',
+        hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date());
+    }catch(e){ return null; }        // no tz data - fall back to the device below
+    var p={}; f.forEach(function(x){ p[x.type]=x.value; });
+    return { date:p.year+'-'+p.month+'-'+p.day,
+             secs:(+p.hour===24?0:+p.hour)*3600 + (+p.minute)*60 + (+p.second) };
+  }
+  function localNow(){
+    var d=new Date();
+    var s=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    return { date:s, secs:d.getHours()*3600+d.getMinutes()*60+d.getSeconds() };
+  }
+  var now=nowEastern()||localNow();
+
+  function closed(d){
+    for(var i=0;i<CLOSED.length;i++) if(d>=CLOSED[i][0]&&d<=CLOSED[i][1]) return true;
+    return false;
+  }
+  function dow(d){ var p=d.split('-'); return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay(); }
+  function isStudentDay(d){
+    if(d<FIRST||d>LAST) return false;
+    var w=dow(d);
+    return w!==0 && w!==6 && !closed(d);
+  }
+  function next(d){
+    var p=d.split('-'), t=new Date(Date.UTC(+p[0],+p[1]-1,+p[2]));
+    t.setUTCDate(t.getUTCDate()+1);
+    return t.toISOString().slice(0,10);
+  }
+
+  // Today only counts while it is still running. Once the last bell has gone
+  // the day is spent, and a teacher walking to their car should see it drop.
+  var todayDone = isStudentDay(now.date) && now.secs >= (BELL[0]*3600+BELL[1]*60);
+  var from = todayDone ? next(now.date) : now.date;
+
+  var building=0, blended=0;
+  for(var d = (from<FIRST?FIRST:from); d<=LAST; d=next(d)){
+    if(!isStudentDay(d)) continue;
+    if(BLENDED[d]) blended++; else building++;
+  }
+  var total=building+blended;
+
+  var N=document.getElementById('cdN'), U=document.getElementById('cdU'),
+      SP=document.getElementById('cdSplit'), FT=document.getElementById('cdFoot'),
+      TK=document.getElementById('cdTick');
+
+  if(now.date>LAST || (now.date===LAST && todayDone)){
+    N.textContent='0';
+    U.textContent='days left — that’s the year';
+    SP.textContent='';
+    FT.textContent='Have a good summer.';
+    box.hidden=false;
+    return;
+  }
+
+  N.textContent=String(total);
+  U.textContent = total===1 ? 'day with students left' : 'days with students left';
+  SP.innerHTML = '<b>'+building+'</b> in the building &middot; <b>'+blended+
+                 '</b> blended Monday'+(blended===1?'':'s');
+
+  if(now.date<FIRST){
+    FT.textContent='School year starts Tuesday 11 August. 147 days in the building, the way the district counts it.';
+  }else{
+    FT.innerHTML='Last bell of the year: <b>3:05 PM, Thursday 20 May 2027</b>. Teacher-only days are not counted.';
+  }
+
+  // Live run-down to the final bell. new Date(y,m,d,h,m) builds it in the
+  // device's own zone, which is the right zone for anyone actually in the
+  // building; the day count above is the number that must not drift.
+  var end=new Date(2027,4,20,BELL[0],BELL[1],0,0);
+  function tickOnce(){
+    var ms=end-new Date();
+    if(ms<0) ms=0;
+    var s=Math.floor(ms/1000);
+    document.getElementById('cdD').textContent=Math.floor(s/86400);
+    document.getElementById('cdH').textContent=Math.floor(s%86400/3600);
+    document.getElementById('cdM').textContent=Math.floor(s%3600/60);
+    document.getElementById('cdS').textContent=s%60;
+  }
+  tickOnce(); TK.hidden=false; setInterval(tickOnce,1000);
+  box.hidden=false;
 })();
 </script>
 </body>
