@@ -435,19 +435,23 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 })();
 
 
-/* interim grades due
+/* grades due - interims and report cards
    ------------------------------------------------------------------
    The dates are the building's, straight off docs/nch-hs-calendar-2026-27.pdf
-   ("Interim Grade Bucket Closes"). The strip appears LEAD days before a
-   bucket closes, counts down, says "due today" on the day, and is gone the
-   morning after - nothing to take down by hand.
+   ("Interim Grade Bucket Closes", "Report Card Bucket Closes"). The strip
+   appears LEAD days before a bucket closes, counts down, says "due today"
+   on the day, and is gone the morning after - nothing to take down by hand.
 
-   The building calendar gives only the day; the 11:59 PM cut-off is the
-   building's. If it ever changes, TIME is the one place to fix it. */
+   Second-semester windows are not in that PDF yet; add them here when the
+   building publishes them. The calendar gives only the day; the 11:59 PM
+   cut-off is the building's, and TIME is the one place to fix it.
+     [date, heading, which bucket] */
 (function(){
   var CLOSES=[
-    ['2026-09-14','Interim grades'],        // Q1 interims - bucket opens 8 Sep
-    ['2026-11-16','Interim grades']         // Q2 interims - bucket opens 10 Nov
+    ['2026-09-14','Interim grades',          'interim'],                  // opens 8 Sep
+    ['2026-10-12','Q1 report card grades',   '1st quarter report card'],  // opens 8 Oct
+    ['2026-11-16','Interim grades',          'interim'],                  // opens 10 Nov
+    ['2026-12-18','Q2 report card grades',   '2nd quarter report card']   // opens 14 Dec
   ];
   var TIME='11:59 PM', LEAD=10;
 
@@ -472,7 +476,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   var when=pretty(fromKey(hit[0]));
   lbl.textContent = days===0?'Due today':days===1?'Due tomorrow':'Grades due';
   h.textContent = hit[1]+' — '+(days===0?'today':days===1?'tomorrow':'in '+days+' days');
-  p.innerHTML = 'The Progress Book interim bucket closes <b>'+when+'</b> at <b>'+
+  p.innerHTML = 'The Progress Book '+hit[2]+' bucket closes <b>'+when+'</b> at <b>'+
     TIME+'</b>. Every grade has to be entered before then.';
   if(days===0) strip.classList.add('today');
   strip.hidden=false;
