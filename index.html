@@ -99,6 +99,28 @@ nav a[aria-current="page"]{background:var(--red);color:#fff}
 .yourslbl{margin:14px 0 0;font-family:'Barlow Condensed',sans-serif;font-weight:800;
   font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
 
+/* grades due - a red strip that shows up in the last stretch before a
+   Progress Book bucket closes, and takes itself off the page afterwards */
+.due{background:var(--red);color:#fff;border-radius:12px;padding:18px 24px 18px;margin:0 0 16px}
+.due .lbl{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:#fff;
+  color:var(--red-deep);border-radius:20px;padding:4px 13px;margin-bottom:9px}
+.due h2{font-size:28px;font-weight:800;color:#fff;margin:0;line-height:1.05}
+.due p{margin:6px 0 0;font-size:17px;line-height:1.45;color:#FFF1F3;max-width:64ch}
+.due p b{color:#fff;font-weight:700}
+.due .go{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.due .go a{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:15px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+  background:#fff;color:var(--red-deep);border-radius:7px;padding:8px 14px;white-space:nowrap}
+.due .go a:hover{background:var(--gold-soft)}
+.due.today{background:var(--red-deep);outline:3px solid var(--gold)}
+@media (max-width:620px){
+  .due{padding:16px 16px 15px}
+  .due h2{font-size:24px}
+  .due p{font-size:16px}
+  .due .go a{flex:1;text-align:center}
+}
+
 /* what staff are wearing */
 .dress{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--gold-soft);
   border:1.5px solid var(--gold);border-radius:10px;padding:12px 18px;margin:0 0 16px}
@@ -224,6 +246,18 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     <button type="button" class="clr" id="sclr" aria-label="Clear search">&times;</button>
   </form>
   <div class="sres" id="sres" role="listbox" aria-label="Search results"></div>
+</div>
+
+<div class="due" id="gradesdue" hidden>
+  <span class="lbl"></span>
+  <div class="what">
+    <h2></h2>
+    <p></p>
+  </div>
+  <div class="go">
+    <a href="https://central.hccanet.org/" target="_blank" rel="noopener">Open Progress Book</a>
+    <a href="calendar.html">All grading dates</a>
+  </div>
 </div>
 
 <section class="now" id="today">
@@ -429,6 +463,53 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   });
 })();
 
+
+/* grades due - interims and report cards
+   ------------------------------------------------------------------
+   The dates are the building's, straight off docs/nch-hs-calendar-2026-27.pdf
+   ("Interim Grade Bucket Closes", "Report Card Bucket Closes"). The strip
+   appears LEAD days before a bucket closes, counts down, says "due today"
+   on the day, and is gone the morning after - nothing to take down by hand.
+
+   Second-semester windows are not in that PDF yet; add them here when the
+   building publishes them. The calendar gives only the day; the 11:59 PM
+   cut-off is the building's, and TIME is the one place to fix it.
+     [date, heading, which bucket] */
+(function(){
+  var CLOSES=[
+    ['2026-09-14','Interim grades',          'interim'],                  // opens 8 Sep
+    ['2026-10-12','Q1 report card grades',   '1st quarter report card'],  // opens 8 Oct
+    ['2026-11-16','Interim grades',          'interim'],                  // opens 10 Nov
+    ['2026-12-18','Q2 report card grades',   '2nd quarter report card']   // opens 14 Dec
+  ];
+  var TIME='11:59 PM', LEAD=10;
+
+  var strip=document.getElementById('gradesdue');
+  if(!strip) return;
+  var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      MON=['January','February','March','April','May','June','July','August',
+           'September','October','November','December'];
+  function fromKey(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function pretty(d){return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()];}
+
+  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var hit=null, days=0;
+  for(var i=0;i<CLOSES.length;i++){
+    var d=fromKey(CLOSES[i][0]), n=Math.round((d-today)/86400000);
+    if(n>=0 && n<=LEAD){ hit=CLOSES[i]; days=n; break; }
+  }
+  if(!hit){ strip.parentNode.removeChild(strip); return; }
+
+  var lbl=strip.querySelector('.lbl'), h=strip.querySelector('h2'),
+      p=strip.querySelector('p');
+  var when=pretty(fromKey(hit[0]));
+  lbl.textContent = days===0?'Due today':days===1?'Due tomorrow':'Grades due';
+  h.textContent = hit[1]+' — '+(days===0?'today':days===1?'tomorrow':'in '+days+' days');
+  p.innerHTML = 'The Progress Book '+hit[2]+' bucket closes <b>'+when+'</b> at <b>'+
+    TIME+'</b>. Every grade has to be entered before then.';
+  if(days===0) strip.classList.add('today');
+  strip.hidden=false;
+})();
 
 /* today's schedule, and the next staff out-of-uniform day
    ------------------------------------------------------------------
