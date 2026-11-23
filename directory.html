@@ -253,6 +253,38 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 }
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* person finder */
+.pf-in{width:100%;font-family:inherit;font-size:17px;color:var(--ink);background:#fff;
+  border:2px solid var(--ink);border-radius:8px;padding:12px 16px}
+.pf-in:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.pf-hint{color:var(--gray);font-size:13.5px;margin:8px 0 0}
+.pf-res{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:14px;margin-top:16px}
+.pf-res:empty{display:none}
+.pf-card{border:1px solid var(--line);border-top:4px solid var(--red);border-radius:8px;
+  padding:14px 16px;background:#fff;min-width:0}
+.pf-card h3{font-size:24px;font-weight:800;line-height:1.05}
+.pf-card .nick{color:var(--gray);font-family:'Barlow',sans-serif;font-weight:400;font-size:14px;
+  text-transform:none;letter-spacing:0}
+.pf-title{font-weight:600;margin:3px 0 8px;overflow-wrap:anywhere}
+.pf-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.pf-tags span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12.5px;
+  letter-spacing:.08em;text-transform:uppercase;background:var(--gold-soft);color:var(--ink);
+  border-radius:3px;padding:2px 8px}
+.pf-kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:15px}
+.pf-kv dt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding-top:2px}
+.pf-kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.pf-kv .ext{font-variant-numeric:tabular-nums;font-weight:800;font-size:20px;color:var(--red-deep)}
+.pf-kv .none{color:var(--gray);font-style:italic}
+.pf-copy{font:inherit;font-size:12px;margin-left:6px;border:1px solid var(--line);background:#fff;
+  border-radius:4px;padding:1px 7px;cursor:pointer;color:var(--ink)}
+.pf-copy:hover{background:var(--gold-soft)}
+.pf-sec{margin-top:10px;border-top:1px dotted var(--line);padding-top:8px;font-size:14.5px}
+.pf-sec b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--red-deep);margin-bottom:2px}
+.pf-sec ul{margin:0;padding-left:18px}
+.pf-sec li{padding:1px 0}
+.pf-empty{color:var(--gray);margin:0;grid-column:1/-1}
 </style>
 </head>
 <body>
@@ -290,8 +322,15 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
 </div>
 <div class="page-h"><h1>Directory</h1><span class="sub">Who to see &amp; phone extensions</span></div>
 <div class="rule"></div>
-<div class="jump"><a href="#extensions">Extensions</a><a href="#ms-extensions">Middle School</a><a href="#admin">Admin</a><a href="#counselors">Counselors</a><a href="#whotoask">Who to Ask</a><a href="#facilities">Facilities</a><a href="#central">Central Office</a><a href="#board">Board</a></div>
+<div class="jump"><a href="#find">Find a Person</a><a href="#extensions">Extensions</a><a href="#ms-extensions">Middle School</a><a href="#admin">Admin</a><a href="#counselors">Counselors</a><a href="#whotoask">Who to Ask</a><a href="#facilities">Facilities</a><a href="#central">Central Office</a><a href="#board">Board</a></div>
 
+<div class="card" id="find">
+  <h2><span class="tag">//</span> Find a Person</h2>
+  <label for="pfq" style="display:block;margin:0 0 8px">Type a name, nickname, job, room or extension to see everything this page knows about someone.</label>
+  <input type="search" id="pfq" class="pf-in" autocomplete="off" placeholder="e.g. Nutter, JJ, nurse, 10013, M217">
+  <p class="pf-hint">Pulls from the extension lists, the Who to Ask table, the admin split, Central Office and the Board, all further down this page.</p>
+  <div class="pf-res" id="pfres" aria-live="polite"></div>
+</div>
 <div class="card" id="extensions">
   <h2><span class="tag">//</span> Phone Extensions</h2>
   <p style="margin:0 0 16px">Dial the 5-digit extension from any building phone. Grouped by role; names listed last-name first.</p>
@@ -827,6 +866,238 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       e.preventDefault(); q.focus();
     }
   });
+})();
+/* person finder: builds one record per person from the tables on this page */
+(function(){
+  var q=document.getElementById('pfq'), out=document.getElementById('pfres');
+  if(!q||!out) return;
+
+  /* Work addresses only: anything outside the district domain is ignored.
+     Add people whose address is not already on this page as "Last, First": "address". */
+  var WORK=/@nchcityschools\.org$/i;
+  var EMAILS={
+  };
+
+  var people=[], SUFFIX=/^(jr\.?|sr\.?|ii|iii|iv)$/i;
+  function txt(el){return (el.textContent||'').replace(/\s+/g,' ').trim();}
+  function norm(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
+  function toks(s){return (s.toLowerCase().match(/[a-z][a-z'’-]*/g)||[]).map(function(t){return t.replace(/[’']/g,'');});}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function add(arr,v){ if(v && arr.indexOf(v)<0) arr.push(v); }
+
+  /* "Last, First “Nick”" or "First Last" -> parts */
+  function parseName(raw, firstLast){
+    var nick='', m=raw.match(/[“"]([^”"]+)[”"]/);
+    if(m){ nick=m[1]; raw=raw.replace(m[0],''); }
+    raw=raw.replace(/\s+/g,' ').trim();
+    var last, first;
+    if(firstLast){
+      var w=raw.split(' '), title='';
+      if(/^(dr\.|mr\.|ms\.|mrs\.)$/i.test(w[0])) title=w.shift()+' ';
+      var suf=SUFFIX.test(w[w.length-1])?' '+w.pop():'';
+      last=w.pop(); first=title+w.join(' ');
+      return {last:last, first:first, nick:nick, suffix:suf.trim()};
+    }
+    var c=raw.indexOf(',');
+    if(c<0) return {last:raw, first:'', nick:nick, suffix:''};
+    return {last:raw.slice(0,c).trim(), first:raw.slice(c+1).trim(), nick:nick, suffix:''};
+  }
+  function firstKey(f){ return norm(f.replace(/^(dr|mr|ms|mrs)\.\s*/i,'').split(' ')[0]); }
+
+  function find(n){
+    var L=norm(n.last), F=firstKey(n.first);
+    var same=people.filter(function(p){return norm(p.last)===L;});
+    if(F){
+      var hit=same.filter(function(p){return firstKey(p.first)===F;})[0];
+      if(hit) return hit;
+      var blank=same.filter(function(p){return !p.first;});
+      if(blank.length===1){ blank[0].first=n.first; return blank[0]; }
+      return null;
+    }
+    return same.length===1?same[0]:null;
+  }
+  function get(n){
+    var p=find(n);
+    if(!p){
+      p={last:n.last, first:n.first, nick:'', suffix:n.suffix||'', titles:[], buildings:[], groups:[],
+         rooms:[], exts:[], emails:[], goFor:[], duties:[], notes:[]};
+      people.push(p);
+    }
+    if(n.nick) p.nick=n.nick;
+    if(!p.first && n.first) p.first=n.first;
+    return p;
+  }
+
+  var ROOM=/^(M|H|ES)\d|library|office|media|central/i;
+
+  /* 1. extension lists */
+  [['extensions','High School'],['ms-extensions','Middle School']].forEach(function(b){
+    var card=document.getElementById(b[0]); if(!card) return;
+    card.querySelectorAll('.extgrid section').forEach(function(sec){
+      var group=txt(sec.querySelector('h3'));
+      if(/^locations$/i.test(group)) return;
+      sec.querySelectorAll('.extrow').forEach(function(row){
+        var nm=row.querySelector('.nm'), role=nm.querySelector('.role');
+        var roleTxt=role?txt(role):'';
+        var nameTxt=txt(nm); if(roleTxt) nameTxt=nameTxt.slice(0, nameTxt.length-roleTxt.length).trim();
+        var ext=txt(row.querySelector('.num'));
+        var parts=roleTxt?roleTxt.split(/\s*·\s*/):[], title='', rooms=[];
+        parts.forEach(function(x){ if(ROOM.test(x)) rooms=rooms.concat(x.split(/\s*\/\s*/)); else title=title?title+' · '+x:x; });
+        var pieces=nameTxt.split(/\s+(?:\/|&)\s+/);
+        pieces.forEach(function(piece){
+          var p=get(parseName(piece));
+          add(p.titles,title); add(p.buildings,b[1]); add(p.groups,group); add(p.exts,ext);
+          rooms.forEach(function(r){add(p.rooms,r);});
+        });
+      });
+    });
+  });
+
+  /* 2. MS intervention specialists */
+  var ms=document.getElementById('ms-extensions');
+  if(ms) ms.querySelectorAll('table.sched tbody tr').forEach(function(tr){
+    var td=tr.querySelectorAll('td'); if(td.length<3) return;
+    var rooms=txt(td[2]).split(/\s*\/\s*/);
+    txt(td[0]).split(/\s+\/\s+/).forEach(function(piece){
+      var p=get(parseName(piece)); add(p.titles,'Intervention Specialist ('+txt(td[1]).replace(/\s*IS$/,'')+')');
+      add(p.buildings,'Middle School');
+      if(rooms.length===1) add(p.rooms,rooms[0]);
+    });
+  });
+
+  /* 3. admin split + counselors */
+  document.querySelectorAll('#admin .admin > div').forEach(function(d){
+    var p=find(parseName(txt(d.querySelector('h3')))); if(!p) return;
+    d.querySelectorAll('li').forEach(function(li){add(p.duties,txt(li));});
+  });
+  document.querySelectorAll('#counselors .admin > div').forEach(function(d){
+    var p=find(parseName(txt(d.querySelector('h3')),true)); if(!p) return;
+    d.querySelectorAll('li').forEach(function(li){ var t=txt(li);
+      if(/^last names/i.test(t)) add(p.duties,'Counselor for students with '+t.charAt(0).toLowerCase()+t.slice(1)); });
+  });
+
+  /* 4. central office, treasurer, board */
+  var central=document.getElementById('central');
+  if(central){
+    var tabs=central.querySelectorAll('table.sched');
+    if(tabs[0]) tabs[0].querySelectorAll('tbody tr').forEach(function(tr){
+      var td=tr.querySelectorAll('td'), p=get(parseName(txt(td[0]),true));
+      add(p.titles, txt(td[1]).replace(/\s*—\s*title not listed.*$/,'')); add(p.buildings,'Central Office');
+      add(p.groups,'Executive Cabinet');
+    });
+    if(tabs[1]) tabs[1].querySelectorAll('tbody tr').forEach(function(tr){
+      var td=tr.querySelectorAll('td'), b=td[1].querySelector('b'); if(!b) return;
+      var p=get(parseName(txt(b),true)), a=td[1].querySelector('a[href^="mailto:"]');
+      var after=txt(td[1]).replace(txt(b),'').split('·')[0].replace(/^,\s*/,'').trim();
+      add(p.titles, after||'Treasurer’s Office'); add(p.buildings,'Central Office');
+      if(a && WORK.test(a.getAttribute('href').slice(7))) add(p.emails,a.getAttribute('href').slice(7));
+      add(p.goFor, txt(td[0]));
+    });
+  }
+  document.querySelectorAll('#board table.sched tbody tr').forEach(function(tr){
+    var td=tr.querySelectorAll('td'), p=get(parseName(txt(td[0]),true));
+    var pos=td[1].cloneNode(true), sec=pos.querySelector('.sec');
+    if(sec){ add(p.notes, txt(sec)); sec.remove(); }
+    add(p.titles,'Board of Education — '+txt(pos)); add(p.buildings,'Board of Education');
+  });
+
+  /* 5. Who to Ask: attach each need to the people it names */
+  document.querySelectorAll('#whotoask tbody tr').forEach(function(tr){
+    var td=tr.querySelectorAll('td'); if(td.length<2) return;
+    var need=txt(td[0]), cellT=toks(txt(td[1])), matched=[];
+    td[1].querySelectorAll('b').forEach(function(b){
+      var bt=toks(txt(b));
+      var cand=people.filter(function(p){ return bt.indexOf(toks(p.last).join(' ').toLowerCase())>=0 || toks(p.last).every(function(t){return bt.indexOf(t)>=0;}) && toks(p.last).length; });
+      if(cand.length>1) cand=cand.filter(function(p){
+        var f=firstKey(p.first); return (f && bt.indexOf(f)>=0) || (p.nick && bt.indexOf(norm(p.nick))>=0); });
+      if(cand.length===1) add(matched,cand[0]);
+    });
+    var cell=' '+cellT.join(' ')+' ';
+    people.forEach(function(p){
+      var f=firstKey(p.first);
+      if(f && cell.indexOf(' '+f+' '+toks(p.last).join(' ')+' ')>=0) add(matched,p);
+    });
+    matched.forEach(function(p){ add(p.goFor, need); });
+  });
+
+  people.forEach(function(p){
+    var e=EMAILS[p.last+', '+p.first]; if(e && WORK.test(e)) add(p.emails,e);
+  });
+
+  /* shared lines */
+  function sharers(p){
+    return people.filter(function(o){ return o!==p && o.exts.some(function(x){return p.exts.indexOf(x)>=0;}); });
+  }
+  function display(p){ return (p.first?p.first+' ':'')+p.last+(p.suffix?' '+p.suffix:''); }
+
+  people.forEach(function(p){
+    p.hay=[display(p), p.last+', '+p.first, p.nick, p.titles.join(' '), p.groups.join(' '),
+      p.buildings.join(' '), p.rooms.join(' '), p.exts.join(' '), p.emails.join(' '),
+      p.goFor.join(' '), p.duties.join(' ')].join(' | ').toLowerCase();
+    p.nameHay=(display(p)+' '+p.nick).toLowerCase();
+  });
+
+  function card(p){
+    var title=p.titles[0]||(p.groups[0]?p.groups[0].replace(/s$/,''):'');
+    var h='<div class="pf-card"><h3>'+esc(display(p))+(p.nick?' <span class="nick">“'+esc(p.nick)+'”</span>':'')+'</h3>';
+    if(title) h+='<div class="pf-title">'+esc(p.titles.length?p.titles.join(' · '):title)+'</div>';
+    var tags=p.buildings.concat(p.groups.filter(function(g){return p.titles.indexOf(g)<0;}));
+    if(tags.length) h+='<div class="pf-tags">'+tags.map(function(t){return '<span>'+esc(t)+'</span>';}).join('')+'</div>';
+    h+='<dl class="pf-kv"><dt>Ext.</dt><dd>'+(p.exts.length?'<span class="ext">'+esc(p.exts.join(' / '))+'</span>':'<span class="none">none listed</span>')+'</dd>';
+    h+='<dt>Email</dt><dd>'+(p.emails.length?p.emails.map(function(e){
+        return '<a href="mailto:'+esc(e)+'">'+esc(e)+'</a><button type="button" class="pf-copy" data-copy="'+esc(e)+'">Copy</button>';}).join('<br>')
+      :'<span class="none">not listed yet</span>')+'</dd>';
+    if(p.rooms.length) h+='<dt>Room</dt><dd>'+esc(p.rooms.join(', '))+'</dd>';
+    h+='</dl>';
+    var sh=sharers(p);
+    if(sh.length) h+='<div class="pf-sec"><b>Shares the line with</b>'+esc(sh.map(display).join(', '))+'</div>';
+    if(p.duties.length) h+='<div class="pf-sec"><b>Handles</b><ul>'+p.duties.map(function(d){return '<li>'+esc(d)+'</li>';}).join('')+'</ul></div>';
+    if(p.goFor.length) h+='<div class="pf-sec"><b>Go to them for</b><ul>'+p.goFor.map(function(d){return '<li>'+esc(d)+'</li>';}).join('')+'</ul></div>';
+    if(p.notes.length) h+='<div class="pf-sec"><b>Note</b>'+esc(p.notes.join(' '))+'</div>';
+    return h+'</div>';
+  }
+
+  /* match only at the start of a word, so "king" does not find "working" */
+  function wordStart(h,t){
+    var i=h.indexOf(t);
+    while(i>=0){ if(i===0||!/[a-z0-9]/.test(h.charAt(i-1))) return true; i=h.indexOf(t,i+1); }
+    return false;
+  }
+  function run(){
+    var raw=q.value.trim().toLowerCase();
+    if(!raw){ out.innerHTML=''; return; }
+    var terms=raw.split(/\s+/), hits=[];
+    people.forEach(function(p){
+      var sc=0;
+      for(var i=0;i<terms.length;i++){
+        var t=terms[i];
+        if(!wordStart(p.hay,t)) return;
+        if((' '+p.nameHay).indexOf(' '+t)>=0) sc+=10;
+        else if(p.nameHay.indexOf(t)>=0) sc+=6;
+        else if(p.exts.indexOf(t)>=0) sc+=10;
+        else if(p.titles.join(' ').toLowerCase().indexOf(t)>=0) sc+=4;
+        else sc+=1;
+      }
+      hits.push({p:p,sc:sc});
+    });
+    hits.sort(function(a,b){return b.sc-a.sc || a.p.last.localeCompare(b.p.last);});
+    var more=hits.length>12; hits=hits.slice(0,12);
+    out.innerHTML=hits.length?hits.map(function(h){return card(h.p);}).join('')
+      :'<p class="pf-empty">No one on this page matches “'+esc(q.value.trim())+'”. Try the site search at the top, which also reads every PDF.</p>';
+    if(more) out.insertAdjacentHTML('beforeend','<p class="pf-empty">Showing the first 12 — add more of the name to narrow it.</p>');
+  }
+  var t;
+  q.addEventListener('input',function(){ clearTimeout(t); t=setTimeout(run,100); });
+  out.addEventListener('click',function(e){
+    var b=e.target.closest('.pf-copy'); if(!b) return;
+    var v=b.getAttribute('data-copy');
+    function done(){ b.textContent='Copied'; setTimeout(function(){b.textContent='Copy';},1400); }
+    if(navigator.clipboard) navigator.clipboard.writeText(v).then(done,function(){});
+  });
+  /* directory.html?who=name opens with that search filled in */
+  var m=location.search.match(/[?&]who=([^&]+)/);
+  if(m){ q.value=decodeURIComponent(m[1].replace(/\+/g,' ')); run(); }
 })();
 </script>
 </body>
