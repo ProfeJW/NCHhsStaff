@@ -872,10 +872,8 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
   var q=document.getElementById('pfq'), out=document.getElementById('pfres');
   if(!q||!out) return;
 
-  /* Emails for people whose address is not already on this page.
-     Add entries as "Last, First": "address". */
-  var EMAILS={
-  };
+  /* Only shared office inboxes are shown, never an individual's own address. */
+  var SHARED_INBOX=/^(payroll|accountspayable)@/i;
 
   var people=[], SUFFIX=/^(jr\.?|sr\.?|ii|iii|iv)$/i;
   function txt(el){return (el.textContent||'').replace(/\s+/g,' ').trim();}
@@ -990,7 +988,7 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
       var p=get(parseName(txt(b),true)), a=td[1].querySelector('a[href^="mailto:"]');
       var after=txt(td[1]).replace(txt(b),'').split('·')[0].replace(/^,\s*/,'').trim();
       add(p.titles, after||'Treasurer’s Office'); add(p.buildings,'Central Office');
-      if(a) add(p.emails,a.getAttribute('href').slice(7));
+      if(a && SHARED_INBOX.test(a.getAttribute('href').slice(7))) add(p.emails,a.getAttribute('href').slice(7));
       add(p.goFor, txt(td[0]));
     });
   }
@@ -1020,11 +1018,6 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     matched.forEach(function(p){ add(p.goFor, need); });
   });
 
-  /* 6. extra emails */
-  people.forEach(function(p){
-    var e=EMAILS[p.last+', '+p.first]; if(e) add(p.emails,e);
-  });
-
   /* shared lines */
   function sharers(p){
     return people.filter(function(o){ return o!==p && o.exts.some(function(x){return p.exts.indexOf(x)>=0;}); });
@@ -1045,9 +1038,8 @@ footer{border-top:1px solid var(--line);color:var(--gray);font-size:13px;
     var tags=p.buildings.concat(p.groups.filter(function(g){return p.titles.indexOf(g)<0;}));
     if(tags.length) h+='<div class="pf-tags">'+tags.map(function(t){return '<span>'+esc(t)+'</span>';}).join('')+'</div>';
     h+='<dl class="pf-kv"><dt>Ext.</dt><dd>'+(p.exts.length?'<span class="ext">'+esc(p.exts.join(' / '))+'</span>':'<span class="none">none listed</span>')+'</dd>';
-    h+='<dt>Email</dt><dd>'+(p.emails.length?p.emails.map(function(e){
-        return '<a href="mailto:'+esc(e)+'">'+esc(e)+'</a><button type="button" class="pf-copy" data-copy="'+esc(e)+'">Copy</button>';}).join('<br>')
-      :'<span class="none">not listed on this site</span>')+'</dd>';
+    if(p.emails.length) h+='<dt>Office inbox</dt><dd>'+p.emails.map(function(e){
+        return '<a href="mailto:'+esc(e)+'">'+esc(e)+'</a><button type="button" class="pf-copy" data-copy="'+esc(e)+'">Copy</button>';}).join('<br>')+'</dd>';
     if(p.rooms.length) h+='<dt>Room</dt><dd>'+esc(p.rooms.join(', '))+'</dd>';
     h+='</dl>';
     var sh=sharers(p);
